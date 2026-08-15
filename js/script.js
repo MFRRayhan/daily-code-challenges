@@ -1,0 +1,213 @@
+// ==========================================
+// JavaScript Daily Challenges
+// ==========================================
+
+// ==========================================
+// Task 01 — Reverse a String
+// ==========================================
+
+// Question:
+// একটি function তৈরি করো যা একটি string নিয়ে
+// সেটার reverse return করবে.
+
+// Example:
+// Input: "hello"
+// Output: "olleh"
+
+// Answer:
+
+function reverseString(str) {
+  return str.split("").reverse().join("");
+}
+
+// ==========================================
+// Task 02 — Check Even or Odd
+// ==========================================
+
+// Question:
+// একটি number even নাকি odd সেটা check করো.
+
+// Example:
+// Input: 7
+// Output: "Odd"
+
+// Answer:
+
+function checkEvenOdd(num) {
+  return num % 2 === 0 ? "Even" : "Odd";
+}
+
+// ==========================================
+// Task 03 — Find the Largest Number
+// ==========================================
+
+// Question:
+// একটি array থেকে সবচেয়ে বড় number বের করো.
+
+// Example:
+// Input: [10, 5, 25, 8, 15]
+// Output: 25
+
+// Answer:
+
+function findLargest(numbers) {
+  return Math.max(...numbers);
+}
+
+// ==========================================
+// Task 04 — Count Vowels
+// ==========================================
+
+// Question:
+// একটি string-এর মধ্যে কতগুলো vowel আছে সেটা count করো.
+
+// Example:
+// Input: "javascript"
+// Output: 3
+
+// Answer:
+
+function countVowels(str) {
+  const vowels = "aeiou";
+  let count = 0;
+
+  for (const char of str.toLowerCase()) {
+    if (vowels.includes(char)) {
+      count++;
+    }
+  }
+
+  return count;
+}
+
+// ==========================================
+// Task 05 — Remove Duplicates
+// ==========================================
+
+// Question:
+// একটি array থেকে duplicate values remove করো.
+
+// Example:
+// Input: [1, 2, 2, 3, 3, 4]
+// Output: [1, 2, 3, 4]
+
+// Answer:
+
+function removeDuplicates(arr) {
+  return [...new Set(arr)];
+}
+
+// ==========================================
+// Task 06 — Sum of Array
+// ==========================================
+
+// Question:
+// একটি array-এর সব numbers-এর sum বের করো.
+
+// Example:
+// Input: [10, 20, 30, 40]
+// Output: 100
+
+// Answer:
+
+function sumArray(numbers) {
+  return numbers.reduce((sum, num) => sum + num, 0);
+}
+
+// ==========================================
+// Task 07 — Find the Second Largest Number
+// ==========================================
+
+// Question:
+// একটি array থেকে দ্বিতীয় সর্বোচ্চ number বের করো.
+
+// Example:
+// Input: [10, 20, 5, 30, 25]
+// Output: 25
+
+// Answer:
+
+function secondLargest(numbers) {
+  const uniqueNumbers = [...new Set(numbers)];
+
+  uniqueNumbers.sort((a, b) => b - a);
+
+  return uniqueNumbers[1];
+}
+
+// ==========================================
+// Task 08 — Check Palindrome
+// ==========================================
+
+// Question:
+// একটি string palindrome কিনা check করো.
+
+// Example:
+// Input: "madam"
+// Output: true
+
+// Input: "hello"
+// Output: false
+
+// Answer:
+
+function isPalindrome(str) {
+  const reversed = str.split("").reverse().join("");
+
+  return str === reversed;
+}
+
+// ==========================================
+// Task 09 — Find Missing Number
+// ==========================================
+
+// Question:
+// ১ থেকে n পর্যন্ত numbers-এর মধ্যে একটি number missing.
+// Missing number খুঁজে বের করো.
+
+// Example:
+// Input: [1, 2, 3, 5]
+// Output: 4
+
+// Answer:
+
+function findMissingNumber(numbers) {
+  const n = numbers.length + 1;
+
+  const expectedSum = (n * (n + 1)) / 2;
+
+  const actualSum = numbers.reduce((sum, num) => sum + num, 0);
+
+  return expectedSum - actualSum;
+}
+
+// ==========================================
+// Task 10 — Character Frequency
+// ==========================================
+
+// Question:
+// একটি string-এর প্রতিটি character কতবার এসেছে
+// সেটা object হিসেবে return করো.
+
+// Example:
+// Input: "hello"
+
+// Output:
+// {
+//   h: 1,
+//   e: 1,
+//   l: 2,
+//   o: 1
+// }
+
+// Answer:
+
+function charFrequency(str) {
+  const frequency = {};
+
+  for (const char of str) {
+    frequency[char] = (frequency[char] || 0) + 1;
+  }
+
+  return frequency;
+}
