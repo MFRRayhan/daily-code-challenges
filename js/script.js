@@ -211,3 +211,230 @@ function charFrequency(str) {
 
   return frequency;
 }
+
+// ==========================================
+// Task 11 — Find the Smallest Number
+// ==========================================
+
+// Question:
+// একটি array থেকে সবচেয়ে ছোট number বের করো.
+
+// Example:
+// Input: [10, 5, 25, 8, 15]
+// Output: 5
+
+// Answer:
+
+function findSmallest(numbers) {
+  return Math.min(...numbers);
+}
+
+// ==========================================
+// Task 12 — Calculate Factorial
+// ==========================================
+
+// Question:
+// একটি number-এর factorial বের করো.
+
+// Example:
+// Input: 5
+// Output: 120
+//
+// 5! = 5 × 4 × 3 × 2 × 1 = 120
+
+// Answer:
+
+function factorial(num) {
+  let result = 1;
+
+  for (let i = 1; i <= num; i++) {
+    result *= i;
+  }
+
+  return result;
+}
+
+// ==========================================
+// Task 13 — Check Prime Number
+// ==========================================
+
+// Question:
+// একটি number prime number কিনা check করো.
+
+// Example:
+// Input: 7
+// Output: true
+//
+// Input: 10
+// Output: false
+
+// Answer:
+
+function isPrime(num) {
+  if (num < 2) {
+    return false;
+  }
+
+  for (let i = 2; i < num; i++) {
+    if (num % i === 0) {
+      return false;
+    }
+  }
+
+  return true;
+}
+
+// ==========================================
+// Task 14 — Capitalize First Letter
+// ==========================================
+
+// Question:
+// একটি string-এর প্রথম letter capital করো.
+
+// Example:
+// Input: "javascript"
+// Output: "Javascript"
+
+// Answer:
+
+function capitalizeFirst(str) {
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
+// ==========================================
+// Task 15 — Count Words
+// ==========================================
+
+// Question:
+// একটি sentence-এর মধ্যে মোট কতগুলো word আছে
+// সেটা count করো.
+
+// Example:
+// Input: "I love JavaScript"
+// Output: 3
+
+// Answer:
+
+function countWords(sentence) {
+  return sentence.trim().split(/\s+/).length;
+}
+
+// ==========================================
+// Task 16 — Find Even Numbers
+// ==========================================
+
+// Question:
+// একটি array থেকে সব even numbers বের করো.
+
+// Example:
+// Input: [1, 2, 3, 4, 5, 6]
+// Output: [2, 4, 6]
+
+// Answer:
+
+function findEvenNumbers(numbers) {
+  return numbers.filter((num) => num % 2 === 0);
+}
+
+// ==========================================
+// Task 17 — Find Odd Numbers
+// ==========================================
+
+// Question:
+// একটি array থেকে সব odd numbers বের করো.
+
+// Example:
+// Input: [1, 2, 3, 4, 5, 6]
+// Output: [1, 3, 5]
+
+// Answer:
+
+function findOddNumbers(numbers) {
+  return numbers.filter((num) => num % 2 !== 0);
+}
+
+// ==========================================
+// Task 18 — Reverse Words
+// ==========================================
+
+// Question:
+// একটি sentence-এর wordগুলোর order reverse করো,
+// কিন্তু প্রতিটি word-এর spelling একই থাকবে.
+
+// Example:
+// Input: "I love JavaScript"
+// Output: "JavaScript love I"
+
+// Answer:
+
+function reverseWords(sentence) {
+  return sentence.split(" ").reverse().join(" ");
+}
+
+// ==========================================
+// Task 19 — Find Common Elements
+// ==========================================
+
+// Question:
+// দুটি array-এর মধ্যে common elements বের করো.
+
+// Example:
+// Input:
+// [1, 2, 3, 4]
+// [3, 4, 5, 6]
+//
+// Output:
+// [3, 4]
+
+// Answer:
+
+function findCommonElements(arr1, arr2) {
+  return arr1.filter((item) => arr2.includes(item));
+}
+
+// ==========================================
+// Task 20 — FizzBuzz
+// ==========================================
+
+// Question:
+// 1 থেকে 20 পর্যন্ত numbers print করো.
+//
+// যদি number 3 দিয়ে divisible হয় → "Fizz"
+// যদি number 5 দিয়ে divisible হয় → "Buzz"
+// যদি 3 এবং 5 দুটো দিয়েই divisible হয় → "FizzBuzz"
+// অন্যথায় number নিজেই print করো.
+
+// Expected Output:
+//
+// 1
+// 2
+// Fizz
+// 4
+// Buzz
+// Fizz
+// 7
+// 8
+// Fizz
+// Buzz
+// 11
+// Fizz
+// 13
+// 14
+// FizzBuzz
+// ...
+
+// Answer:
+
+function fizzBuzz() {
+  for (let i = 1; i <= 20; i++) {
+    if (i % 3 === 0 && i % 5 === 0) {
+      console.log("FizzBuzz");
+    } else if (i % 3 === 0) {
+      console.log("Fizz");
+    } else if (i % 5 === 0) {
+      console.log("Buzz");
+    } else {
+      console.log(i);
+    }
+  }
+}
