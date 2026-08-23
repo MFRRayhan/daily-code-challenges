@@ -438,3 +438,238 @@ function fizzBuzz() {
     }
   }
 }
+
+// ==========================================
+// Task 21 — Find the Longest Word
+// ==========================================
+
+// Question:
+// একটি sentence থেকে সবচেয়ে বড় word বের করো.
+
+// Example:
+// Input: "I love learning JavaScript"
+// Output: "JavaScript"
+
+// Answer:
+
+function findLongestWord(sentence) {
+  const words = sentence.split(" ");
+
+  let longest = "";
+
+  for (const word of words) {
+    if (word.length > longest.length) {
+      longest = word;
+    }
+  }
+
+  return longest;
+}
+
+// ==========================================
+// Task 22 — Count Occurrences
+// ==========================================
+
+// Question:
+// একটি array-তে নির্দিষ্ট একটি value কতবার এসেছে
+// সেটা count করো.
+
+// Example:
+// Input:
+// [1, 2, 2, 3, 2, 4], 2
+//
+// Output:
+// 3
+
+// Answer:
+
+function countOccurrences(arr, value) {
+  return arr.filter((item) => item === value).length;
+}
+
+// ==========================================
+// Task 23 — Merge Two Arrays
+// ==========================================
+
+// Question:
+// দুটি array merge করে একটি নতুন array return করো.
+
+// Example:
+// Input:
+// [1, 2]
+// [3, 4]
+//
+// Output:
+// [1, 2, 3, 4]
+
+// Answer:
+
+function mergeArrays(arr1, arr2) {
+  return [...arr1, ...arr2];
+}
+
+// ==========================================
+// Task 24 — Check Anagram
+// ==========================================
+
+// Question:
+// দুটি string anagram কিনা check করো.
+
+// Example:
+// Input:
+// "listen"
+// "silent"
+//
+// Output:
+// true
+
+// Answer:
+
+function isAnagram(str1, str2) {
+  const format = (str) =>
+    str.toLowerCase().split("").sort().join("");
+
+  return format(str1) === format(str2);
+}
+
+// ==========================================
+// Task 25 — Find Maximum Occurring Character
+// ==========================================
+
+// Question:
+// একটি string-এর সবচেয়ে বেশি বার আসা character বের করো.
+
+// Example:
+// Input:
+// "javascript"
+//
+// Output:
+// "a"
+
+// Answer:
+
+function maxOccurringCharacter(str) {
+  const frequency = {};
+
+  let maxChar = "";
+  let maxCount = 0;
+
+  for (const char of str) {
+    frequency[char] = (frequency[char] || 0) + 1;
+
+    if (frequency[char] > maxCount) {
+      maxCount = frequency[char];
+      maxChar = char;
+    }
+  }
+
+  return maxChar;
+}
+
+// ==========================================
+// Task 26 — Remove Falsy Values
+// ==========================================
+
+// Question:
+// একটি array থেকে সব falsy values remove করো.
+
+// Example:
+// Input:
+// [0, 1, false, 2, "", 3, null, undefined]
+//
+// Output:
+// [1, 2, 3]
+
+// Answer:
+
+function removeFalsyValues(arr) {
+  return arr.filter(Boolean);
+}
+
+// ==========================================
+// Task 27 — Flatten One Level Array
+// ==========================================
+
+// Question:
+// Nested array-এর এক লেভেল flatten করো.
+
+// Example:
+// Input:
+// [1, [2, 3], [4, 5], 6]
+//
+// Output:
+// [1, 2, 3, 4, 5, 6]
+
+// Answer:
+
+function flattenArray(arr) {
+  return arr.flat();
+}
+
+// ==========================================
+// Task 28 — Generate Random Number
+// ==========================================
+
+// Question:
+// min এবং max-এর মধ্যে একটি random integer generate করো.
+
+// Example:
+// Input:
+// 1, 10
+//
+// Output:
+// 7 (random)
+
+// Answer:
+
+function randomNumber(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+// ==========================================
+// Task 29 — Check Leap Year
+// ==========================================
+
+// Question:
+// একটি year leap year কিনা check করো.
+
+// Example:
+// Input:
+// 2024
+//
+// Output:
+// true
+
+// Answer:
+
+function isLeapYear(year) {
+  return (
+    (year % 4 === 0 && year % 100 !== 0) ||
+    year % 400 === 0
+  );
+}
+
+// ==========================================
+// Task 30 — Rotate Array
+// ==========================================
+
+// Question:
+// একটি array-কে k positions ডানদিকে rotate করো.
+
+// Example:
+// Input:
+// [1, 2, 3, 4, 5], 2
+//
+// Output:
+// [4, 5, 1, 2, 3]
+
+// Answer:
+
+function rotateArray(arr, k) {
+  k %= arr.length;
+
+  return [
+    ...arr.slice(-k),
+    ...arr.slice(0, -k),
+  ];
+}
