@@ -673,3 +673,273 @@ function rotateArray(arr, k) {
     ...arr.slice(0, -k),
   ];
 }
+
+// ==========================================
+// Task 31 — Remove Falsy Values
+// ==========================================
+
+// Question:
+// একটি array থেকে সব falsy values remove করো.
+//
+// Falsy values:
+// false, 0, "", null, undefined, NaN
+//
+// Example:
+// Input: [0, 1, false, 2, "", 3, null]
+// Output: [1, 2, 3]
+
+// Answer:
+
+function removeFalsyValues(arr) {
+  return arr.filter(Boolean);
+}
+
+
+// ==========================================
+// Task 32 — Capitalize Every Word
+// ==========================================
+
+// Question:
+// একটি sentence-এর প্রতিটি word-এর প্রথম letter
+// capital করো.
+//
+// Example:
+// Input: "hello world javascript"
+// Output: "Hello World Javascript"
+
+// Answer:
+
+function capitalizeWords(sentence) {
+  return sentence
+    .split(" ")
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
+}
+
+
+// ==========================================
+// Task 33 — Find the Sum of Digits
+// ==========================================
+
+// Question:
+// একটি number-এর প্রতিটি digit-এর sum বের করো.
+//
+// Example:
+// Input: 12345
+// Output: 15
+//
+// 1 + 2 + 3 + 4 + 5 = 15
+
+// Answer:
+
+function sumOfDigits(num) {
+  return String(Math.abs(num))
+    .split("")
+    .reduce((sum, digit) => sum + Number(digit), 0);
+}
+
+
+// ==========================================
+// Task 34 — Check Anagram
+// ==========================================
+
+// Question:
+// দুটি string anagram কিনা check করো.
+//
+// Example:
+// Input:
+// "listen"
+// "silent"
+//
+// Output:
+// true
+
+// Answer:
+
+function isAnagram(str1, str2) {
+  const cleanStr1 = str1.toLowerCase().split("").sort().join("");
+  const cleanStr2 = str2.toLowerCase().split("").sort().join("");
+
+  return cleanStr1 === cleanStr2;
+}
+
+
+// ==========================================
+// Task 35 — Find Numbers Greater Than Average
+// ==========================================
+
+// Question:
+// একটি array-এর average-এর চেয়ে বড় numbers বের করো.
+//
+// Example:
+// Input: [10, 20, 30, 40, 50]
+//
+// Average: 30
+//
+// Output:
+// [40, 50]
+
+// Answer:
+
+function greaterThanAverage(numbers) {
+  const average =
+    numbers.reduce((sum, num) => sum + num, 0) / numbers.length;
+
+  return numbers.filter(num => num > average);
+}
+
+
+// ==========================================
+// Task 36 — Flatten a Nested Array
+// ==========================================
+
+// Question:
+// একটি nested array-কে single-level array-তে convert করো.
+//
+// Example:
+// Input:
+// [1, [2, 3], [4, [5, 6]]]
+//
+// Output:
+// [1, 2, 3, 4, 5, 6]
+
+// Answer:
+
+function flattenArray(arr) {
+  return arr.flat(Infinity);
+}
+
+
+// ==========================================
+// Task 37 — Find the Missing Letter
+// ==========================================
+
+// Question:
+// একটি alphabet sequence থেকে missing letter খুঁজে বের করো.
+//
+// Example:
+// Input:
+// ["a", "b", "c", "e", "f"]
+//
+// Output:
+// "d"
+
+// Answer:
+
+function findMissingLetter(letters) {
+  for (let i = 0; i < letters.length - 1; i++) {
+    const current = letters[i].charCodeAt(0);
+    const next = letters[i + 1].charCodeAt(0);
+
+    if (next - current > 1) {
+      return String.fromCharCode(current + 1);
+    }
+  }
+
+  return null;
+}
+
+
+// ==========================================
+// Task 38 — Rotate an Array
+// ==========================================
+
+// Question:
+// একটি array-এর elements-গুলোকে নির্দিষ্ট সংখ্যক position
+// ডানদিকে rotate করো.
+//
+// Example:
+// Input:
+// [1, 2, 3, 4, 5]
+// Rotate: 2
+//
+// Output:
+// [4, 5, 1, 2, 3]
+
+// Answer:
+
+function rotateArray(arr, positions) {
+  const result = [...arr];
+
+  for (let i = 0; i < positions; i++) {
+    result.unshift(result.pop());
+  }
+
+  return result;
+}
+
+
+// ==========================================
+// Task 39 — Find Pairs With Given Sum
+// ==========================================
+
+// Question:
+// একটি array এবং একটি target number দেওয়া থাকবে.
+// যেসব pair-এর sum target-এর সমান হয়,
+// সেই pairগুলো বের করো.
+//
+// Example:
+// Input:
+// [2, 4, 3, 5, 7]
+// Target: 7
+//
+// Output:
+// [[2, 5], [4, 3]]
+
+// Answer:
+
+function findPairs(numbers, target) {
+  const pairs = [];
+
+  for (let i = 0; i < numbers.length; i++) {
+    for (let j = i + 1; j < numbers.length; j++) {
+      if (numbers[i] + numbers[j] === target) {
+        pairs.push([numbers[i], numbers[j]]);
+      }
+    }
+  }
+
+  return pairs;
+}
+
+
+// ==========================================
+// Task 40 — Find the Longest Consecutive Sequence
+// ==========================================
+
+// Question:
+// একটি unsorted array-তে সবচেয়ে বড় consecutive
+// number sequence-এর length বের করো.
+//
+// Example:
+// Input:
+// [100, 4, 200, 1, 3, 2]
+//
+// Output:
+// 4
+//
+// কারণ:
+// [1, 2, 3, 4] → length = 4
+
+// Answer:
+
+function longestConsecutive(numbers) {
+  const set = new Set(numbers);
+  let longest = 0;
+
+  for (const num of set) {
+    if (!set.has(num - 1)) {
+      let current = num;
+      let length = 1;
+
+      while (set.has(current + 1)) {
+        current++;
+        length++;
+      }
+
+      longest = Math.max(longest, length);
+    }
+  }
+
+  return longest;
+}
