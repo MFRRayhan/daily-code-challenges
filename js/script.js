@@ -943,3 +943,303 @@ function longestConsecutive(numbers) {
 
   return longest;
 }
+
+
+// ==========================================
+// Task 41 — Find the Intersection of Two Arrays
+// ==========================================
+
+// Question:
+// দুটি array-এর মধ্যে common values বের করো.
+//
+// Example:
+// Input:
+// [1, 2, 3, 4]
+// [3, 4, 5, 6]
+//
+// Output:
+// [3, 4]
+
+// Answer:
+
+function findIntersection(arr1, arr2) {
+  return [...new Set(arr1.filter(item => arr2.includes(item)))];
+}
+
+
+// ==========================================
+// Task 42 — Find the Difference Between Two Arrays
+// ==========================================
+
+// Question:
+// প্রথম array-তে আছে কিন্তু দ্বিতীয় array-তে নেই,
+// এমন values বের করো.
+//
+// Example:
+// Input:
+// [1, 2, 3, 4]
+// [2, 4, 6]
+//
+// Output:
+// [1, 3]
+
+// Answer:
+
+function findDifference(arr1, arr2) {
+  return arr1.filter(item => !arr2.includes(item));
+}
+
+
+// ==========================================
+// Task 43 — Find the Largest Difference
+// ==========================================
+
+// Question:
+// একটি array-তে দুটি number-এর মধ্যে সবচেয়ে বড়
+// possible difference বের করো.
+//
+// Example:
+// Input:
+// [10, 3, 15, 7, 2]
+//
+// Output:
+// 13
+//
+// কারণ:
+// 15 - 2 = 13
+
+// Answer:
+
+function largestDifference(numbers) {
+  const largest = Math.max(...numbers);
+  const smallest = Math.min(...numbers);
+
+  return largest - smallest;
+}
+
+
+// ==========================================
+// Task 44 — Count Positive, Negative and Zero
+// ==========================================
+
+// Question:
+// একটি array-তে কতগুলো positive, negative এবং zero
+// আছে সেটা count করো.
+//
+// Example:
+// Input:
+// [1, -2, 0, 5, -7, 0, 3]
+//
+// Output:
+// {
+//   positive: 3,
+//   negative: 2,
+//   zero: 2
+// }
+
+// Answer:
+
+function countNumbers(numbers) {
+  let positive = 0;
+  let negative = 0;
+  let zero = 0;
+
+  for (const num of numbers) {
+    if (num > 0) {
+      positive++;
+    } else if (num < 0) {
+      negative++;
+    } else {
+      zero++;
+    }
+  }
+
+  return {
+    positive,
+    negative,
+    zero
+  };
+}
+
+
+// ==========================================
+// Task 45 — Find the First Non-Repeating Character
+// ==========================================
+
+// Question:
+// একটি string-এর প্রথম এমন character খুঁজে বের করো
+// যেটি শুধুমাত্র একবার এসেছে.
+//
+// Example:
+// Input:
+// "aabbcdd"
+//
+// Output:
+// "c"
+
+// Answer:
+
+function firstNonRepeatingChar(str) {
+  const frequency = {};
+
+  for (const char of str) {
+    frequency[char] = (frequency[char] || 0) + 1;
+  }
+
+  for (const char of str) {
+    if (frequency[char] === 1) {
+      return char;
+    }
+  }
+
+  return null;
+}
+
+
+// ==========================================
+// Task 46 — Find the First Repeating Character
+// ==========================================
+
+// Question:
+// একটি string-এর প্রথম repeating character খুঁজে বের করো.
+//
+// Example:
+// Input:
+// "abcdde"
+//
+// Output:
+// "d"
+
+// Answer:
+
+function firstRepeatingChar(str) {
+  const seen = new Set();
+
+  for (const char of str) {
+    if (seen.has(char)) {
+      return char;
+    }
+
+    seen.add(char);
+  }
+
+  return null;
+}
+
+
+// ==========================================
+// Task 47 — Move Zeros to the End
+// ==========================================
+
+// Question:
+// একটি array-এর সব zero-কে array-এর শেষে নিয়ে যাও.
+// অন্য numbers-এর order একই রাখতে হবে.
+//
+// Example:
+// Input:
+// [0, 1, 0, 3, 12]
+//
+// Output:
+// [1, 3, 12, 0, 0]
+
+// Answer:
+
+function moveZerosToEnd(numbers) {
+  const nonZeros = numbers.filter(num => num !== 0);
+  const zeros = numbers.filter(num => num === 0);
+
+  return [...nonZeros, ...zeros];
+}
+
+
+// ==========================================
+// Task 48 — Find the Maximum Sum Subarray
+// ==========================================
+
+// Question:
+// একটি array-এর consecutive elements-এর মধ্যে
+// সবচেয়ে বড় possible sum বের করো.
+//
+// Example:
+// Input:
+// [-2, 1, -3, 4, -1, 2, 1, -5, 4]
+//
+// Output:
+// 6
+//
+// কারণ:
+// [4, -1, 2, 1] → 6
+
+// Answer:
+
+function maxSubarraySum(numbers) {
+  let currentSum = numbers[0];
+  let maxSum = numbers[0];
+
+  for (let i = 1; i < numbers.length; i++) {
+    currentSum = Math.max(numbers[i], currentSum + numbers[i]);
+
+    maxSum = Math.max(maxSum, currentSum);
+  }
+
+  return maxSum;
+}
+
+
+// ==========================================
+// Task 49 — Chunk an Array
+// ==========================================
+
+// Question:
+// একটি array এবং একটি size দেওয়া থাকবে.
+// Array-টিকে নির্দিষ্ট size-এর ছোট ছোট array-তে ভাগ করো.
+//
+// Example:
+// Input:
+// [1, 2, 3, 4, 5, 6, 7]
+// Size: 3
+//
+// Output:
+// [
+//   [1, 2, 3],
+//   [4, 5, 6],
+//   [7]
+// ]
+
+// Answer:
+
+function chunkArray(arr, size) {
+  const result = [];
+
+  for (let i = 0; i < arr.length; i += size) {
+    result.push(arr.slice(i, i + size));
+  }
+
+  return result;
+}
+
+
+// ==========================================
+// Task 50 — Find the Second Smallest Number
+// ==========================================
+
+// Question:
+// একটি array থেকে দ্বিতীয় সবচেয়ে ছোট unique number
+// বের করো.
+//
+// Example:
+// Input:
+// [10, 5, 8, 5, 3, 10]
+//
+// Output:
+// 5
+
+// Answer:
+
+function secondSmallest(numbers) {
+  const uniqueNumbers = [...new Set(numbers)];
+
+  uniqueNumbers.sort((a, b) => a - b);
+
+  return uniqueNumbers[1];
+}
