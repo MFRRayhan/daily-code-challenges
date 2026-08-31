@@ -1243,3 +1243,330 @@ function secondSmallest(numbers) {
 
   return uniqueNumbers[1];
 }
+
+
+// ==========================================
+// Task 51 — Reverse an Array Without reverse()
+// ==========================================
+
+// Question:
+// built-in reverse() method ব্যবহার না করে একটি array
+// reverse করো.
+//
+// Example:
+// Input:
+// [1, 2, 3, 4, 5]
+//
+// Output:
+// [5, 4, 3, 2, 1]
+
+// Answer:
+
+function reverseArray(arr) {
+  const result = [];
+
+  for (let i = arr.length - 1; i >= 0; i--) {
+    result.push(arr[i]);
+  }
+
+  return result;
+}
+
+
+// ==========================================
+// Task 52 — Check if Array is Sorted
+// ==========================================
+
+// Question:
+// একটি array ascending order-এ sorted কিনা check করো.
+//
+// Example:
+// Input:
+// [1, 2, 3, 4, 5]
+//
+// Output:
+// true
+//
+// Input:
+// [1, 3, 2, 4, 5]
+//
+// Output:
+// false
+
+// Answer:
+
+function isSorted(arr) {
+  for (let i = 0; i < arr.length - 1; i++) {
+    if (arr[i] > arr[i + 1]) {
+      return false;
+    }
+  }
+
+  return true;
+}
+
+
+// ==========================================
+// Task 53 — Find the Most Frequent Character
+// ==========================================
+
+// Question:
+// একটি string-এর মধ্যে সবচেয়ে বেশি বার আসা
+// character খুঁজে বের করো.
+//
+// Example:
+// Input:
+// "javascript"
+//
+// Output:
+// "a"
+
+// Answer:
+
+function mostFrequentChar(str) {
+  const frequency = {};
+  let mostFrequent = "";
+  let maxCount = 0;
+
+  for (const char of str) {
+    frequency[char] = (frequency[char] || 0) + 1;
+
+    if (frequency[char] > maxCount) {
+      maxCount = frequency[char];
+      mostFrequent = char;
+    }
+  }
+
+  return mostFrequent;
+}
+
+
+// ==========================================
+// Task 54 — Remove a Specific Value
+// ==========================================
+
+// Question:
+// একটি array থেকে নির্দিষ্ট একটি value-এর সব occurrence
+// remove করো.
+//
+// Example:
+// Input:
+// [1, 2, 3, 2, 4, 2]
+// Remove: 2
+//
+// Output:
+// [1, 3, 4]
+
+// Answer:
+
+function removeValue(arr, value) {
+  return arr.filter(item => item !== value);
+}
+
+
+// ==========================================
+// Task 55 — Find the Longest Common Prefix
+// ==========================================
+
+// Question:
+// একটি array of strings থেকে সব string-এর মধ্যে
+// common starting part খুঁজে বের করো.
+//
+// Example:
+// Input:
+// ["flower", "flow", "flight"]
+//
+// Output:
+// "fl"
+
+// Answer:
+
+function longestCommonPrefix(words) {
+  if (words.length === 0) {
+    return "";
+  }
+
+  let prefix = words[0];
+
+  for (let i = 1; i < words.length; i++) {
+    while (!words[i].startsWith(prefix)) {
+      prefix = prefix.slice(0, -1);
+
+      if (prefix === "") {
+        return "";
+      }
+    }
+  }
+
+  return prefix;
+}
+
+
+// ==========================================
+// Task 56 — Find All Prime Numbers
+// ==========================================
+
+// Question:
+// 1 থেকে একটি নির্দিষ্ট number পর্যন্ত সব prime number
+// বের করো.
+//
+// Example:
+// Input:
+// 20
+//
+// Output:
+// [2, 3, 5, 7, 11, 13, 17, 19]
+
+// Answer:
+
+function findPrimes(limit) {
+  const primes = [];
+
+  for (let num = 2; num <= limit; num++) {
+    let isPrime = true;
+
+    for (let i = 2; i < num; i++) {
+      if (num % i === 0) {
+        isPrime = false;
+        break;
+      }
+    }
+
+    if (isPrime) {
+      primes.push(num);
+    }
+  }
+
+  return primes;
+}
+
+
+// ==========================================
+// Task 57 — Generate Fibonacci Sequence
+// ==========================================
+
+// Question:
+// প্রথম n সংখ্যার Fibonacci sequence তৈরি করো.
+//
+// Example:
+// Input:
+// 7
+//
+// Output:
+// [0, 1, 1, 2, 3, 5, 8]
+
+// Answer:
+
+function fibonacci(n) {
+  const result = [];
+
+  let a = 0;
+  let b = 1;
+
+  for (let i = 0; i < n; i++) {
+    result.push(a);
+
+    const next = a + b;
+
+    a = b;
+    b = next;
+  }
+
+  return result;
+}
+
+
+// ==========================================
+// Task 58 — Find the Largest Sum of Two Numbers
+// ==========================================
+
+// Question:
+// একটি array থেকে দুটি সবচেয়ে বড় number-এর sum
+// বের করো.
+//
+// Example:
+// Input:
+// [10, 5, 20, 8, 15]
+//
+// Output:
+// 35
+//
+// কারণ:
+// 20 + 15 = 35
+
+// Answer:
+
+function largestPairSum(numbers) {
+  let largest = -Infinity;
+  let secondLargest = -Infinity;
+
+  for (const num of numbers) {
+    if (num > largest) {
+      secondLargest = largest;
+      largest = num;
+    } else if (num > secondLargest) {
+      secondLargest = num;
+    }
+  }
+
+  return largest + secondLargest;
+}
+
+
+// ==========================================
+// Task 59 — Convert First Letter of Each Word
+// ==========================================
+
+// Question:
+// একটি sentence-এর প্রতিটি word-এর প্রথম letter
+// uppercase করো.
+//
+// Example:
+// Input:
+// "javascript is awesome"
+//
+// Output:
+// "Javascript Is Awesome"
+
+// Answer:
+
+function capitalizeSentence(sentence) {
+  return sentence
+    .split(" ")
+    .map(word => {
+      return word.charAt(0).toUpperCase() + word.slice(1);
+    })
+    .join(" ");
+}
+
+
+// ==========================================
+// Task 60 — Find the Majority Element
+// ==========================================
+
+// Question:
+// একটি array-তে এমন কোনো element আছে কিনা খুঁজে বের করো
+// যেটি array-এর অর্ধেকের বেশি সময় এসেছে.
+//
+// Example:
+// Input:
+// [2, 2, 1, 1, 1, 2, 2]
+//
+// Output:
+// 2
+
+// Answer:
+
+function findMajorityElement(numbers) {
+  const frequency = {};
+
+  for (const num of numbers) {
+    frequency[num] = (frequency[num] || 0) + 1;
+
+    if (frequency[num] > numbers.length / 2) {
+      return num;
+    }
+  }
+
+  return null;
+}
