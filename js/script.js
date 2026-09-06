@@ -1570,3 +1570,332 @@ function findMajorityElement(numbers) {
 
   return null;
 }
+
+// ==========================================
+// Task 61 — Find the Lowest Missing Positive
+// ==========================================
+
+// Question:
+// একটি array থেকে সবচেয়ে ছোট positive integer খুঁজে বের করো
+// যেটি array-তে নেই.
+//
+// Example:
+// Input:
+// [3, 4, -1, 1]
+//
+// Output:
+// 2
+
+// Answer:
+
+function findSmallestMissingPositive(numbers) {
+  let num = 1;
+
+  while (numbers.includes(num)) {
+    num++;
+  }
+
+  return num;
+}
+
+
+// ==========================================
+// Task 62 — Check if Two Arrays Are Equal
+// ==========================================
+
+// Question:
+// দুটি array-এর values এবং order একই কিনা check করো.
+//
+// Example:
+// Input:
+// [1, 2, 3]
+// [1, 2, 3]
+//
+// Output:
+// true
+//
+// Input:
+// [1, 2, 3]
+// [3, 2, 1]
+//
+// Output:
+// false
+
+// Answer:
+
+function areArraysEqual(arr1, arr2) {
+  if (arr1.length !== arr2.length) {
+    return false;
+  }
+
+  return arr1.every((value, index) => value === arr2[index]);
+}
+
+
+// ==========================================
+// Task 63 — Find the Median
+// ==========================================
+
+// Question:
+// একটি array-এর median value বের করো.
+//
+// Example:
+// Input:
+// [1, 3, 5, 7, 9]
+//
+// Output:
+// 5
+//
+// Input:
+// [1, 2, 3, 4]
+//
+// Output:
+// 2.5
+
+// Answer:
+
+function findMedian(numbers) {
+  const sorted = [...numbers].sort((a, b) => a - b);
+  const middle = Math.floor(sorted.length / 2);
+
+  if (sorted.length % 2 !== 0) {
+    return sorted[middle];
+  }
+
+  return (sorted[middle - 1] + sorted[middle]) / 2;
+}
+
+
+// ==========================================
+// Task 64 — Find the Longest Word Length
+// ==========================================
+
+// Question:
+// একটি sentence-এর সবচেয়ে বড় word-এর length বের করো.
+//
+// Example:
+// Input:
+// "I love programming"
+//
+// Output:
+// 11
+
+// Answer:
+
+function longestWordLength(sentence) {
+  const words = sentence.split(" ");
+
+  return Math.max(...words.map(word => word.length));
+}
+
+
+// ==========================================
+// Task 65 — Swap Two Variables
+// ==========================================
+
+// Question:
+// একটি temporary variable ব্যবহার না করে
+// দুটি variables-এর value swap করো.
+//
+// Example:
+// Input:
+// a = 10
+// b = 20
+//
+// Output:
+// a = 20
+// b = 10
+
+// Answer:
+
+function swapValues(a, b) {
+  [a, b] = [b, a];
+
+  return { a, b };
+}
+
+
+// ==========================================
+// Task 66 — Find Numbers That Appear Only Once
+// ==========================================
+
+// Question:
+// একটি array থেকে যেসব number শুধুমাত্র একবার এসেছে,
+// সেগুলো বের করো.
+//
+// Example:
+// Input:
+// [1, 2, 2, 3, 4, 4, 5]
+//
+// Output:
+// [1, 3, 5]
+
+// Answer:
+
+function findUniqueNumbers(numbers) {
+  const frequency = {};
+
+  for (const num of numbers) {
+    frequency[num] = (frequency[num] || 0) + 1;
+  }
+
+  return numbers.filter(num => frequency[num] === 1);
+}
+
+
+// ==========================================
+// Task 67 — Find the Longest Increasing Subsequence
+// ==========================================
+
+// Question:
+// একটি array-এর মধ্যে increasing order-এ থাকা
+// সবচেয়ে বড় subsequence-এর length বের করো.
+//
+// Example:
+// Input:
+// [10, 9, 2, 5, 3, 7, 101, 18]
+//
+// Output:
+// 4
+//
+// কারণ:
+// [2, 3, 7, 101] → length 4
+
+// Answer:
+
+function longestIncreasingSubsequence(numbers) {
+  if (numbers.length === 0) {
+    return 0;
+  }
+
+  const dp = new Array(numbers.length).fill(1);
+
+  for (let i = 1; i < numbers.length; i++) {
+    for (let j = 0; j < i; j++) {
+      if (numbers[i] > numbers[j]) {
+        dp[i] = Math.max(dp[i], dp[j] + 1);
+      }
+    }
+  }
+
+  return Math.max(...dp);
+}
+
+
+// ==========================================
+// Task 68 — Group Words by Length
+// ==========================================
+
+// Question:
+// একটি array of words-কে তাদের length অনুযায়ী group করো.
+//
+// Example:
+// Input:
+// ["cat", "dog", "apple", "hi", "car"]
+//
+// Output:
+// {
+//   2: ["hi"],
+//   3: ["cat", "dog", "car"],
+//   5: ["apple"]
+// }
+
+// Answer:
+
+function groupWordsByLength(words) {
+  const result = {};
+
+  for (const word of words) {
+    const length = word.length;
+
+    if (!result[length]) {
+      result[length] = [];
+    }
+
+    result[length].push(word);
+  }
+
+  return result;
+}
+
+
+// ==========================================
+// Task 69 — Find the Most Common Word
+// ==========================================
+
+// Question:
+// একটি sentence-এর মধ্যে সবচেয়ে বেশি বার আসা word
+// খুঁজে বের করো.
+//
+// Example:
+// Input:
+// "I love coding and I love JavaScript"
+//
+// Output:
+// "love"
+
+// Answer:
+
+function mostCommonWord(sentence) {
+  const words = sentence.toLowerCase().split(/\s+/);
+  const frequency = {};
+
+  let mostCommon = "";
+  let maxCount = 0;
+
+  for (const word of words) {
+    frequency[word] = (frequency[word] || 0) + 1;
+
+    if (frequency[word] > maxCount) {
+      maxCount = frequency[word];
+      mostCommon = word;
+    }
+  }
+
+  return mostCommon;
+}
+
+
+// ==========================================
+// Task 70 — Validate Parentheses
+// ==========================================
+
+// Question:
+// একটি string-এর parentheses সঠিকভাবে balanced কিনা
+// check করো.
+//
+// Example:
+// Input:
+// "({[]})"
+//
+// Output:
+// true
+//
+// Input:
+// "({[})"
+//
+// Output:
+// false
+
+// Answer:
+
+function isValidParentheses(str) {
+  const stack = [];
+  const pairs = {
+    ")": "(",
+    "}": "{",
+    "]": "["
+  };
+
+  for (const char of str) {
+    if (["(", "{", "["].includes(char)) {
+      stack.push(char);
+    } else if ([")", "}", "]"].includes(char)) {
+      if (stack.pop() !== pairs[char]) {
+        return false;
+      }
+    }
+  }
+
+  return stack.length === 0;
+}
