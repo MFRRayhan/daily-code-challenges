@@ -1899,3 +1899,288 @@ function isValidParentheses(str) {
 
   return stack.length === 0;
 }
+
+// ==========================================
+// 71. Find the Smallest Difference Between Two Arrays
+// ==========================================
+// Question:
+// Given two arrays, find the smallest absolute difference
+// between any number from the first array and any number
+// from the second array.
+//
+// Example:
+// [1, 5, 10] and [2, 8, 20]
+// Output: 1
+
+function smallestDifference(arr1, arr2) {
+  let minDiff = Infinity;
+
+  for (let num1 of arr1) {
+    for (let num2 of arr2) {
+      minDiff = Math.min(minDiff, Math.abs(num1 - num2));
+    }
+  }
+
+  return minDiff;
+}
+
+console.log(smallestDifference([1, 5, 10], [2, 8, 20]));
+
+
+// ==========================================
+// 72. Count Even and Odd Numbers
+// ==========================================
+// Question:
+// Count how many even and odd numbers are present in an array.
+//
+// Example:
+// [1, 2, 3, 4, 5, 6]
+// Output: { even: 3, odd: 3 }
+
+function countEvenOdd(numbers) {
+  let even = 0;
+  let odd = 0;
+
+  for (let num of numbers) {
+    if (num % 2 === 0) {
+      even++;
+    } else {
+      odd++;
+    }
+  }
+
+  return { even, odd };
+}
+
+console.log(countEvenOdd([1, 2, 3, 4, 5, 6]));
+
+
+// ==========================================
+// 73. Find the Longest Substring Without Repeating Characters
+// ==========================================
+// Question:
+// Find the length of the longest substring that contains
+// no repeated characters.
+//
+// Example:
+// "abcabcbb"
+// Output: 3
+
+function longestUniqueSubstring(str) {
+  let set = new Set();
+  let left = 0;
+  let maxLength = 0;
+
+  for (let right = 0; right < str.length; right++) {
+    while (set.has(str[right])) {
+      set.delete(str[left]);
+      left++;
+    }
+
+    set.add(str[right]);
+
+    maxLength = Math.max(maxLength, right - left + 1);
+  }
+
+  return maxLength;
+}
+
+console.log(longestUniqueSubstring("abcabcbb"));
+
+
+// ==========================================
+// 74. Find the Product of All Numbers
+// ==========================================
+// Question:
+// Return the product of all numbers in an array.
+//
+// Example:
+// [2, 3, 4]
+// Output: 24
+
+function productOfArray(numbers) {
+  let product = 1;
+
+  for (let num of numbers) {
+    product *= num;
+  }
+
+  return product;
+}
+
+console.log(productOfArray([2, 3, 4]));
+
+
+// ==========================================
+// 75. Find Numbers Between Two Values
+// ==========================================
+// Question:
+// Given an array and a range, return all numbers
+// that are between the minimum and maximum values.
+//
+// Example:
+// [1, 5, 8, 12, 15], min = 5, max = 12
+// Output: [5, 8, 12]
+
+function numbersInRange(numbers, min, max) {
+  return numbers.filter(num => num >= min && num <= max);
+}
+
+console.log(numbersInRange([1, 5, 8, 12, 15], 5, 12));
+
+
+// ==========================================
+// 76. Find the Longest Number
+// ==========================================
+// Question:
+// Given an array of numbers, find the number
+// that contains the most digits.
+//
+// Example:
+// [12, 345, 67, 8901]
+// Output: 8901
+
+function longestNumber(numbers) {
+  let result = numbers[0];
+
+  for (let num of numbers) {
+    if (String(Math.abs(num)).length > String(Math.abs(result)).length) {
+      result = num;
+    }
+  }
+
+  return result;
+}
+
+console.log(longestNumber([12, 345, 67, 8901]));
+
+
+// ==========================================
+// 77. Find Common Characters
+// ==========================================
+// Question:
+// Given two strings, return the characters that appear
+// in both strings.
+//
+// Example:
+// "hello", "world"
+// Output: ["l", "o"]
+
+function commonCharacters(str1, str2) {
+  let set1 = new Set(str1);
+  let result = [];
+
+  for (let char of new Set(str2)) {
+    if (set1.has(char)) {
+      result.push(char);
+    }
+  }
+
+  return result;
+}
+
+console.log(commonCharacters("hello", "world"));
+
+
+// ==========================================
+// 78. Check if a Number is Perfect
+// ==========================================
+// Question:
+// A perfect number is a number whose positive divisors
+// excluding itself add up to the number.
+//
+// Example:
+// 6 → 1 + 2 + 3 = 6
+// Output: true
+
+function isPerfectNumber(num) {
+  if (num <= 1) return false;
+
+  let sum = 1;
+
+  for (let i = 2; i <= Math.sqrt(num); i++) {
+    if (num % i === 0) {
+      sum += i;
+
+      if (i !== num / i) {
+        sum += num / i;
+      }
+    }
+  }
+
+  return sum === num;
+}
+
+console.log(isPerfectNumber(6));
+
+
+// ==========================================
+// 79. Find the Longest Repeated Character
+// ==========================================
+// Question:
+// Find the character that appears consecutively
+// for the longest time.
+//
+// Example:
+// "aabbbccccd"
+// Output: "c"
+
+function longestRepeatedCharacter(str) {
+  if (str.length === 0) return null;
+
+  let currentChar = str[0];
+  let currentCount = 1;
+
+  let longestChar = str[0];
+  let longestCount = 1;
+
+  for (let i = 1; i < str.length; i++) {
+    if (str[i] === currentChar) {
+      currentCount++;
+    } else {
+      currentChar = str[i];
+      currentCount = 1;
+    }
+
+    if (currentCount > longestCount) {
+      longestCount = currentCount;
+      longestChar = currentChar;
+    }
+  }
+
+  return longestChar;
+}
+
+console.log(longestRepeatedCharacter("aabbbccccd"));
+
+
+// ==========================================
+// 80. Find Two Numbers With the Largest Product
+// ==========================================
+// Question:
+// Find the two numbers in an array whose product is largest.
+//
+// Example:
+// [-10, -5, 2, 3]
+// Output: [-10, -5]
+// Product: 50
+
+function largestProductPair(numbers) {
+  let maxProduct = -Infinity;
+  let result = [];
+
+  for (let i = 0; i < numbers.length; i++) {
+    for (let j = i + 1; j < numbers.length; j++) {
+      let product = numbers[i] * numbers[j];
+
+      if (product > maxProduct) {
+        maxProduct = product;
+        result = [numbers[i], numbers[j]];
+      }
+    }
+  }
+
+  return result;
+}
+
+console.log(largestProductPair([-10, -5, 2, 3]));
