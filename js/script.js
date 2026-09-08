@@ -2184,3 +2184,236 @@ function largestProductPair(numbers) {
 }
 
 console.log(largestProductPair([-10, -5, 2, 3]));
+
+
+// ==========================================
+// 81. Find the Sum of Even Numbers
+// ==========================================
+// Question:
+// Return the sum of all even numbers in an array.
+//
+// Example:
+// [1, 2, 3, 4, 5, 6]
+// Output: 12
+
+function sumOfEvenNumbers(numbers) {
+  let sum = 0;
+
+  for (let num of numbers) {
+    if (num % 2 === 0) {
+      sum += num;
+    }
+  }
+
+  return sum;
+}
+
+console.log(sumOfEvenNumbers([1, 2, 3, 4, 5, 6]));
+
+
+// ==========================================
+// 82. Find the Sum of Odd Numbers
+// ==========================================
+// Question:
+// Return the sum of all odd numbers in an array.
+//
+// Example:
+// [1, 2, 3, 4, 5]
+// Output: 9
+
+function sumOfOddNumbers(numbers) {
+  let sum = 0;
+
+  for (let num of numbers) {
+    if (num % 2 !== 0) {
+      sum += num;
+    }
+  }
+
+  return sum;
+}
+
+console.log(sumOfOddNumbers([1, 2, 3, 4, 5]));
+
+
+// ==========================================
+// 83. Reverse a Number
+// ==========================================
+// Question:
+// Reverse the digits of a number.
+//
+// Example:
+// 12345
+// Output: 54321
+
+function reverseNumber(num) {
+  return Number(String(num).split("").reverse().join(""));
+}
+
+console.log(reverseNumber(12345));
+
+
+// ==========================================
+// 84. Check if a Number is a Palindrome
+// ==========================================
+// Question:
+// Check whether a number reads the same forward and backward.
+//
+// Example:
+// 121
+// Output: true
+
+function isNumberPalindrome(num) {
+  let str = String(num);
+  let reversed = str.split("").reverse().join("");
+
+  return str === reversed;
+}
+
+console.log(isNumberPalindrome(121));
+
+
+// ==========================================
+// 85. Find the GCD of Two Numbers
+// ==========================================
+// Question:
+// Find the Greatest Common Divisor (GCD) of two numbers.
+//
+// Example:
+// 12, 18
+// Output: 6
+
+function findGCD(a, b) {
+  while (b !== 0) {
+    let remainder = a % b;
+    a = b;
+    b = remainder;
+  }
+
+  return Math.abs(a);
+}
+
+console.log(findGCD(12, 18));
+
+
+// ==========================================
+// 86. Find the LCM of Two Numbers
+// ==========================================
+// Question:
+// Find the Least Common Multiple (LCM) of two numbers.
+//
+// Example:
+// 4, 6
+// Output: 12
+
+function findLCM(a, b) {
+  function gcd(x, y) {
+    while (y !== 0) {
+      let remainder = x % y;
+      x = y;
+      y = remainder;
+    }
+
+    return Math.abs(x);
+  }
+
+  return Math.abs(a * b) / gcd(a, b);
+}
+
+console.log(findLCM(4, 6));
+
+
+// ==========================================
+// 87. Count Digits in a Number
+// ==========================================
+// Question:
+// Count how many digits a number contains.
+//
+// Example:
+// 123456
+// Output: 6
+
+function countDigits(num) {
+  return Math.abs(num).toString().length;
+}
+
+console.log(countDigits(123456));
+
+
+// ==========================================
+// 88. Find the Sum of Digits
+// ==========================================
+// Question:
+// Find the sum of all digits in a number.
+//
+// Example:
+// 12345
+// Output: 15
+
+function sumOfDigits(num) {
+  let digits = Math.abs(num).toString();
+  let sum = 0;
+
+  for (let digit of digits) {
+    sum += Number(digit);
+  }
+
+  return sum;
+}
+
+console.log(sumOfDigits(12345));
+
+
+// ==========================================
+// 89. Find the Missing Number
+// ==========================================
+// Question:
+// An array contains numbers from 1 to n with one number missing.
+// Find the missing number.
+//
+// Example:
+// [1, 2, 3, 5, 6]
+// Output: 4
+
+function findMissingNumber(numbers) {
+  let n = numbers.length + 1;
+  let expectedSum = (n * (n + 1)) / 2;
+
+  let actualSum = 0;
+
+  for (let num of numbers) {
+    actualSum += num;
+  }
+
+  return expectedSum - actualSum;
+}
+
+console.log(findMissingNumber([1, 2, 3, 5, 6]));
+
+
+// ==========================================
+// 90. Find the Duplicate Number
+// ==========================================
+// Question:
+// An array contains numbers where one number appears more than once.
+// Find the duplicate number.
+//
+// Example:
+// [1, 3, 4, 2, 2]
+// Output: 2
+
+function findDuplicate(numbers) {
+  let seen = new Set();
+
+  for (let num of numbers) {
+    if (seen.has(num)) {
+      return num;
+    }
+
+    seen.add(num);
+  }
+
+  return null;
+}
+
+console.log(findDuplicate([1, 3, 4, 2, 2]));
