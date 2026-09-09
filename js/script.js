@@ -2417,3 +2417,235 @@ function findDuplicate(numbers) {
 }
 
 console.log(findDuplicate([1, 3, 4, 2, 2]));
+
+// ==========================================
+// 91. Find the Maximum Sum of Two Numbers
+// ==========================================
+// Question:
+// Find the two numbers whose sum is the largest.
+//
+// Example:
+// [10, 5, 20, 8]
+// Output: 30
+
+function maximumPairSum(numbers) {
+  let largest = -Infinity;
+  let secondLargest = -Infinity;
+
+  for (let num of numbers) {
+    if (num > largest) {
+      secondLargest = largest;
+      largest = num;
+    } else if (num > secondLargest) {
+      secondLargest = num;
+    }
+  }
+
+  return largest + secondLargest;
+}
+
+console.log(maximumPairSum([10, 5, 20, 8]));
+
+
+// ==========================================
+// 92. Find the Minimum Pair Sum
+// ==========================================
+// Question:
+// Find the two numbers whose sum is the smallest.
+//
+// Example:
+// [10, 5, 2, 8]
+// Output: 7
+
+function minimumPairSum(numbers) {
+  let smallest = Infinity;
+  let secondSmallest = Infinity;
+
+  for (let num of numbers) {
+    if (num < smallest) {
+      secondSmallest = smallest;
+      smallest = num;
+    } else if (num < secondSmallest) {
+      secondSmallest = num;
+    }
+  }
+
+  return smallest + secondSmallest;
+}
+
+console.log(minimumPairSum([10, 5, 2, 8]));
+
+
+// ==========================================
+// 93. Find All Numbers Divisible by 3
+// ==========================================
+// Question:
+// Return all numbers that are divisible by 3.
+//
+// Example:
+// [1, 3, 6, 8, 9, 10]
+// Output: [3, 6, 9]
+
+function divisibleByThree(numbers) {
+  return numbers.filter(num => num % 3 === 0);
+}
+
+console.log(divisibleByThree([1, 3, 6, 8, 9, 10]));
+
+
+// ==========================================
+// 94. Find the Difference Between Array Elements
+// ==========================================
+// Question:
+// Find the largest difference between any two numbers.
+//
+// Example:
+// [10, 3, 7, 20]
+// Output: 17
+
+function largestElementDifference(numbers) {
+  let min = Infinity;
+  let max = -Infinity;
+
+  for (let num of numbers) {
+    min = Math.min(min, num);
+    max = Math.max(max, num);
+  }
+
+  return max - min;
+}
+
+console.log(largestElementDifference([10, 3, 7, 20]));
+
+
+// ==========================================
+// 95. Count Characters Without Spaces
+// ==========================================
+// Question:
+// Count the number of characters in a string,
+// excluding spaces.
+//
+// Example:
+// "Hello World"
+// Output: 10
+
+function countCharacters(str) {
+  return str.replaceAll(" ", "").length;
+}
+
+console.log(countCharacters("Hello World"));
+
+
+// ==========================================
+// 96. Remove Spaces From a String
+// ==========================================
+// Question:
+// Remove all spaces from a string.
+//
+// Example:
+// "JavaScript is awesome"
+// Output: "JavaScriptisawesome"
+
+function removeSpaces(str) {
+  return str.replaceAll(" ", "");
+}
+
+console.log(removeSpaces("JavaScript is awesome"));
+
+
+// ==========================================
+// 97. Find the First Largest Number
+// ==========================================
+// Question:
+// Find the largest number and return its first index.
+//
+// Example:
+// [10, 25, 7, 25, 15]
+// Output: 1
+
+function firstLargestIndex(numbers) {
+  let max = numbers[0];
+  let index = 0;
+
+  for (let i = 1; i < numbers.length; i++) {
+    if (numbers[i] > max) {
+      max = numbers[i];
+      index = i;
+    }
+  }
+
+  return index;
+}
+
+console.log(firstLargestIndex([10, 25, 7, 25, 15]));
+
+
+// ==========================================
+// 98. Find the Last Occurrence
+// ==========================================
+// Question:
+// Find the last index where a given value appears.
+//
+// Example:
+// [1, 2, 3, 2, 4, 2], target = 2
+// Output: 5
+
+function lastOccurrence(numbers, target) {
+  let index = -1;
+
+  for (let i = 0; i < numbers.length; i++) {
+    if (numbers[i] === target) {
+      index = i;
+    }
+  }
+
+  return index;
+}
+
+console.log(lastOccurrence([1, 2, 3, 2, 4, 2], 2));
+
+
+// ==========================================
+// 99. Find the Number Closest to Zero
+// ==========================================
+// Question:
+// Find the number that is closest to zero.
+//
+// Example:
+// [-5, -2, 3, 8]
+// Output: -2
+
+function closestToZero(numbers) {
+  let closest = numbers[0];
+
+  for (let num of numbers) {
+    if (Math.abs(num) < Math.abs(closest)) {
+      closest = num;
+    }
+  }
+
+  return closest;
+}
+
+console.log(closestToZero([-5, -2, 3, 8]));
+
+
+// ==========================================
+// 100. Check if Two Strings Are Rotations
+// ==========================================
+// Question:
+// Check whether one string is a rotation of another string.
+//
+// Example:
+// "abcde", "cdeab"
+// Output: true
+
+function areRotations(str1, str2) {
+  if (str1.length !== str2.length) {
+    return false;
+  }
+
+  return (str1 + str1).includes(str2);
+}
+
+console.log(areRotations("abcde", "cdeab"));
