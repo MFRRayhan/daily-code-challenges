@@ -2649,3 +2649,256 @@ function areRotations(str1, str2) {
 }
 
 console.log(areRotations("abcde", "cdeab"));
+
+// ==========================================
+// 101. Find the Smallest Positive Number
+// ==========================================
+// Question:
+// Find the smallest positive number in an array.
+//
+// Example:
+// [-5, 3, 7, -2, 1, 4]
+// Output: 1
+
+function smallestPositive(numbers) {
+  let smallest = Infinity;
+
+  for (let num of numbers) {
+    if (num > 0 && num < smallest) {
+      smallest = num;
+    }
+  }
+
+  return smallest === Infinity ? null : smallest;
+}
+
+console.log(smallestPositive([-5, 3, 7, -2, 1, 4]));
+
+
+// ==========================================
+// 102. Find the Largest Negative Number
+// ==========================================
+// Question:
+// Find the largest negative number in an array.
+//
+// Example:
+// [-10, -3, 5, -7, 2]
+// Output: -3
+
+function largestNegative(numbers) {
+  let largest = -Infinity;
+
+  for (let num of numbers) {
+    if (num < 0 && num > largest) {
+      largest = num;
+    }
+  }
+
+  return largest === -Infinity ? null : largest;
+}
+
+console.log(largestNegative([-10, -3, 5, -7, 2]));
+
+
+// ==========================================
+// 103. Count Numbers Greater Than a Value
+// ==========================================
+// Question:
+// Count how many numbers are greater than a given value.
+//
+// Example:
+// [10, 20, 5, 30, 15], value = 15
+// Output: 2
+
+function countGreaterThan(numbers, value) {
+  let count = 0;
+
+  for (let num of numbers) {
+    if (num > value) {
+      count++;
+    }
+  }
+
+  return count;
+}
+
+console.log(countGreaterThan([10, 20, 5, 30, 15], 15));
+
+
+// ==========================================
+// 104. Find the Average of Positive Numbers
+// ==========================================
+// Question:
+// Calculate the average of only the positive numbers.
+//
+// Example:
+// [-5, 10, 20, -3, 30]
+// Output: 20
+
+function averagePositive(numbers) {
+  let sum = 0;
+  let count = 0;
+
+  for (let num of numbers) {
+    if (num > 0) {
+      sum += num;
+      count++;
+    }
+  }
+
+  return count === 0 ? 0 : sum / count;
+}
+
+console.log(averagePositive([-5, 10, 20, -3, 30]));
+
+
+// ==========================================
+// 105. Remove Duplicate Characters
+// ==========================================
+// Question:
+// Remove duplicate characters from a string.
+//
+// Example:
+// "programming"
+// Output: "progamin"
+
+function removeDuplicateCharacters(str) {
+  let seen = new Set();
+  let result = "";
+
+  for (let char of str) {
+    if (!seen.has(char)) {
+      seen.add(char);
+      result += char;
+    }
+  }
+
+  return result;
+}
+
+console.log(removeDuplicateCharacters("programming"));
+
+
+// ==========================================
+// 106. Count Each Word
+// ==========================================
+// Question:
+// Count how many times each word appears in a sentence.
+//
+// Example:
+// "apple banana apple orange banana apple"
+// Output:
+// { apple: 3, banana: 2, orange: 1 }
+
+function countWords(sentence) {
+  let words = sentence.toLowerCase().split(" ");
+  let frequency = {};
+
+  for (let word of words) {
+    frequency[word] = (frequency[word] || 0) + 1;
+  }
+
+  return frequency;
+}
+
+console.log(
+  countWords("apple banana apple orange banana apple")
+);
+
+
+// ==========================================
+// 107. Find the Longest Even Number
+// ==========================================
+// Question:
+// Find the largest even number in an array.
+//
+// Example:
+// [11, 24, 7, 18, 30, 13]
+// Output: 30
+
+function largestEven(numbers) {
+  let largest = -Infinity;
+
+  for (let num of numbers) {
+    if (num % 2 === 0 && num > largest) {
+      largest = num;
+    }
+  }
+
+  return largest === -Infinity ? null : largest;
+}
+
+console.log(largestEven([11, 24, 7, 18, 30, 13]));
+
+
+// ==========================================
+// 108. Find the Smallest Odd Number
+// ==========================================
+// Question:
+// Find the smallest odd number in an array.
+//
+// Example:
+// [10, 7, 4, 15, 2, 9]
+// Output: 7
+
+function smallestOdd(numbers) {
+  let smallest = Infinity;
+
+  for (let num of numbers) {
+    if (num % 2 !== 0 && num < smallest) {
+      smallest = num;
+    }
+  }
+
+  return smallest === Infinity ? null : smallest;
+}
+
+console.log(smallestOdd([10, 7, 4, 15, 2, 9]));
+
+
+// ==========================================
+// 109. Find the Sum of Numbers at Even Indexes
+// ==========================================
+// Question:
+// Find the sum of all numbers located at even indexes.
+//
+// Example:
+// [10, 20, 30, 40, 50]
+// Output: 90
+// Indexes: 0, 2, 4 => 10 + 30 + 50
+
+function sumAtEvenIndexes(numbers) {
+  let sum = 0;
+
+  for (let i = 0; i < numbers.length; i += 2) {
+    sum += numbers[i];
+  }
+
+  return sum;
+}
+
+console.log(sumAtEvenIndexes([10, 20, 30, 40, 50]));
+
+
+// ==========================================
+// 110. Find the Sum of Numbers at Odd Indexes
+// ==========================================
+// Question:
+// Find the sum of all numbers located at odd indexes.
+//
+// Example:
+// [10, 20, 30, 40, 50]
+// Output: 60
+// Indexes: 1, 3 => 20 + 40
+
+function sumAtOddIndexes(numbers) {
+  let sum = 0;
+
+  for (let i = 1; i < numbers.length; i += 2) {
+    sum += numbers[i];
+  }
+
+  return sum;
+}
+
+console.log(sumAtOddIndexes([10, 20, 30, 40, 50]));
