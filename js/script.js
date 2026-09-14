@@ -2902,3 +2902,266 @@ function sumAtOddIndexes(numbers) {
 }
 
 console.log(sumAtOddIndexes([10, 20, 30, 40, 50]));
+
+// ==========================================
+// 111. Find the Second Largest Unique Number
+// ==========================================
+// Question:
+// Find the second largest unique number in an array.
+//
+// Example:
+// [10, 20, 20, 8, 15]
+// Output: 15
+
+function secondLargestUnique(numbers) {
+  let uniqueNumbers = [...new Set(numbers)];
+  uniqueNumbers.sort((a, b) => b - a);
+
+  return uniqueNumbers.length >= 2 ? uniqueNumbers[1] : null;
+}
+
+console.log(secondLargestUnique([10, 20, 20, 8, 15]));
+
+
+// ==========================================
+// 112. Find the Second Smallest Unique Number
+// ==========================================
+// Question:
+// Find the second smallest unique number in an array.
+//
+// Example:
+// [10, 5, 5, 2, 8]
+// Output: 5
+
+function secondSmallestUnique(numbers) {
+  let uniqueNumbers = [...new Set(numbers)];
+  uniqueNumbers.sort((a, b) => a - b);
+
+  return uniqueNumbers.length >= 2 ? uniqueNumbers[1] : null;
+}
+
+console.log(secondSmallestUnique([10, 5, 5, 2, 8]));
+
+
+// ==========================================
+// 113. Find Numbers That Appear More Than Once
+// ==========================================
+// Question:
+// Return all numbers that appear more than once.
+//
+// Example:
+// [1, 2, 3, 2, 4, 1, 5]
+// Output: [1, 2]
+
+function findDuplicates(numbers) {
+  let frequency = {};
+  let duplicates = [];
+
+  for (let num of numbers) {
+    frequency[num] = (frequency[num] || 0) + 1;
+  }
+
+  for (let num in frequency) {
+    if (frequency[num] > 1) {
+      duplicates.push(Number(num));
+    }
+  }
+
+  return duplicates;
+}
+
+console.log(findDuplicates([1, 2, 3, 2, 4, 1, 5]));
+
+
+// ==========================================
+// 114. Find the First Missing Positive Number
+// ==========================================
+// Question:
+// Find the smallest positive integer that does not exist
+// in the array.
+//
+// Example:
+// [3, 4, -1, 1]
+// Output: 2
+
+function firstMissingPositive(numbers) {
+  let set = new Set(numbers);
+
+  let positive = 1;
+
+  while (set.has(positive)) {
+    positive++;
+  }
+
+  return positive;
+}
+
+console.log(firstMissingPositive([3, 4, -1, 1]));
+
+
+// ==========================================
+// 115. Move Negative Numbers to the Beginning
+// ==========================================
+// Question:
+// Move all negative numbers to the beginning of the array.
+//
+// Example:
+// [3, -1, 5, -2, 8, -4]
+// Output: [-1, -2, -4, 3, 5, 8]
+
+function moveNegativesToBeginning(numbers) {
+  let negatives = [];
+  let positives = [];
+
+  for (let num of numbers) {
+    if (num < 0) {
+      negatives.push(num);
+    } else {
+      positives.push(num);
+    }
+  }
+
+  return [...negatives, ...positives];
+}
+
+console.log(moveNegativesToBeginning([3, -1, 5, -2, 8, -4]));
+
+
+// ==========================================
+// 116. Find the Longest Word in a Sentence
+// ==========================================
+// Question:
+// Find the longest word in a sentence.
+//
+// Example:
+// "JavaScript is very powerful"
+// Output: "JavaScript"
+
+function longestWord(sentence) {
+  let words = sentence.split(" ");
+  let longest = "";
+
+  for (let word of words) {
+    if (word.length > longest.length) {
+      longest = word;
+    }
+  }
+
+  return longest;
+}
+
+console.log(longestWord("JavaScript is very powerful"));
+
+
+// ==========================================
+// 117. Reverse Each Word
+// ==========================================
+// Question:
+// Reverse every word in a sentence while keeping
+// the word order unchanged.
+//
+// Example:
+// "hello world"
+// Output: "olleh dlrow"
+
+function reverseEachWord(sentence) {
+  return sentence
+    .split(" ")
+    .map(word => word.split("").reverse().join(""))
+    .join(" ");
+}
+
+console.log(reverseEachWord("hello world"));
+
+
+// ==========================================
+// 118. Check if Two Arrays Have the Same Elements
+// ==========================================
+// Question:
+// Check whether two arrays contain the same elements,
+// regardless of their order.
+//
+// Example:
+// [1, 2, 3] and [3, 1, 2]
+// Output: true
+
+function sameElements(arr1, arr2) {
+  if (arr1.length !== arr2.length) {
+    return false;
+  }
+
+  let sortedArr1 = [...arr1].sort();
+  let sortedArr2 = [...arr2].sort();
+
+  return sortedArr1.every((value, index) => {
+    return value === sortedArr2[index];
+  });
+}
+
+console.log(sameElements([1, 2, 3], [3, 1, 2]));
+
+
+// ==========================================
+// 119. Find the Longest Consecutive Increasing Sequence
+// ==========================================
+// Question:
+// Find the length of the longest sequence where
+// each number is greater than the previous number.
+//
+// Example:
+// [1, 2, 3, 2, 4, 5, 6]
+// Output: 4
+// Sequence: 2, 4, 5, 6
+
+function longestIncreasingSequence(numbers) {
+  if (numbers.length === 0) {
+    return 0;
+  }
+
+  let currentLength = 1;
+  let maxLength = 1;
+
+  for (let i = 1; i < numbers.length; i++) {
+    if (numbers[i] > numbers[i - 1]) {
+      currentLength++;
+    } else {
+      currentLength = 1;
+    }
+
+    maxLength = Math.max(maxLength, currentLength);
+  }
+
+  return maxLength;
+}
+
+console.log(longestIncreasingSequence([1, 2, 3, 2, 4, 5, 6]));
+
+
+// ==========================================
+// 120. Find the Character With the Highest Frequency
+// ==========================================
+// Question:
+// Find the character that appears most frequently.
+//
+// Example:
+// "javascript"
+// Output: "a"
+
+function highestFrequencyCharacter(str) {
+  let frequency = {};
+  let maxChar = "";
+  let maxCount = 0;
+
+  for (let char of str) {
+    frequency[char] = (frequency[char] || 0) + 1;
+
+    if (frequency[char] > maxCount) {
+      maxCount = frequency[char];
+      maxChar = char;
+    }
+  }
+
+  return maxChar;
+}
+
+console.log(highestFrequencyCharacter("javascript"));
