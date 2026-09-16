@@ -3165,3 +3165,262 @@ function highestFrequencyCharacter(str) {
 }
 
 console.log(highestFrequencyCharacter("javascript"));
+
+// ==========================================
+// 131. Find the Largest Sum of Consecutive Elements
+// ==========================================
+// Question:
+// Find the maximum sum of any 3 consecutive numbers.
+//
+// Example:
+// [1, 2, 3, 4, 5, 6]
+// Output: 15
+// 4 + 5 + 6 = 15
+
+function maxThreeConsecutiveSum(numbers) {
+  if (numbers.length < 3) return null;
+
+  let maxSum = -Infinity;
+
+  for (let i = 0; i <= numbers.length - 3; i++) {
+    let sum = numbers[i] + numbers[i + 1] + numbers[i + 2];
+
+    if (sum > maxSum) {
+      maxSum = sum;
+    }
+  }
+
+  return maxSum;
+}
+
+console.log(maxThreeConsecutiveSum([1, 2, 3, 4, 5, 6]));
+
+
+// ==========================================
+// 132. Find the Number Closest to a Target
+// ==========================================
+// Question:
+// Find the number in an array that is closest to a given target.
+//
+// Example:
+// [10, 20, 30, 40], target = 26
+// Output: 30
+
+function closestToTarget(numbers, target) {
+  let closest = numbers[0];
+
+  for (let num of numbers) {
+    if (Math.abs(num - target) < Math.abs(closest - target)) {
+      closest = num;
+    }
+  }
+
+  return closest;
+}
+
+console.log(closestToTarget([10, 20, 30, 40], 26));
+
+
+// ==========================================
+// 133. Find the Range of an Array
+// ==========================================
+// Question:
+// Find the difference between the largest and smallest
+// numbers in an array.
+//
+// Example:
+// [5, 10, 2, 20, 8]
+// Output: 18
+
+function findRange(numbers) {
+  let min = Infinity;
+  let max = -Infinity;
+
+  for (let num of numbers) {
+    min = Math.min(min, num);
+    max = Math.max(max, num);
+  }
+
+  return max - min;
+}
+
+console.log(findRange([5, 10, 2, 20, 8]));
+
+
+// ==========================================
+// 134. Count Numbers Within a Range
+// ==========================================
+// Question:
+// Count how many numbers are between min and max,
+// including both boundaries.
+//
+// Example:
+// [2, 5, 8, 10, 15, 20], min = 5, max = 15
+// Output: 4
+
+function countWithinRange(numbers, min, max) {
+  let count = 0;
+
+  for (let num of numbers) {
+    if (num >= min && num <= max) {
+      count++;
+    }
+  }
+
+  return count;
+}
+
+console.log(countWithinRange([2, 5, 8, 10, 15, 20], 5, 15));
+
+
+// ==========================================
+// 135. Find the Sum of Unique Numbers
+// ==========================================
+// Question:
+// Find the sum of numbers that appear only once.
+//
+// Example:
+// [1, 2, 2, 3, 4, 4, 5]
+// Output: 9
+// Unique numbers: 1 + 3 + 5 = 9
+
+function sumOfUniqueNumbers(numbers) {
+  let frequency = {};
+  let sum = 0;
+
+  for (let num of numbers) {
+    frequency[num] = (frequency[num] || 0) + 1;
+  }
+
+  for (let num in frequency) {
+    if (frequency[num] === 1) {
+      sum += Number(num);
+    }
+  }
+
+  return sum;
+}
+
+console.log(sumOfUniqueNumbers([1, 2, 2, 3, 4, 4, 5]));
+
+
+// ==========================================
+// 136. Find the First Positive Number
+// ==========================================
+// Question:
+// Find the first positive number in an array.
+//
+// Example:
+// [-5, -2, 0, 7, 3]
+// Output: 7
+
+function firstPositiveNumber(numbers) {
+  for (let num of numbers) {
+    if (num > 0) {
+      return num;
+    }
+  }
+
+  return null;
+}
+
+console.log(firstPositiveNumber([-5, -2, 0, 7, 3]));
+
+
+// ==========================================
+// 137. Find the Last Negative Number
+// ==========================================
+// Question:
+// Find the last negative number in an array.
+//
+// Example:
+// [-5, 10, -2, 7, -8, 3]
+// Output: -8
+
+function lastNegativeNumber(numbers) {
+  for (let i = numbers.length - 1; i >= 0; i--) {
+    if (numbers[i] < 0) {
+      return numbers[i];
+    }
+  }
+
+  return null;
+}
+
+console.log(lastNegativeNumber([-5, 10, -2, 7, -8, 3]));
+
+
+// ==========================================
+// 138. Check if All Numbers Are Positive
+// ==========================================
+// Question:
+// Check whether every number in an array is positive.
+//
+// Example:
+// [1, 5, 10, 3]
+// Output: true
+
+function allPositive(numbers) {
+  return numbers.every(num => num > 0);
+}
+
+console.log(allPositive([1, 5, 10, 3]));
+
+
+// ==========================================
+// 139. Check if Array Contains Consecutive Numbers
+// ==========================================
+// Question:
+// Check whether an array contains consecutive numbers.
+//
+// Example:
+// [3, 4, 5, 6, 7]
+// Output: true
+
+function isConsecutive(numbers) {
+  if (numbers.length <= 1) return true;
+
+  let sorted = [...numbers].sort((a, b) => a - b);
+
+  for (let i = 1; i < sorted.length; i++) {
+    if (sorted[i] !== sorted[i - 1] + 1) {
+      return false;
+    }
+  }
+
+  return true;
+}
+
+console.log(isConsecutive([3, 4, 5, 6, 7]));
+
+
+// ==========================================
+// 140. Find the Longest Word Starting With a Specific Letter
+// ==========================================
+// Question:
+// Find the longest word that starts with a given letter.
+//
+// Example:
+// "javascript java journey json", letter = "j"
+// Output: "javascript"
+
+function longestWordStartingWith(sentence, letter) {
+  let words = sentence.toLowerCase().split(" ");
+  let target = letter.toLowerCase();
+  let longest = "";
+
+  for (let word of words) {
+    if (word.startsWith(target) && word.length > longest.length) {
+      longest = word;
+    }
+  }
+
+  return longest || null;
+}
+
+console.log(
+  longestWordStartingWith(
+    "javascript java journey json",
+    "j"
+  )
+);
