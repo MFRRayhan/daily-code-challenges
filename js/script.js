@@ -3424,3 +3424,287 @@ console.log(
     "j"
   )
 );
+
+// ==========================================
+// 141. Find the Sum of Array Except Largest
+// ==========================================
+// Question:
+// Find the sum of all numbers except the largest number.
+//
+// Example:
+// [10, 20, 30, 40]
+// Output: 60
+
+function sumExceptLargest(numbers) {
+  let largest = Math.max(...numbers);
+  let sum = 0;
+  let skipped = false;
+
+  for (let num of numbers) {
+    if (num === largest && !skipped) {
+      skipped = true;
+      continue;
+    }
+
+    sum += num;
+  }
+
+  return sum;
+}
+
+console.log(sumExceptLargest([10, 20, 30, 40]));
+
+
+// ==========================================
+// 142. Find the Sum of Array Except Smallest
+// ==========================================
+// Question:
+// Find the sum of all numbers except the smallest number.
+//
+// Example:
+// [10, 20, 30, 40]
+// Output: 90
+
+function sumExceptSmallest(numbers) {
+  let smallest = Math.min(...numbers);
+  let sum = 0;
+  let skipped = false;
+
+  for (let num of numbers) {
+    if (num === smallest && !skipped) {
+      skipped = true;
+      continue;
+    }
+
+    sum += num;
+  }
+
+  return sum;
+}
+
+console.log(sumExceptSmallest([10, 20, 30, 40]));
+
+
+// ==========================================
+// 143. Find the Number With the Most Digits
+// ==========================================
+// Question:
+// Find the number that contains the most digits.
+//
+// Example:
+// [12, 456, 78, 12345]
+// Output: 12345
+
+function numberWithMostDigits(numbers) {
+  let result = numbers[0];
+
+  for (let num of numbers) {
+    if (String(Math.abs(num)).length > String(Math.abs(result)).length) {
+      result = num;
+    }
+  }
+
+  return result;
+}
+
+console.log(numberWithMostDigits([12, 456, 78, 12345]));
+
+
+// ==========================================
+// 144. Count Vowels in Each Word
+// ==========================================
+// Question:
+// Return the number of vowels in each word.
+//
+// Example:
+// ["hello", "javascript", "world"]
+// Output:
+// { hello: 2, javascript: 3, world: 1 }
+
+function countVowelsInEachWord(words) {
+  let result = {};
+
+  for (let word of words) {
+    let count = 0;
+
+    for (let char of word.toLowerCase()) {
+      if ("aeiou".includes(char)) {
+        count++;
+      }
+    }
+
+    result[word] = count;
+  }
+
+  return result;
+}
+
+console.log(
+  countVowelsInEachWord(["hello", "javascript", "world"])
+);
+
+
+// ==========================================
+// 145. Find the First Duplicate Character
+// ==========================================
+// Question:
+// Find the first character that appears more than once.
+//
+// Example:
+// "programming"
+// Output: "r"
+
+function firstDuplicateCharacter(str) {
+  let seen = new Set();
+
+  for (let char of str) {
+    if (seen.has(char)) {
+      return char;
+    }
+
+    seen.add(char);
+  }
+
+  return null;
+}
+
+console.log(firstDuplicateCharacter("programming"));
+
+
+// ==========================================
+// 146. Find the First Unique Character
+// ==========================================
+// Question:
+// Find the first character that appears only once.
+//
+// Example:
+// "aabbcdd"
+// Output: "c"
+
+function firstUniqueCharacter(str) {
+  let frequency = {};
+
+  for (let char of str) {
+    frequency[char] = (frequency[char] || 0) + 1;
+  }
+
+  for (let char of str) {
+    if (frequency[char] === 1) {
+      return char;
+    }
+  }
+
+  return null;
+}
+
+console.log(firstUniqueCharacter("aabbcdd"));
+
+
+// ==========================================
+// 147. Remove All Occurrences of a Character
+// ==========================================
+// Question:
+// Remove every occurrence of a specific character.
+//
+// Example:
+// "javascript", character = "a"
+// Output: "jvscript"
+
+function removeCharacter(str, character) {
+  let result = "";
+
+  for (let char of str) {
+    if (char !== character) {
+      result += char;
+    }
+  }
+
+  return result;
+}
+
+console.log(removeCharacter("javascript", "a"));
+
+
+// ==========================================
+// 148. Check if String Contains Only Numbers
+// ==========================================
+// Question:
+// Check whether a string contains only numeric characters.
+//
+// Example:
+// "123456"
+// Output: true
+
+function containsOnlyNumbers(str) {
+  if (str.length === 0) return false;
+
+  for (let char of str) {
+    if (char < "0" || char > "9") {
+      return false;
+    }
+  }
+
+  return true;
+}
+
+console.log(containsOnlyNumbers("123456"));
+
+
+// ==========================================
+// 149. Find the Longest Consecutive Repeating Characters
+// ==========================================
+// Question:
+// Find the maximum number of consecutive identical characters.
+//
+// Example:
+// "aaabbccccd"
+// Output: 4
+
+function longestRepeatingSequence(str) {
+  if (str.length === 0) return 0;
+
+  let currentCount = 1;
+  let maxCount = 1;
+
+  for (let i = 1; i < str.length; i++) {
+    if (str[i] === str[i - 1]) {
+      currentCount++;
+    } else {
+      currentCount = 1;
+    }
+
+    maxCount = Math.max(maxCount, currentCount);
+  }
+
+  return maxCount;
+}
+
+console.log(longestRepeatingSequence("aaabbccccd"));
+
+
+// ==========================================
+// 150. Find All Missing Numbers
+// ==========================================
+// Question:
+// Given an array containing numbers from 1 to n,
+// find all missing numbers.
+//
+// Example:
+// [1, 3, 5, 7]
+// n = 7
+// Output: [2, 4, 6]
+
+function findAllMissingNumbers(numbers, n) {
+  let set = new Set(numbers);
+  let missing = [];
+
+  for (let i = 1; i <= n; i++) {
+    if (!set.has(i)) {
+      missing.push(i);
+    }
+  }
+
+  return missing;
+}
+
+console.log(findAllMissingNumbers([1, 3, 5, 7], 7));
