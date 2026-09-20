@@ -3708,3 +3708,282 @@ function findAllMissingNumbers(numbers, n) {
 }
 
 console.log(findAllMissingNumbers([1, 3, 5, 7], 7));
+
+// ==========================================
+// 151. Find the Largest Odd Number
+// ==========================================
+// Question:
+// Find the largest odd number in an array.
+//
+// Example:
+// [10, 7, 15, 4, 9]
+// Output: 15
+
+function largestOdd(numbers) {
+  let largest = -Infinity;
+
+  for (let num of numbers) {
+    if (num % 2 !== 0 && num > largest) {
+      largest = num;
+    }
+  }
+
+  return largest === -Infinity ? null : largest;
+}
+
+console.log(largestOdd([10, 7, 15, 4, 9]));
+
+
+// ==========================================
+// 152. Find the Smallest Even Number
+// ==========================================
+// Question:
+// Find the smallest even number in an array.
+//
+// Example:
+// [7, 12, 5, 8, 3, 10]
+// Output: 8
+
+function smallestEven(numbers) {
+  let smallest = Infinity;
+
+  for (let num of numbers) {
+    if (num % 2 === 0 && num < smallest) {
+      smallest = num;
+    }
+  }
+
+  return smallest === Infinity ? null : smallest;
+}
+
+console.log(smallestEven([7, 12, 5, 8, 3, 10]));
+
+
+// ==========================================
+// 153. Count Numbers With a Specific Digit
+// ==========================================
+// Question:
+// Count how many numbers contain a given digit.
+//
+// Example:
+// [12, 25, 34, 42, 56], digit = 2
+// Output: 2
+
+function countNumbersWithDigit(numbers, digit) {
+  let count = 0;
+
+  for (let num of numbers) {
+    if (String(Math.abs(num)).includes(String(digit))) {
+      count++;
+    }
+  }
+
+  return count;
+}
+
+console.log(countNumbersWithDigit([12, 25, 34, 42, 56], 2));
+
+
+// ==========================================
+// 154. Find the Sum of Numbers With a Specific Digit
+// ==========================================
+// Question:
+// Find the sum of all numbers that contain a given digit.
+//
+// Example:
+// [12, 25, 34, 42, 56], digit = 2
+// Output: 79
+// 12 + 25 + 42 = 79
+
+function sumNumbersWithDigit(numbers, digit) {
+  let sum = 0;
+
+  for (let num of numbers) {
+    if (String(Math.abs(num)).includes(String(digit))) {
+      sum += num;
+    }
+  }
+
+  return sum;
+}
+
+console.log(sumNumbersWithDigit([12, 25, 34, 42, 56], 2));
+
+
+// ==========================================
+// 155. Find the Longest String
+// ==========================================
+// Question:
+// Find the longest string in an array.
+//
+// Example:
+// ["cat", "javascript", "book", "developer"]
+// Output: "javascript"
+
+function longestString(words) {
+  let longest = "";
+
+  for (let word of words) {
+    if (word.length > longest.length) {
+      longest = word;
+    }
+  }
+
+  return longest;
+}
+
+console.log(
+  longestString(["cat", "javascript", "book", "developer"])
+);
+
+
+// ==========================================
+// 156. Find the Shortest String
+// ==========================================
+// Question:
+// Find the shortest string in an array.
+//
+// Example:
+// ["apple", "cat", "banana", "dog"]
+// Output: "cat"
+
+function shortestString(words) {
+  if (words.length === 0) return null;
+
+  let shortest = words[0];
+
+  for (let word of words) {
+    if (word.length < shortest.length) {
+      shortest = word;
+    }
+  }
+
+  return shortest;
+}
+
+console.log(
+  shortestString(["apple", "cat", "banana", "dog"])
+);
+
+
+// ==========================================
+// 157. Count Uppercase and Lowercase Letters
+// ==========================================
+// Question:
+// Count uppercase and lowercase letters in a string.
+//
+// Example:
+// "Hello WORLD"
+// Output: { uppercase: 6, lowercase: 4 }
+
+function countCases(str) {
+  let uppercase = 0;
+  let lowercase = 0;
+
+  for (let char of str) {
+    if (char >= "A" && char <= "Z") {
+      uppercase++;
+    } else if (char >= "a" && char <= "z") {
+      lowercase++;
+    }
+  }
+
+  return {
+    uppercase,
+    lowercase
+  };
+}
+
+console.log(countCases("Hello WORLD"));
+
+
+// ==========================================
+// 158. Toggle Letter Case
+// ==========================================
+// Question:
+// Convert uppercase letters to lowercase and lowercase
+// letters to uppercase.
+//
+// Example:
+// "Hello World"
+// Output: "hELLO wORLD"
+
+function toggleCase(str) {
+  let result = "";
+
+  for (let char of str) {
+    if (char >= "A" && char <= "Z") {
+      result += char.toLowerCase();
+    } else if (char >= "a" && char <= "z") {
+      result += char.toUpperCase();
+    } else {
+      result += char;
+    }
+  }
+
+  return result;
+}
+
+console.log(toggleCase("Hello World"));
+
+
+// ==========================================
+// 159. Find the Sum of Two Arrays
+// ==========================================
+// Question:
+// Combine two arrays and return the sum of all numbers.
+//
+// Example:
+// [1, 2, 3] and [4, 5, 6]
+// Output: 21
+
+function sumOfTwoArrays(arr1, arr2) {
+  let sum = 0;
+
+  for (let num of arr1) {
+    sum += num;
+  }
+
+  for (let num of arr2) {
+    sum += num;
+  }
+
+  return sum;
+}
+
+console.log(sumOfTwoArrays([1, 2, 3], [4, 5, 6]));
+
+
+// ==========================================
+// 160. Find Common Elements in Three Arrays
+// ==========================================
+// Question:
+// Find the elements that exist in all three arrays.
+//
+// Example:
+// [1, 2, 3, 4]
+// [2, 3, 4, 5]
+// [0, 2, 3, 4]
+// Output: [2, 3, 4]
+
+function commonInThreeArrays(arr1, arr2, arr3) {
+  let set2 = new Set(arr2);
+  let set3 = new Set(arr3);
+  let result = [];
+
+  for (let num of new Set(arr1)) {
+    if (set2.has(num) && set3.has(num)) {
+      result.push(num);
+    }
+  }
+
+  return result;
+}
+
+console.log(
+  commonInThreeArrays(
+    [1, 2, 3, 4],
+    [2, 3, 4, 5],
+    [0, 2, 3, 4]
+  )
+);
