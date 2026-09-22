@@ -3987,3 +3987,241 @@ console.log(
     [0, 2, 3, 4]
   )
 );
+
+// ==============================
+// Task 161: Find the Largest Prime Number
+// ==============================
+// Question:
+// Find the largest prime number in an array.
+//
+// Example:
+// Input: [4, 7, 2, 11, 9, 13, 6]
+// Output: 13
+
+function largestPrime(arr) {
+const primes = arr.filter((num) => {
+if (num < 2) return false;
+
+```
+for (let i = 2; i <= Math.sqrt(num); i++) {
+  if (num % i === 0) return false;
+}
+
+return true;
+```
+
+});
+
+return primes.length ? Math.max(...primes) : null;
+}
+
+console.log(largestPrime([4, 7, 2, 11, 9, 13, 6]));
+
+// ==============================
+// Task 162: Find the Smallest Prime Number
+// ==============================
+// Question:
+// Find the smallest prime number in an array.
+//
+// Example:
+// Input: [8, 5, 12, 3, 7, 10]
+// Output: 3
+
+function smallestPrime(arr) {
+const primes = arr.filter((num) => {
+if (num < 2) return false;
+
+```
+for (let i = 2; i <= Math.sqrt(num); i++) {
+  if (num % i === 0) return false;
+}
+
+return true;
+```
+
+});
+
+return primes.length ? Math.min(...primes) : null;
+}
+
+console.log(smallestPrime([8, 5, 12, 3, 7, 10]));
+
+// ==============================
+// Task 163: Count Prime Numbers
+// ==============================
+// Question:
+// Count how many prime numbers are in an array.
+//
+// Example:
+// Input: [2, 4, 5, 7, 8, 11]
+// Output: 4
+
+function countPrimes(arr) {
+return arr.filter((num) => {
+if (num < 2) return false;
+
+```
+for (let i = 2; i <= Math.sqrt(num); i++) {
+  if (num % i === 0) return false;
+}
+
+return true;
+```
+
+}).length;
+}
+
+console.log(countPrimes([2, 4, 5, 7, 8, 11]));
+
+// ==============================
+// Task 164: Sum Prime Numbers
+// ==============================
+// Question:
+// Find the sum of all prime numbers in an array.
+//
+// Example:
+// Input: [2, 4, 5, 7, 8, 11]
+// Output: 25
+
+function sumPrimes(arr) {
+return arr
+.filter((num) => {
+if (num < 2) return false;
+
+```
+  for (let i = 2; i <= Math.sqrt(num); i++) {
+    if (num % i === 0) return false;
+  }
+
+  return true;
+})
+.reduce((sum, num) => sum + num, 0);
+```
+
+}
+
+console.log(sumPrimes([2, 4, 5, 7, 8, 11]));
+
+// ==============================
+// Task 165: Find All Composite Numbers
+// ==============================
+// Question:
+// Return all composite numbers from an array.
+//
+// Example:
+// Input: [2, 4, 5, 6, 7, 9, 11]
+// Output: [4, 6, 9]
+
+function findCompositeNumbers(arr) {
+return arr.filter((num) => {
+if (num < 4) return false;
+
+```
+for (let i = 2; i <= Math.sqrt(num); i++) {
+  if (num % i === 0) return true;
+}
+
+return false;
+```
+
+});
+}
+
+console.log(findCompositeNumbers([2, 4, 5, 6, 7, 9, 11]));
+
+// ==============================
+// Task 166: Count Composite Numbers
+// ==============================
+// Question:
+// Count the composite numbers in an array.
+//
+// Example:
+// Input: [2, 4, 5, 6, 7, 9, 11]
+// Output: 3
+
+function countCompositeNumbers(arr) {
+return arr.filter((num) => {
+if (num < 4) return false;
+
+```
+for (let i = 2; i <= Math.sqrt(num); i++) {
+  if (num % i === 0) return true;
+}
+
+return false;
+```
+
+}).length;
+}
+
+console.log(countCompositeNumbers([2, 4, 5, 6, 7, 9, 11]));
+
+// ==============================
+// Task 167: Find Numbers Divisible by Both 3 and 5
+// ==============================
+// Question:
+// Return numbers that are divisible by both 3 and 5.
+//
+// Example:
+// Input: [10, 15, 20, 30, 45, 50]
+// Output: [15, 30, 45]
+
+function divisibleByThreeAndFive(arr) {
+return arr.filter((num) => num % 3 === 0 && num % 5 === 0);
+}
+
+console.log(divisibleByThreeAndFive([10, 15, 20, 30, 45, 50]));
+
+// ==============================
+// Task 168: Find Numbers Divisible by 2 or 3
+// ==============================
+// Question:
+// Return numbers that are divisible by either 2 or 3.
+//
+// Example:
+// Input: [1, 2, 3, 4, 5, 6, 7]
+// Output: [2, 3, 4, 6]
+
+function divisibleByTwoOrThree(arr) {
+return arr.filter((num) => num % 2 === 0 || num % 3 === 0);
+}
+
+console.log(divisibleByTwoOrThree([1, 2, 3, 4, 5, 6, 7]));
+
+// ==============================
+// Task 169: Find Numbers With Exactly 3 Digits
+// ==============================
+// Question:
+// Return numbers that contain exactly 3 digits.
+//
+// Example:
+// Input: [12, 100, 245, 999, 1000, 5]
+// Output: [100, 245, 999]
+
+function threeDigitNumbers(arr) {
+return arr.filter((num) => {
+const value = Math.abs(num);
+return value >= 100 && value <= 999;
+});
+}
+
+console.log(threeDigitNumbers([12, 100, 245, 999, 1000, 5]));
+
+// ==============================
+// Task 170: Find Numbers With Equal First and Last Digit
+// ==============================
+// Question:
+// Return numbers whose first and last digits are the same.
+//
+// Example:
+// Input: [121, 234, 343, 456, 555, 789]
+// Output: [121, 343, 555]
+
+function sameFirstLastDigit(arr) {
+return arr.filter((num) => {
+const value = Math.abs(num).toString();
+return value.length > 1 && value[0] === value[value.length - 1];
+});
+}
+
+console.log(sameFirstLastDigit([121, 234, 343, 456, 555, 789]));
