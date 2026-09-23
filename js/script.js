@@ -4225,3 +4225,226 @@ return value.length > 1 && value[0] === value[value.length - 1];
 }
 
 console.log(sameFirstLastDigit([121, 234, 343, 456, 555, 789]));
+
+
+// ==============================
+// Task 171: Find Numbers With Same First and Last Digit
+// ==============================
+// Question:
+// Return numbers where the first and last digits are the same.
+//
+// Example:
+// Input: [121, 234, 343, 456, 555, 789]
+// Output: [121, 343, 555]
+
+function sameFirstAndLastDigit(arr) {
+  return arr.filter((num) => {
+    const str = Math.abs(num).toString();
+    return str.length > 1 && str[0] === str[str.length - 1];
+  });
+}
+
+console.log(sameFirstAndLastDigit([121, 234, 343, 456, 555, 789]));
+
+
+// ==============================
+// Task 172: Find Numbers With Different First and Last Digit
+// ==============================
+// Question:
+// Return numbers where the first and last digits are different.
+//
+// Example:
+// Input: [121, 234, 343, 456, 555, 789]
+// Output: [234, 456, 789]
+
+function differentFirstAndLastDigit(arr) {
+  return arr.filter((num) => {
+    const str = Math.abs(num).toString();
+    return str.length > 1 && str[0] !== str[str.length - 1];
+  });
+}
+
+console.log(differentFirstAndLastDigit([121, 234, 343, 456, 555, 789]));
+
+
+// ==============================
+// Task 173: Find Numbers With Even Number of Digits
+// ==============================
+// Question:
+// Return numbers that contain an even number of digits.
+//
+// Example:
+// Input: [12, 123, 4567, 89, 100]
+// Output: [12, 4567, 89]
+
+function evenDigitCountNumbers(arr) {
+  return arr.filter((num) => {
+    return Math.abs(num).toString().length % 2 === 0;
+  });
+}
+
+console.log(evenDigitCountNumbers([12, 123, 4567, 89, 100]));
+
+
+// ==============================
+// Task 174: Find Numbers With Odd Number of Digits
+// ==============================
+// Question:
+// Return numbers that contain an odd number of digits.
+//
+// Example:
+// Input: [12, 123, 4567, 89, 100]
+// Output: [123, 100]
+
+function oddDigitCountNumbers(arr) {
+  return arr.filter((num) => {
+    return Math.abs(num).toString().length % 2 !== 0;
+  });
+}
+
+console.log(oddDigitCountNumbers([12, 123, 4567, 89, 100]));
+
+
+// ==============================
+// Task 175: Sum of First and Last Digits
+// ==============================
+// Question:
+// Find the sum of the first and last digit of each number.
+//
+// Example:
+// Input: [123, 456, 789]
+// Output: [4, 10, 16]
+
+function sumFirstAndLastDigits(arr) {
+  return arr.map((num) => {
+    const str = Math.abs(num).toString();
+
+    const first = Number(str[0]);
+    const last = Number(str[str.length - 1]);
+
+    return first + last;
+  });
+}
+
+console.log(sumFirstAndLastDigits([123, 456, 789]));
+
+
+// ==============================
+// Task 176: Reverse Each Number
+// ==============================
+// Question:
+// Reverse every number in an array.
+//
+// Example:
+// Input: [123, 456, 789]
+// Output: [321, 654, 987]
+
+function reverseNumbers(arr) {
+  return arr.map((num) => {
+    const sign = num < 0 ? -1 : 1;
+
+    const reversed = Number(
+      Math.abs(num).toString().split("").reverse().join("")
+    );
+
+    return reversed * sign;
+  });
+}
+
+console.log(reverseNumbers([123, 456, 789]));
+
+
+// ==============================
+// Task 177: Find Numbers Equal to Their Reverse
+// ==============================
+// Question:
+// Return numbers that remain the same when reversed.
+//
+// Example:
+// Input: [121, 123, 454, 567, 777]
+// Output: [121, 454, 777]
+
+function numbersEqualToReverse(arr) {
+  return arr.filter((num) => {
+    const str = Math.abs(num).toString();
+    const reversed = str.split("").reverse().join("");
+
+    return str === reversed;
+  });
+}
+
+console.log(numbersEqualToReverse([121, 123, 454, 567, 777]));
+
+
+// ==============================
+// Task 178: Find Numbers With Repeated Digits
+// ==============================
+// Question:
+// Return numbers that contain at least one repeated digit.
+//
+// Example:
+// Input: [123, 112, 456, 778, 901]
+// Output: [112, 778]
+
+function numbersWithRepeatedDigits(arr) {
+  return arr.filter((num) => {
+    const digits = Math.abs(num).toString().split("");
+
+    return new Set(digits).size !== digits.length;
+  });
+}
+
+console.log(numbersWithRepeatedDigits([123, 112, 456, 778, 901]));
+
+
+// ==============================
+// Task 179: Find Numbers With Unique Digits
+// ==============================
+// Question:
+// Return numbers where every digit appears only once.
+//
+// Example:
+// Input: [123, 112, 456, 778, 901]
+// Output: [123, 456, 901]
+
+function numbersWithUniqueDigits(arr) {
+  return arr.filter((num) => {
+    const digits = Math.abs(num).toString().split("");
+
+    return new Set(digits).size === digits.length;
+  });
+}
+
+console.log(numbersWithUniqueDigits([123, 112, 456, 778, 901]));
+
+
+// ==============================
+// Task 180: Find the Number With the Highest Digit Sum
+// ==============================
+// Question:
+// Find the number whose digits have the highest sum.
+//
+// Example:
+// Input: [123, 456, 789, 111]
+// Output: 789
+
+function highestDigitSumNumber(arr) {
+  let highestNumber = arr[0];
+  let highestSum = -Infinity;
+
+  for (const num of arr) {
+    const digitSum = Math.abs(num)
+      .toString()
+      .split("")
+      .reduce((sum, digit) => sum + Number(digit), 0);
+
+    if (digitSum > highestSum) {
+      highestSum = digitSum;
+      highestNumber = num;
+    }
+  }
+
+  return highestNumber;
+}
+
+console.log(highestDigitSumNumber([123, 456, 789, 111]));
