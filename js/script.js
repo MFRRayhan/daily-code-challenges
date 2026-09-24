@@ -4448,3 +4448,217 @@ function highestDigitSumNumber(arr) {
 }
 
 console.log(highestDigitSumNumber([123, 456, 789, 111]));
+
+// ==============================
+// Task 181: Find the Number With the Lowest Digit Sum
+// ==============================
+// Question:
+// Find the number whose digits have the lowest sum.
+//
+// Example:
+// Input: [123, 456, 105, 789]
+// Output: 105
+
+function lowestDigitSumNumber(arr) {
+  let lowestNumber = arr[0];
+  let lowestSum = Infinity;
+
+  for (const num of arr) {
+    const digitSum = Math.abs(num)
+      .toString()
+      .split("")
+      .reduce((sum, digit) => sum + Number(digit), 0);
+
+    if (digitSum < lowestSum) {
+      lowestSum = digitSum;
+      lowestNumber = num;
+    }
+  }
+
+  return lowestNumber;
+}
+
+console.log(lowestDigitSumNumber([123, 456, 105, 789]));
+
+
+// ==============================
+// Task 182: Find the Average of All Numbers
+// ==============================
+// Question:
+// Find the average of all numbers in an array.
+//
+// Example:
+// Input: [10, 20, 30, 40]
+// Output: 25
+
+function findAverage(arr) {
+  const sum = arr.reduce((total, num) => total + num, 0);
+
+  return sum / arr.length;
+}
+
+console.log(findAverage([10, 20, 30, 40]));
+
+
+// ==============================
+// Task 183: Find the Average of Even Numbers
+// ==============================
+// Question:
+// Find the average of all even numbers.
+//
+// Example:
+// Input: [10, 15, 20, 25, 30]
+// Output: 20
+
+function averageEvenNumbers(arr) {
+  const evenNumbers = arr.filter((num) => num % 2 === 0);
+
+  if (evenNumbers.length === 0) return null;
+
+  const sum = evenNumbers.reduce((total, num) => total + num, 0);
+
+  return sum / evenNumbers.length;
+}
+
+console.log(averageEvenNumbers([10, 15, 20, 25, 30]));
+
+
+// ==============================
+// Task 184: Find the Average of Odd Numbers
+// ==============================
+// Question:
+// Find the average of all odd numbers.
+//
+// Example:
+// Input: [10, 15, 20, 25, 30]
+// Output: 20
+
+function averageOddNumbers(arr) {
+  const oddNumbers = arr.filter((num) => num % 2 !== 0);
+
+  if (oddNumbers.length === 0) return null;
+
+  const sum = oddNumbers.reduce((total, num) => total + num, 0);
+
+  return sum / oddNumbers.length;
+}
+
+console.log(averageOddNumbers([10, 15, 20, 25, 30]));
+
+
+// ==============================
+// Task 185: Find the Range of an Array
+// ==============================
+// Question:
+// Find the difference between the largest and smallest number.
+//
+// Example:
+// Input: [10, 5, 25, 15, 30]
+// Output: 25
+
+function findRange(arr) {
+  const largest = Math.max(...arr);
+  const smallest = Math.min(...arr);
+
+  return largest - smallest;
+}
+
+console.log(findRange([10, 5, 25, 15, 30]));
+
+
+// ==============================
+// Task 186: Find the Sum of Positive Even Numbers
+// ==============================
+// Question:
+// Find the sum of all positive even numbers.
+//
+// Example:
+// Input: [-4, 2, 5, 8, -6, 10]
+// Output: 20
+
+function sumPositiveEvenNumbers(arr) {
+  return arr
+    .filter((num) => num > 0 && num % 2 === 0)
+    .reduce((sum, num) => sum + num, 0);
+}
+
+console.log(sumPositiveEvenNumbers([-4, 2, 5, 8, -6, 10]));
+
+
+// ==============================
+// Task 187: Find the Sum of Negative Odd Numbers
+// ==============================
+// Question:
+// Find the sum of all negative odd numbers.
+//
+// Example:
+// Input: [-3, -4, 5, -7, 8, -2]
+// Output: -10
+
+function sumNegativeOddNumbers(arr) {
+  return arr
+    .filter((num) => num < 0 && num % 2 !== 0)
+    .reduce((sum, num) => sum + num, 0);
+}
+
+console.log(sumNegativeOddNumbers([-3, -4, 5, -7, 8, -2]));
+
+
+// ==============================
+// Task 188: Count Numbers Between Two Values
+// ==============================
+// Question:
+// Count how many numbers are between two given values.
+//
+// Example:
+// Input: [5, 10, 15, 20, 25, 30]
+// Range: 10 to 25
+// Output: 4
+
+function countBetween(arr, min, max) {
+  return arr.filter((num) => num >= min && num <= max).length;
+}
+
+console.log(countBetween([5, 10, 15, 20, 25, 30], 10, 25));
+
+
+// ==============================
+// Task 189: Find the Largest Number With Even Digits
+// ==============================
+// Question:
+// Find the largest number that contains an even number of digits.
+//
+// Example:
+// Input: [12, 123, 4567, 89, 1000]
+// Output: 4567
+
+function largestEvenDigitNumber(arr) {
+  const numbers = arr.filter(
+    (num) => Math.abs(num).toString().length % 2 === 0
+  );
+
+  return numbers.length ? Math.max(...numbers) : null;
+}
+
+console.log(largestEvenDigitNumber([12, 123, 4567, 89, 1000]));
+
+
+// ==============================
+// Task 190: Find the Smallest Number With Odd Digits
+// ==============================
+// Question:
+// Find the smallest number that contains an odd number of digits.
+//
+// Example:
+// Input: [12, 123, 4567, 89, 100, 7]
+// Output: 7
+
+function smallestOddDigitNumber(arr) {
+  const numbers = arr.filter(
+    (num) => Math.abs(num).toString().length % 2 !== 0
+  );
+
+  return numbers.length ? Math.min(...numbers) : null;
+}
+
+console.log(smallestOddDigitNumber([12, 123, 4567, 89, 100, 7]));
