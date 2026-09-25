@@ -4662,3 +4662,202 @@ function smallestOddDigitNumber(arr) {
 }
 
 console.log(smallestOddDigitNumber([12, 123, 4567, 89, 100, 7]));
+
+// ==============================
+// Task 191: Find Numbers Divisible by 4
+// ==============================
+// Question:
+// Return all numbers that are divisible by 4.
+//
+// Example:
+// Input: [8, 10, 12, 15, 20, 25]
+// Output: [8, 12, 20]
+
+function divisibleByFour(arr) {
+  return arr.filter((num) => num % 4 === 0);
+}
+
+console.log(divisibleByFour([8, 10, 12, 15, 20, 25]));
+
+
+// ==============================
+// Task 192: Find Numbers Divisible by 7
+// ==============================
+// Question:
+// Return all numbers that are divisible by 7.
+//
+// Example:
+// Input: [7, 10, 14, 20, 21, 25]
+// Output: [7, 14, 21]
+
+function divisibleBySeven(arr) {
+  return arr.filter((num) => num % 7 === 0);
+}
+
+console.log(divisibleBySeven([7, 10, 14, 20, 21, 25]));
+
+
+// ==============================
+// Task 193: Count Numbers Divisible by 5
+// ==============================
+// Question:
+// Count how many numbers are divisible by 5.
+//
+// Example:
+// Input: [5, 10, 12, 15, 22, 25]
+// Output: 4
+
+function countDivisibleByFive(arr) {
+  return arr.filter((num) => num % 5 === 0).length;
+}
+
+console.log(countDivisibleByFive([5, 10, 12, 15, 22, 25]));
+
+
+// ==============================
+// Task 194: Sum Numbers Divisible by 3
+// ==============================
+// Question:
+// Find the sum of all numbers divisible by 3.
+//
+// Example:
+// Input: [3, 5, 6, 8, 9, 10]
+// Output: 18
+
+function sumDivisibleByThree(arr) {
+  return arr
+    .filter((num) => num % 3 === 0)
+    .reduce((sum, num) => sum + num, 0);
+}
+
+console.log(sumDivisibleByThree([3, 5, 6, 8, 9, 10]));
+
+
+// ==============================
+// Task 195: Find the Largest Number Divisible by 5
+// ==============================
+// Question:
+// Find the largest number divisible by 5.
+//
+// Example:
+// Input: [10, 15, 22, 35, 40, 43]
+// Output: 40
+
+function largestDivisibleByFive(arr) {
+  const numbers = arr.filter((num) => num % 5 === 0);
+
+  return numbers.length ? Math.max(...numbers) : null;
+}
+
+console.log(largestDivisibleByFive([10, 15, 22, 35, 40, 43]));
+
+
+// ==============================
+// Task 196: Find the Smallest Number Divisible by 3
+// ==============================
+// Question:
+// Find the smallest number divisible by 3.
+//
+// Example:
+// Input: [12, 5, 18, 7, 9, 20]
+// Output: 9
+
+function smallestDivisibleByThree(arr) {
+  const numbers = arr.filter((num) => num % 3 === 0);
+
+  return numbers.length ? Math.min(...numbers) : null;
+}
+
+console.log(smallestDivisibleByThree([12, 5, 18, 7, 9, 20]));
+
+
+// ==============================
+// Task 197: Find Numbers Divisible by 2, 3, and 5
+// ==============================
+// Question:
+// Return numbers that are divisible by 2, 3, and 5.
+//
+// Example:
+// Input: [10, 15, 20, 30, 45, 60]
+// Output: [30, 60]
+
+function divisibleByTwoThreeAndFive(arr) {
+  return arr.filter(
+    (num) => num % 2 === 0 && num % 3 === 0 && num % 5 === 0
+  );
+}
+
+console.log(divisibleByTwoThreeAndFive([10, 15, 20, 30, 45, 60]));
+
+
+// ==============================
+// Task 198: Find Numbers With Digit Sum Greater Than 10
+// ==============================
+// Question:
+// Return numbers whose digits add up to more than 10.
+//
+// Example:
+// Input: [123, 145, 205, 99, 100]
+// Output: [123, 145, 99]
+
+function digitSumGreaterThanTen(arr) {
+  return arr.filter((num) => {
+    const sum = Math.abs(num)
+      .toString()
+      .split("")
+      .reduce((total, digit) => total + Number(digit), 0);
+
+    return sum > 10;
+  });
+}
+
+console.log(digitSumGreaterThanTen([123, 145, 205, 99, 100]));
+
+
+// ==============================
+// Task 199: Find Numbers With Digit Sum Less Than 10
+// ==============================
+// Question:
+// Return numbers whose digits add up to less than 10.
+//
+// Example:
+// Input: [123, 145, 205, 99, 100]
+// Output: [123, 205, 100]
+
+function digitSumLessThanTen(arr) {
+  return arr.filter((num) => {
+    const sum = Math.abs(num)
+      .toString()
+      .split("")
+      .reduce((total, digit) => total + Number(digit), 0);
+
+    return sum < 10;
+  });
+}
+
+console.log(digitSumLessThanTen([123, 145, 205, 99, 100]));
+
+
+// ==============================
+// Task 200: Find the Number With the Most Digits
+// ==============================
+// Question:
+// Find the number that contains the most digits.
+//
+// Example:
+// Input: [12, 345, 6789, 56, 12345]
+// Output: 12345
+
+function numberWithMostDigits(arr) {
+  let result = arr[0];
+
+  for (const num of arr) {
+    if (Math.abs(num).toString().length > Math.abs(result).toString().length) {
+      result = num;
+    }
+  }
+
+  return result;
+}
+
+console.log(numberWithMostDigits([12, 345, 6789, 56, 12345]));  
