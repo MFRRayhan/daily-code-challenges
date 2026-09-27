@@ -194,3 +194,290 @@ function allOddDigitNumbers(arr) {
 }
 
 console.log(allOddDigitNumbers([135, 123, 579, 246, 777]));
+
+
+// ==============================
+// Task 211: Find Numbers With Mixed Even and Odd Digits
+// ==============================
+// Question:
+// Return numbers that contain at least one even digit and one odd digit.
+//
+// Example:
+// Input: [123, 246, 135, 808, 4567]
+// Output: [123, 4567]
+
+function mixedEvenOddDigits(arr) {
+  return arr.filter((num) => {
+    const digits = Math.abs(num).toString().split("");
+
+    const hasEven = digits.some((digit) => Number(digit) % 2 === 0);
+    const hasOdd = digits.some((digit) => Number(digit) % 2 !== 0);
+
+    return hasEven && hasOdd;
+  });
+}
+
+console.log(mixedEvenOddDigits([123, 246, 135, 808, 4567]));
+
+
+// ==============================
+// Task 212: Find Numbers With More Even Digits
+// ==============================
+// Question:
+// Return numbers that contain more even digits than odd digits.
+//
+// Example:
+// Input: [246, 123, 4567, 808, 135]
+// Output: [246, 808]
+
+function moreEvenDigits(arr) {
+  return arr.filter((num) => {
+    const digits = Math.abs(num).toString().split("");
+
+    let evenCount = 0;
+    let oddCount = 0;
+
+    for (const digit of digits) {
+      if (Number(digit) % 2 === 0) {
+        evenCount++;
+      } else {
+        oddCount++;
+      }
+    }
+
+    return evenCount > oddCount;
+  });
+}
+
+console.log(moreEvenDigits([246, 123, 4567, 808, 135]));
+
+
+// ==============================
+// Task 213: Find Numbers With More Odd Digits
+// ==============================
+// Question:
+// Return numbers that contain more odd digits than even digits.
+//
+// Example:
+// Input: [135, 123, 4567, 808, 579]
+// Output: [135, 123, 579]
+
+function moreOddDigits(arr) {
+  return arr.filter((num) => {
+    const digits = Math.abs(num).toString().split("");
+
+    let evenCount = 0;
+    let oddCount = 0;
+
+    for (const digit of digits) {
+      if (Number(digit) % 2 === 0) {
+        evenCount++;
+      } else {
+        oddCount++;
+      }
+    }
+
+    return oddCount > evenCount;
+  });
+}
+
+console.log(moreOddDigits([135, 123, 4567, 808, 579]));
+
+
+// ==============================
+// Task 214: Find Numbers With Equal Even and Odd Digits
+// ==============================
+// Question:
+// Return numbers that contain an equal number of even and odd digits.
+//
+// Example:
+// Input: [1234, 2468, 1357, 12345, 5678]
+// Output: [1234, 5678]
+
+function equalEvenOddDigits(arr) {
+  return arr.filter((num) => {
+    const digits = Math.abs(num).toString().split("");
+
+    let evenCount = 0;
+    let oddCount = 0;
+
+    for (const digit of digits) {
+      if (Number(digit) % 2 === 0) {
+        evenCount++;
+      } else {
+        oddCount++;
+      }
+    }
+
+    return evenCount === oddCount;
+  });
+}
+
+console.log(equalEvenOddDigits([1234, 2468, 1357, 12345, 5678]));
+
+
+// ==============================
+// Task 215: Find Numbers With Digit 5 More Than Once
+// ==============================
+// Question:
+// Return numbers that contain the digit 5 at least twice.
+//
+// Example:
+// Input: [155, 525, 123, 555, 505, 678]
+// Output: [155, 525, 555, 505]
+
+function containsFiveAtLeastTwice(arr) {
+  return arr.filter((num) => {
+    const digits = Math.abs(num).toString();
+
+    return digits.split("5").length - 1 >= 2;
+  });
+}
+
+console.log(containsFiveAtLeastTwice([155, 525, 123, 555, 505, 678]));
+
+
+// ==============================
+// Task 216: Find Numbers With No Repeated Digits
+// ==============================
+// Question:
+// Return numbers where every digit is different.
+//
+// Example:
+// Input: [123, 112, 456, 778, 901]
+// Output: [123, 456, 901]
+
+function noRepeatedDigits(arr) {
+  return arr.filter((num) => {
+    const digits = Math.abs(num).toString().split("");
+
+    return new Set(digits).size === digits.length;
+  });
+}
+
+console.log(noRepeatedDigits([123, 112, 456, 778, 901]));
+
+
+// ==============================
+// Task 217: Find the Number With the Most Repeated Digit
+// ==============================
+// Question:
+// Find the number that has the highest frequency of any single digit.
+//
+// Example:
+// Input: [123, 111, 4555, 777, 890]
+// Output: 4555
+
+function numberWithMostRepeatedDigit(arr) {
+  let result = arr[0];
+  let highestFrequency = 0;
+
+  for (const num of arr) {
+    const frequency = {};
+
+    for (const digit of Math.abs(num).toString()) {
+      frequency[digit] = (frequency[digit] || 0) + 1;
+    }
+
+    const maxFrequency = Math.max(...Object.values(frequency));
+
+    if (maxFrequency > highestFrequency) {
+      highestFrequency = maxFrequency;
+      result = num;
+    }
+  }
+
+  return result;
+}
+
+console.log(numberWithMostRepeatedDigit([123, 111, 4555, 777, 890]));
+
+
+// ==============================
+// Task 218: Find the Number With the Lowest Digit
+// ==============================
+// Question:
+// Find the number that contains the smallest digit.
+//
+// Example:
+// Input: [583, 742, 965, 321]
+// Output: 321
+
+function numberWithLowestDigit(arr) {
+  let result = arr[0];
+  let lowestDigit = Infinity;
+
+  for (const num of arr) {
+    const digits = Math.abs(num).toString();
+
+    for (const digit of digits) {
+      const value = Number(digit);
+
+      if (value < lowestDigit) {
+        lowestDigit = value;
+        result = num;
+      }
+    }
+  }
+
+  return result;
+}
+
+console.log(numberWithLowestDigit([583, 742, 965, 321]));
+
+
+// ==============================
+// Task 219: Find the Number With the Highest Digit
+// ==============================
+// Question:
+// Find the number that contains the highest digit.
+//
+// Example:
+// Input: [123, 456, 789, 321]
+// Output: 789
+
+function numberWithHighestDigit(arr) {
+  let result = arr[0];
+  let highestDigit = -Infinity;
+
+  for (const num of arr) {
+    const digits = Math.abs(num).toString();
+
+    for (const digit of digits) {
+      const value = Number(digit);
+
+      if (value > highestDigit) {
+        highestDigit = value;
+        result = num;
+      }
+    }
+  }
+
+  return result;
+}
+
+console.log(numberWithHighestDigit([123, 456, 789, 321]));
+
+
+// ==============================
+// Task 220: Find Numbers Whose Digit Sum Is Even
+// ==============================
+// Question:
+// Return numbers whose digit sum is even.
+//
+// Example:
+// Input: [123, 456, 789, 111, 222]
+// Output: [123, 456, 789, 222]
+
+function evenDigitSumNumbers(arr) {
+  return arr.filter((num) => {
+    const digitSum = Math.abs(num)
+      .toString()
+      .split("")
+      .reduce((sum, digit) => sum + Number(digit), 0);
+
+    return digitSum % 2 === 0;
+  });
+}
+
+console.log(evenDigitSumNumbers([123, 456, 789, 111, 222]));
