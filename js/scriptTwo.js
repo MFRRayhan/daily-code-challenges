@@ -481,3 +481,242 @@ function evenDigitSumNumbers(arr) {
 }
 
 console.log(evenDigitSumNumbers([123, 456, 789, 111, 222]));
+
+// ==============================
+// Task 221: Find Numbers Whose Digit Sum Is Odd
+// ==============================
+// Question:
+// Return numbers whose digit sum is odd.
+//
+// Example:
+// Input: [123, 456, 789, 111, 222]
+// Output: [111]
+
+function oddDigitSumNumbers(arr) {
+  return arr.filter((num) => {
+    const digitSum = Math.abs(num)
+      .toString()
+      .split("")
+      .reduce((sum, digit) => sum + Number(digit), 0);
+
+    return digitSum % 2 !== 0;
+  });
+}
+
+console.log(oddDigitSumNumbers([123, 456, 789, 111, 222]));
+
+
+// ==============================
+// Task 222: Find Numbers With Digit Sum Equal to 10
+// ==============================
+// Question:
+// Return numbers whose digits add up exactly to 10.
+//
+// Example:
+// Input: [1234, 145, 235, 901, 55]
+// Output: [145, 235, 901, 55]
+
+function digitSumEqualToTen(arr) {
+  return arr.filter((num) => {
+    const digitSum = Math.abs(num)
+      .toString()
+      .split("")
+      .reduce((sum, digit) => sum + Number(digit), 0);
+
+    return digitSum === 10;
+  });
+}
+
+console.log(digitSumEqualToTen([1234, 145, 235, 901, 55]));
+
+
+// ==============================
+// Task 223: Find Numbers With Digit Sum Divisible by 3
+// ==============================
+// Question:
+// Return numbers whose digit sum is divisible by 3.
+//
+// Example:
+// Input: [123, 145, 222, 501, 789]
+// Output: [123, 222, 501, 789]
+
+function digitSumDivisibleByThree(arr) {
+  return arr.filter((num) => {
+    const digitSum = Math.abs(num)
+      .toString()
+      .split("")
+      .reduce((sum, digit) => sum + Number(digit), 0);
+
+    return digitSum % 3 === 0;
+  });
+}
+
+console.log(digitSumDivisibleByThree([123, 145, 222, 501, 789]));
+
+
+// ==============================
+// Task 224: Find Numbers With First Digit Greater Than Last
+// ==============================
+// Question:
+// Return numbers where the first digit is greater than the last digit.
+//
+// Example:
+// Input: [321, 456, 789, 981, 542]
+// Output: [321, 981, 542]
+
+function firstDigitGreaterThanLast(arr) {
+  return arr.filter((num) => {
+    const digits = Math.abs(num).toString();
+
+    return Number(digits[0]) > Number(digits[digits.length - 1]);
+  });
+}
+
+console.log(firstDigitGreaterThanLast([321, 456, 789, 981, 542]));
+
+
+// ==============================
+// Task 225: Find Numbers With Last Digit Greater Than First
+// ==============================
+// Question:
+// Return numbers where the last digit is greater than the first digit.
+//
+// Example:
+// Input: [123, 456, 789, 981, 542]
+// Output: [123, 456, 789]
+
+function lastDigitGreaterThanFirst(arr) {
+  return arr.filter((num) => {
+    const digits = Math.abs(num).toString();
+
+    return Number(digits[digits.length - 1]) > Number(digits[0]);
+  });
+}
+
+console.log(lastDigitGreaterThanFirst([123, 456, 789, 981, 542]));
+
+
+// ==============================
+// Task 226: Find Numbers With Same First and Last Digit Sum
+// ==============================
+// Question:
+// Return numbers where the first and last digits have the same sum as the middle digits.
+//
+// Example:
+// Input: [123, 132, 246, 404, 505]
+// Output: [132, 246]
+
+function matchingDigitSum(arr) {
+  return arr.filter((num) => {
+    const digits = Math.abs(num).toString();
+
+    if (digits.length < 3) return false;
+
+    const firstLastSum =
+      Number(digits[0]) + Number(digits[digits.length - 1]);
+
+    const middleSum = digits
+      .slice(1, -1)
+      .split("")
+      .reduce((sum, digit) => sum + Number(digit), 0);
+
+    return firstLastSum === middleSum;
+  });
+}
+
+console.log(matchingDigitSum([123, 132, 246, 404, 505]));
+
+
+// ==============================
+// Task 227: Find Numbers With Zero in the Middle
+// ==============================
+// Question:
+// Return numbers that contain at least one zero that is not the first or last digit.
+//
+// Example:
+// Input: [102, 120, 405, 500, 123]
+// Output: [102, 405]
+
+function zeroInTheMiddle(arr) {
+  return arr.filter((num) => {
+    const digits = Math.abs(num).toString();
+
+    if (digits.length < 3) return false;
+
+    return digits.slice(1, -1).includes("0");
+  });
+}
+
+console.log(zeroInTheMiddle([102, 120, 405, 500, 123]));
+
+
+// ==============================
+// Task 228: Find Numbers With Exactly One Zero
+// ==============================
+// Question:
+// Return numbers that contain exactly one zero.
+//
+// Example:
+// Input: [10, 100, 205, 300, 450, 123]
+// Output: [10, 205, 450]
+
+function exactlyOneZero(arr) {
+  return arr.filter((num) => {
+    const digits = Math.abs(num).toString();
+
+    return digits.split("").filter((digit) => digit === "0").length === 1;
+  });
+}
+
+console.log(exactlyOneZero([10, 100, 205, 300, 450, 123]));
+
+
+// ==============================
+// Task 229: Find Numbers With No Zero
+// ==============================
+// Question:
+// Return numbers that do not contain the digit 0.
+//
+// Example:
+// Input: [123, 405, 567, 100, 789]
+// Output: [123, 567, 789]
+
+function numbersWithoutZero(arr) {
+  return arr.filter((num) => {
+    return !Math.abs(num).toString().includes("0");
+  });
+}
+
+console.log(numbersWithoutZero([123, 405, 567, 100, 789]));
+
+
+// ==============================
+// Task 230: Find the Number With the Highest Digit Product
+// ==============================
+// Question:
+// Find the number whose digits have the highest product.
+//
+// Example:
+// Input: [123, 234, 345, 111]
+// Output: 345
+
+function highestDigitProductNumber(arr) {
+  let result = arr[0];
+  let highestProduct = -Infinity;
+
+  for (const num of arr) {
+    const product = Math.abs(num)
+      .toString()
+      .split("")
+      .reduce((total, digit) => total * Number(digit), 1);
+
+    if (product > highestProduct) {
+      highestProduct = product;
+      result = num;
+    }
+  }
+
+  return result;
+}
+
+console.log(highestDigitProductNumber([123, 234, 345, 111]));
