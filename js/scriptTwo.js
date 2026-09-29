@@ -720,3 +720,238 @@ function highestDigitProductNumber(arr) {
 }
 
 console.log(highestDigitProductNumber([123, 234, 345, 111]));
+
+// ==============================
+// Task 231: Find the Number With the Lowest Digit Product
+// ==============================
+// Question:
+// Find the number whose digits have the lowest product.
+//
+// Example:
+// Input: [123, 234, 305, 456]
+// Output: 305
+
+function lowestDigitProductNumber(arr) {
+  let result = arr[0];
+  let lowestProduct = Infinity;
+
+  for (const num of arr) {
+    const product = Math.abs(num)
+      .toString()
+      .split("")
+      .reduce((total, digit) => total * Number(digit), 1);
+
+    if (product < lowestProduct) {
+      lowestProduct = product;
+      result = num;
+    }
+  }
+
+  return result;
+}
+
+console.log(lowestDigitProductNumber([123, 234, 305, 456]));
+
+
+// ==============================
+// Task 232: Find Numbers With Digit Product Greater Than 50
+// ==============================
+// Question:
+// Return numbers whose digit product is greater than 50.
+//
+// Example:
+// Input: [123, 234, 145, 222, 305]
+// Output: [234, 145, 222]
+
+function digitProductGreaterThan50(arr) {
+  return arr.filter((num) => {
+    const product = Math.abs(num)
+      .toString()
+      .split("")
+      .reduce((total, digit) => total * Number(digit), 1);
+
+    return product > 50;
+  });
+}
+
+console.log(digitProductGreaterThan50([123, 234, 145, 222, 305]));
+
+
+// ==============================
+// Task 233: Find Numbers With Digit Product Equal to 0
+// ==============================
+// Question:
+// Return numbers whose digit product is 0.
+//
+// Example:
+// Input: [123, 405, 234, 100, 567]
+// Output: [405, 100]
+
+function digitProductEqualToZero(arr) {
+  return arr.filter((num) => {
+    return Math.abs(num).toString().includes("0");
+  });
+}
+
+console.log(digitProductEqualToZero([123, 405, 234, 100, 567]));
+
+
+// ==============================
+// Task 234: Find Numbers With All Different Digits
+// ==============================
+// Question:
+// Return numbers where every digit is different.
+//
+// Example:
+// Input: [123, 112, 456, 455, 789]
+// Output: [123, 456, 789]
+
+function allDifferentDigits(arr) {
+  return arr.filter((num) => {
+    const digits = Math.abs(num).toString();
+
+    return new Set(digits).size === digits.length;
+  });
+}
+
+console.log(allDifferentDigits([123, 112, 456, 455, 789]));
+
+
+// ==============================
+// Task 235: Find Numbers With Exactly Two Repeated Digits
+// ==============================
+// Question:
+// Return numbers where exactly one digit appears twice and all other digits appear once.
+//
+// Example:
+// Input: [112, 123, 1223, 445, 567]
+// Output: [112, 445]
+
+function exactlyOneRepeatedDigit(arr) {
+  return arr.filter((num) => {
+    const digits = Math.abs(num).toString();
+    const frequency = {};
+
+    for (const digit of digits) {
+      frequency[digit] = (frequency[digit] || 0) + 1;
+    }
+
+    const repeatedCounts = Object.values(frequency).filter(
+      (count) => count === 2
+    );
+
+    return repeatedCounts.length === 1 &&
+      Object.values(frequency).every((count) => count <= 2);
+  });
+}
+
+console.log(exactlyOneRepeatedDigit([112, 123, 1223, 445, 567]));
+
+
+// ==============================
+// Task 236: Find Numbers That Are Multiples of 10
+// ==============================
+// Question:
+// Return all numbers that are multiples of 10.
+//
+// Example:
+// Input: [10, 15, 20, 33, 40, 55]
+// Output: [10, 20, 40]
+
+function multiplesOfTen(arr) {
+  return arr.filter((num) => num % 10 === 0);
+}
+
+console.log(multiplesOfTen([10, 15, 20, 33, 40, 55]));
+
+
+// ==============================
+// Task 237: Find Numbers That Are Powers of 2
+// ==============================
+// Question:
+// Return all numbers that are powers of 2.
+//
+// Example:
+// Input: [1, 2, 3, 4, 6, 8, 10, 16]
+// Output: [1, 2, 4, 8, 16]
+
+function powersOfTwo(arr) {
+  return arr.filter((num) => {
+    return num > 0 && (num & (num - 1)) === 0;
+  });
+}
+
+console.log(powersOfTwo([1, 2, 3, 4, 6, 8, 10, 16]));
+
+
+// ==============================
+// Task 238: Find Perfect Squares
+// ==============================
+// Question:
+// Return all numbers that are perfect squares.
+//
+// Example:
+// Input: [1, 2, 4, 6, 9, 10, 16, 20]
+// Output: [1, 4, 9, 16]
+
+function perfectSquares(arr) {
+  return arr.filter((num) => {
+    if (num < 0) return false;
+
+    const root = Math.sqrt(num);
+
+    return Number.isInteger(root);
+  });
+}
+
+console.log(perfectSquares([1, 2, 4, 6, 9, 10, 16, 20]));
+
+
+// ==============================
+// Task 239: Find Numbers With Equal First Two Digits
+// ==============================
+// Question:
+// Return numbers whose first two digits are the same.
+//
+// Example:
+// Input: [112, 223, 345, 455, 667, 789]
+// Output: [112, 223, 667]
+
+function sameFirstTwoDigits(arr) {
+  return arr.filter((num) => {
+    const digits = Math.abs(num).toString();
+
+    return digits.length >= 2 && digits[0] === digits[1];
+  });
+}
+
+console.log(sameFirstTwoDigits([112, 223, 345, 455, 667, 789]));
+
+
+// ==============================
+// Task 240: Find Numbers With Consecutive Digits
+// ==============================
+// Question:
+// Return numbers whose digits increase consecutively by 1.
+//
+// Example:
+// Input: [123, 234, 345, 456, 135, 789]
+// Output: [123, 234, 345, 456, 789]
+
+function consecutiveDigitNumbers(arr) {
+  return arr.filter((num) => {
+    const digits = Math.abs(num).toString();
+
+    if (digits.length < 2) return false;
+
+    for (let i = 1; i < digits.length; i++) {
+      if (Number(digits[i]) !== Number(digits[i - 1]) + 1) {
+        return false;
+      }
+    }
+
+    return true;
+  });
+}
+
+console.log(consecutiveDigitNumbers([123, 234, 345, 456, 135, 789]));
