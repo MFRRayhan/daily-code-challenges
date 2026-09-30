@@ -955,3 +955,269 @@ function consecutiveDigitNumbers(arr) {
 }
 
 console.log(consecutiveDigitNumbers([123, 234, 345, 456, 135, 789]));
+
+// ==============================
+// Task 241: Find Numbers With Decreasing Consecutive Digits
+// ==============================
+// Question:
+// Return numbers whose digits decrease consecutively by 1.
+//
+// Example:
+// Input: [321, 432, 543, 456, 210, 135]
+// Output: [321, 432, 543, 210]
+
+function decreasingConsecutiveDigits(arr) {
+  return arr.filter((num) => {
+    const digits = Math.abs(num).toString();
+
+    if (digits.length < 2) return false;
+
+    for (let i = 1; i < digits.length; i++) {
+      if (Number(digits[i]) !== Number(digits[i - 1]) - 1) {
+        return false;
+      }
+    }
+
+    return true;
+  });
+}
+
+console.log(decreasingConsecutiveDigits([321, 432, 543, 456, 210, 135]));
+
+
+// ==============================
+// Task 242: Find Numbers With All Same Digits
+// ==============================
+// Question:
+// Return numbers where all digits are the same.
+//
+// Example:
+// Input: [111, 222, 123, 444, 555, 678]
+// Output: [111, 222, 444, 555]
+
+function allSameDigits(arr) {
+  return arr.filter((num) => {
+    const digits = Math.abs(num).toString();
+
+    return digits.length > 1 && new Set(digits).size === 1;
+  });
+}
+
+console.log(allSameDigits([111, 222, 123, 444, 555, 678]));
+
+
+// ==============================
+// Task 243: Find Numbers With Alternating Digits
+// ==============================
+// Question:
+// Return numbers where digits alternate between even and odd.
+//
+// Example:
+// Input: [123, 456, 214, 135, 789]
+// Output: [123, 456, 214, 135]
+
+function alternatingEvenOddDigits(arr) {
+  return arr.filter((num) => {
+    const digits = Math.abs(num).toString();
+
+    if (digits.length < 2) return false;
+
+    for (let i = 1; i < digits.length; i++) {
+      const current = Number(digits[i]) % 2;
+      const previous = Number(digits[i - 1]) % 2;
+
+      if (current === previous) {
+        return false;
+      }
+    }
+
+    return true;
+  });
+}
+
+console.log(alternatingEvenOddDigits([123, 456, 214, 135, 789]));
+
+
+// ==============================
+// Task 244: Find Numbers With No Consecutive Digits
+// ==============================
+// Question:
+// Return numbers that do not contain the same digit consecutively.
+//
+// Example:
+// Input: [121, 112, 345, 455, 678]
+// Output: [121, 345, 678]
+
+function noConsecutiveSameDigits(arr) {
+  return arr.filter((num) => {
+    const digits = Math.abs(num).toString();
+
+    for (let i = 1; i < digits.length; i++) {
+      if (digits[i] === digits[i - 1]) {
+        return false;
+      }
+    }
+
+    return true;
+  });
+}
+
+console.log(noConsecutiveSameDigits([121, 112, 345, 455, 678]));
+
+
+// ==============================
+// Task 245: Find Numbers With Exactly Three Unique Digits
+// ==============================
+// Question:
+// Return numbers containing exactly three unique digits.
+//
+// Example:
+// Input: [123, 112, 1234, 456, 777, 121]
+// Output: [123, 1234, 456]
+
+function exactlyThreeUniqueDigits(arr) {
+  return arr.filter((num) => {
+    const digits = Math.abs(num).toString();
+
+    return new Set(digits).size === 3;
+  });
+}
+
+console.log(exactlyThreeUniqueDigits([123, 112, 1234, 456, 777, 121]));
+
+
+// ==============================
+// Task 246: Find Numbers With Exactly Two Unique Digits
+// ==============================
+// Question:
+// Return numbers containing exactly two unique digits.
+//
+// Example:
+// Input: [121, 112, 123, 455, 777, 101]
+// Output: [121, 112, 455, 101]
+
+function exactlyTwoUniqueDigits(arr) {
+  return arr.filter((num) => {
+    const digits = Math.abs(num).toString();
+
+    return new Set(digits).size === 2;
+  });
+}
+
+console.log(exactlyTwoUniqueDigits([121, 112, 123, 455, 777, 101]));
+
+
+// ==============================
+// Task 247: Find Numbers With Digit Sum Greater Than Digit Product
+// ==============================
+// Question:
+// Return numbers where the sum of digits is greater than the product of digits.
+//
+// Example:
+// Input: [123, 234, 105, 111]
+// Output: [123, 105, 111]
+
+function digitSumGreaterThanProduct(arr) {
+  return arr.filter((num) => {
+    const digits = Math.abs(num).toString().split("");
+
+    const sum = digits.reduce(
+      (total, digit) => total + Number(digit),
+      0
+    );
+
+    const product = digits.reduce(
+      (total, digit) => total * Number(digit),
+      1
+    );
+
+    return sum > product;
+  });
+}
+
+console.log(digitSumGreaterThanProduct([123, 234, 105, 111]));
+
+
+// ==============================
+// Task 248: Find Numbers With Digit Product Greater Than Digit Sum
+// ==============================
+// Question:
+// Return numbers where the product of digits is greater than the sum of digits.
+//
+// Example:
+// Input: [123, 234, 145, 111]
+// Output: [234, 145]
+
+function digitProductGreaterThanSum(arr) {
+  return arr.filter((num) => {
+    const digits = Math.abs(num).toString().split("");
+
+    const sum = digits.reduce(
+      (total, digit) => total + Number(digit),
+      0
+    );
+
+    const product = digits.reduce(
+      (total, digit) => total * Number(digit),
+      1
+    );
+
+    return product > sum;
+  });
+}
+
+console.log(digitProductGreaterThanSum([123, 234, 145, 111]));
+
+
+// ==============================
+// Task 249: Find Numbers With Palindromic Digits
+// ==============================
+// Question:
+// Return numbers whose digits form a palindrome.
+//
+// Example:
+// Input: [121, 123, 444, 567, 1221]
+// Output: [121, 444, 1221]
+
+function palindromicNumbers(arr) {
+  return arr.filter((num) => {
+    const digits = Math.abs(num).toString();
+
+    return digits === digits.split("").reverse().join("");
+  });
+}
+
+console.log(palindromicNumbers([121, 123, 444, 567, 1221]));
+
+
+// ==============================
+// Task 250: Find the Longest Palindromic Number
+// ==============================
+// Question:
+// Find the palindromic number with the most digits.
+//
+// Example:
+// Input: [121, 12321, 444, 567, 1221]
+// Output: 12321
+
+function longestPalindromicNumber(arr) {
+  let result = null;
+
+  for (const num of arr) {
+    const digits = Math.abs(num).toString();
+    const reversed = digits.split("").reverse().join("");
+
+    if (digits === reversed) {
+      if (
+        result === null ||
+        digits.length > Math.abs(result).toString().length
+      ) {
+        result = num;
+      }
+    }
+  }
+
+  return result;
+}
+
+console.log(longestPalindromicNumber([121, 12321, 444, 567, 1221]));
