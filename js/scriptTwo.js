@@ -1221,3 +1221,246 @@ function longestPalindromicNumber(arr) {
 }
 
 console.log(longestPalindromicNumber([121, 12321, 444, 567, 1221]));
+
+// ==============================
+// Task 251: Find the Smallest Palindromic Number
+// ==============================
+// Question:
+// Find the smallest palindromic number in an array.
+//
+// Example:
+// Input: [121, 44, 333, 567, 222]
+// Output: 44
+
+function smallestPalindromicNumber(arr) {
+  const palindromes = arr.filter((num) => {
+    const str = Math.abs(num).toString();
+
+    return str === str.split("").reverse().join("");
+  });
+
+  return palindromes.length ? Math.min(...palindromes) : null;
+}
+
+console.log(smallestPalindromicNumber([121, 44, 333, 567, 222]));
+
+
+// ==============================
+// Task 252: Count Palindromic Numbers
+// ==============================
+// Question:
+// Count how many palindromic numbers are in an array.
+//
+// Example:
+// Input: [121, 123, 44, 567, 777]
+// Output: 3
+
+function countPalindromicNumbers(arr) {
+  return arr.filter((num) => {
+    const str = Math.abs(num).toString();
+
+    return str === str.split("").reverse().join("");
+  }).length;
+}
+
+console.log(countPalindromicNumbers([121, 123, 44, 567, 777]));
+
+
+// ==============================
+// Task 253: Find Numbers Whose Reverse Is Greater
+// ==============================
+// Question:
+// Return numbers where the reversed number is greater than the original.
+//
+// Example:
+// Input: [123, 321, 456, 654, 129]
+// Output: [123, 456, 129]
+
+function reverseGreaterNumbers(arr) {
+  return arr.filter((num) => {
+    const reversed = Number(
+      Math.abs(num).toString().split("").reverse().join("")
+    );
+
+    return reversed > Math.abs(num);
+  });
+}
+
+console.log(reverseGreaterNumbers([123, 321, 456, 654, 129]));
+
+
+// ==============================
+// Task 254: Find Numbers Whose Reverse Is Smaller
+// ==============================
+// Question:
+// Return numbers where the reversed number is smaller than the original.
+//
+// Example:
+// Input: [123, 321, 456, 654, 129]
+// Output: [321, 654]
+
+function reverseSmallerNumbers(arr) {
+  return arr.filter((num) => {
+    const reversed = Number(
+      Math.abs(num).toString().split("").reverse().join("")
+    );
+
+    return reversed < Math.abs(num);
+  });
+}
+
+console.log(reverseSmallerNumbers([123, 321, 456, 654, 129]));
+
+
+// ==============================
+// Task 255: Find Numbers Whose Reverse Is Equal
+// ==============================
+// Question:
+// Return numbers where the reversed number is equal to the original.
+//
+// Example:
+// Input: [121, 123, 454, 567, 777]
+// Output: [121, 454, 777]
+
+function reverseEqualNumbers(arr) {
+  return arr.filter((num) => {
+    const value = Math.abs(num);
+    const reversed = Number(value.toString().split("").reverse().join(""));
+
+    return value === reversed;
+  });
+}
+
+console.log(reverseEqualNumbers([121, 123, 454, 567, 777]));
+
+
+// ==============================
+// Task 256: Find Numbers With Digit Sum Equal to Digit Product
+// ==============================
+// Question:
+// Return numbers where the sum of digits equals the product of digits.
+//
+// Example:
+// Input: [123, 145, 222, 111, 24]
+// Output: [123, 145, 222, 24]
+
+function equalDigitSumAndProduct(arr) {
+  return arr.filter((num) => {
+    const digits = Math.abs(num).toString().split("");
+
+    const sum = digits.reduce(
+      (total, digit) => total + Number(digit),
+      0
+    );
+
+    const product = digits.reduce(
+      (total, digit) => total * Number(digit),
+      1
+    );
+
+    return sum === product;
+  });
+}
+
+console.log(equalDigitSumAndProduct([123, 145, 222, 111, 24]));
+
+
+// ==============================
+// Task 257: Find Numbers With Exactly One Even Digit
+// ==============================
+// Question:
+// Return numbers that contain exactly one even digit.
+//
+// Example:
+// Input: [123, 135, 246, 579, 701]
+// Output: [123, 135, 579, 701]
+
+function exactlyOneEvenDigit(arr) {
+  return arr.filter((num) => {
+    const digits = Math.abs(num).toString().split("");
+
+    const evenCount = digits.filter(
+      (digit) => Number(digit) % 2 === 0
+    ).length;
+
+    return evenCount === 1;
+  });
+}
+
+console.log(exactlyOneEvenDigit([123, 135, 246, 579, 701]));
+
+
+// ==============================
+// Task 258: Find Numbers With Exactly One Odd Digit
+// ==============================
+// Question:
+// Return numbers that contain exactly one odd digit.
+//
+// Example:
+// Input: [246, 248, 123, 456, 802]
+// Output: [246, 248, 456, 802]
+
+function exactlyOneOddDigit(arr) {
+  return arr.filter((num) => {
+    const digits = Math.abs(num).toString().split("");
+
+    const oddCount = digits.filter(
+      (digit) => Number(digit) % 2 !== 0
+    ).length;
+
+    return oddCount === 1;
+  });
+}
+
+console.log(exactlyOneOddDigit([246, 248, 123, 456, 802]));
+
+
+// ==============================
+// Task 259: Find Numbers With More Than Two Unique Digits
+// ==============================
+// Question:
+// Return numbers containing more than two unique digits.
+//
+// Example:
+// Input: [112, 123, 455, 1234, 777, 121]
+// Output: [123, 1234]
+
+function moreThanTwoUniqueDigits(arr) {
+  return arr.filter((num) => {
+    const digits = Math.abs(num).toString();
+
+    return new Set(digits).size > 2;
+  });
+}
+
+console.log(moreThanTwoUniqueDigits([112, 123, 455, 1234, 777, 121]));
+
+
+// ==============================
+// Task 260: Find Number With the Most Unique Digits
+// ==============================
+// Question:
+// Find the number that contains the highest number of unique digits.
+//
+// Example:
+// Input: [112, 123, 4567, 777, 12345]
+// Output: 12345
+
+function numberWithMostUniqueDigits(arr) {
+  let result = arr[0];
+  let highestUniqueCount = 0;
+
+  for (const num of arr) {
+    const digits = Math.abs(num).toString();
+    const uniqueCount = new Set(digits).size;
+
+    if (uniqueCount > highestUniqueCount) {
+      highestUniqueCount = uniqueCount;
+      result = num;
+    }
+  }
+
+  return result;
+}
+
+console.log(numberWithMostUniqueDigits([112, 123, 4567, 777, 12345]));
