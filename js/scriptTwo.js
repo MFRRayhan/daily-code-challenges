@@ -1464,3 +1464,205 @@ function numberWithMostUniqueDigits(arr) {
 }
 
 console.log(numberWithMostUniqueDigits([112, 123, 4567, 777, 12345]));
+
+// ==================================================
+// 261. Find Numbers With Increasing Digit Sum
+// Example: [12, 34, 45, 56]
+// Output: [12, 34, 45, 56]
+// ==================================================
+
+function increasingDigitSum(numbers) {
+  return numbers.filter((num) => {
+    const digits = String(num).split("").map(Number);
+    return digits.every((digit, i) => i === 0 || digit > digits[i - 1]);
+  });
+}
+
+console.log(increasingDigitSum([12, 34, 45, 56, 321, 123]));
+
+
+// ==================================================
+// 262. Find Numbers With Decreasing Digit Sum
+// Example: [21, 32, 43, 321]
+// Output: [21, 32, 43, 321]
+// ==================================================
+
+function decreasingDigits(numbers) {
+  return numbers.filter((num) => {
+    const digits = String(num).split("").map(Number);
+    return digits.every((digit, i) => i === 0 || digit < digits[i - 1]);
+  });
+}
+
+console.log(decreasingDigits([21, 32, 43, 321, 123, 987]));
+
+
+// ==================================================
+// 263. Find Numbers With Alternating Even/Odd Digits
+// Example: [1234, 2143, 2468]
+// Output: [1234, 2143]
+// ==================================================
+
+function alternatingEvenOdd(numbers) {
+  return numbers.filter((num) => {
+    const digits = String(num).split("").map(Number);
+
+    return digits.every(
+      (digit, i) =>
+        i === 0 || digit % 2 !== digits[i - 1] % 2
+    );
+  });
+}
+
+console.log(alternatingEvenOdd([1234, 2143, 2468, 1357, 1212]));
+
+
+// ==================================================
+// 264. Find Numbers With Consecutive Digits
+// Example: [123, 456, 135, 789]
+// Output: [123, 456, 789]
+// ==================================================
+
+function consecutiveDigits(numbers) {
+  return numbers.filter((num) => {
+    const digits = String(num).split("").map(Number);
+
+    return digits.every(
+      (digit, i) =>
+        i === 0 || digit === digits[i - 1] + 1
+    );
+  });
+}
+
+console.log(consecutiveDigits([123, 456, 135, 789, 321]));
+
+
+// ==================================================
+// 265. Find Numbers With Reverse Consecutive Digits
+// Example: [321, 654, 987, 123]
+// Output: [321, 654, 987]
+// ==================================================
+
+function reverseConsecutiveDigits(numbers) {
+  return numbers.filter((num) => {
+    const digits = String(num).split("").map(Number);
+
+    return digits.every(
+      (digit, i) =>
+        i === 0 || digit === digits[i - 1] - 1
+    );
+  });
+}
+
+console.log(reverseConsecutiveDigits([321, 654, 987, 123, 432]));
+
+
+// ==================================================
+// 266. Find Numbers With Only Prime Digits
+// Example: [235, 247, 777, 123]
+// Output: [235, 777]
+// ==================================================
+
+function onlyPrimeDigits(numbers) {
+  const primeDigits = new Set([2, 3, 5, 7]);
+
+  return numbers.filter((num) =>
+    String(num)
+      .split("")
+      .every((digit) => primeDigits.has(Number(digit)))
+  );
+}
+
+console.log(onlyPrimeDigits([235, 247, 777, 123, 357, 222]));
+
+
+// ==================================================
+// 267. Find Numbers With Only Composite Digits
+// Example: [468, 248, 123]
+// Output: [468, 248]
+// ==================================================
+
+function onlyCompositeDigits(numbers) {
+  const compositeDigits = new Set([4, 6, 8, 9]);
+
+  return numbers.filter((num) =>
+    String(num)
+      .split("")
+      .every((digit) => compositeDigits.has(Number(digit)))
+  );
+}
+
+console.log(onlyCompositeDigits([468, 248, 123, 888, 999]));
+
+
+// ==================================================
+// 268. Find Numbers With Prime Digit Sum
+// Example: [12, 23, 45, 111]
+// Output: [12, 23]
+// ==================================================
+
+function primeDigitSum(numbers) {
+  function isPrime(num) {
+    if (num < 2) return false;
+
+    for (let i = 2; i <= Math.sqrt(num); i++) {
+      if (num % i === 0) return false;
+    }
+
+    return true;
+  }
+
+  return numbers.filter((num) => {
+    const sum = String(num)
+      .split("")
+      .reduce((total, digit) => total + Number(digit), 0);
+
+    return isPrime(sum);
+  });
+}
+
+console.log(primeDigitSum([12, 23, 45, 111, 234]));
+
+
+// ==================================================
+// 269. Find Numbers With Perfect Digit Sum
+// Example: [28, 36, 123, 10]
+// Output: [28, 36]
+// ==================================================
+
+function perfectDigitSum(numbers) {
+  return numbers.filter((num) => {
+    const sum = String(num)
+      .split("")
+      .reduce((total, digit) => total + Number(digit), 0);
+
+    let divisorSum = 0;
+
+    for (let i = 1; i < sum; i++) {
+      if (sum % i === 0) {
+        divisorSum += i;
+      }
+    }
+
+    return sum > 0 && divisorSum === sum;
+  });
+}
+
+console.log(perfectDigitSum([28, 36, 123, 10, 45, 100]));
+
+
+// ==================================================
+// 270. Find Numbers With Equal First and Last Digit
+// Example: [121, 232, 456, 787]
+// Output: [121, 232, 787]
+// ==================================================
+
+function equalFirstLastDigit(numbers) {
+  return numbers.filter((num) => {
+    const str = String(num);
+
+    return str[0] === str[str.length - 1];
+  });
+}
+
+console.log(equalFirstLastDigit([121, 232, 456, 787, 123, 909]));
