@@ -1666,3 +1666,203 @@ function equalFirstLastDigit(numbers) {
 }
 
 console.log(equalFirstLastDigit([121, 232, 456, 787, 123, 909]));
+
+// ==================================================
+// 271. Find Numbers With Different First and Last Digit
+// Example: [123, 454, 789, 111]
+// Output: [123, 789]
+// ==================================================
+
+function differentFirstLast(numbers) {
+  return numbers.filter((num) => {
+    const str = String(num);
+    return str[0] !== str[str.length - 1];
+  });
+}
+
+console.log(differentFirstLast([123, 454, 789, 111, 232]));
+
+
+// ==================================================
+// 272. Find Numbers With Exactly Two Repeated Digits
+// Example: [1122, 1223, 1112, 1234]
+// Output: [1122]
+// ==================================================
+
+function exactlyTwoRepeatedDigits(numbers) {
+  return numbers.filter((num) => {
+    const digits = String(num).split("");
+    const counts = {};
+
+    digits.forEach((digit) => {
+      counts[digit] = (counts[digit] || 0) + 1;
+    });
+
+    return Object.values(counts).filter((count) => count > 1).length === 2;
+  });
+}
+
+console.log(exactlyTwoRepeatedDigits([1122, 1223, 1112, 1234, 112233]));
+
+
+// ==================================================
+// 273. Find Numbers With One Unique Digit
+// Example: [111, 222, 123, 444]
+// Output: [111, 222, 444]
+// ==================================================
+
+function oneUniqueDigit(numbers) {
+  return numbers.filter((num) => {
+    const uniqueDigits = new Set(String(num));
+    return uniqueDigits.size === 1;
+  });
+}
+
+console.log(oneUniqueDigit([111, 222, 123, 444, 5555, 121]));
+
+
+// ==================================================
+// 274. Find Numbers With Digits in Ascending Order
+// Example: [123, 145, 321, 246]
+// Output: [123, 145, 246]
+// ==================================================
+
+function ascendingDigits(numbers) {
+  return numbers.filter((num) => {
+    const digits = String(num).split("").map(Number);
+
+    return digits.every(
+      (digit, index) =>
+        index === 0 || digit >= digits[index - 1]
+    );
+  });
+}
+
+console.log(ascendingDigits([123, 145, 321, 246, 112, 135]));
+
+
+// ==================================================
+// 275. Find Numbers With Digits in Descending Order
+// Example: [321, 543, 123, 987]
+// Output: [321, 543, 987]
+// ==================================================
+
+function descendingDigits(numbers) {
+  return numbers.filter((num) => {
+    const digits = String(num).split("").map(Number);
+
+    return digits.every(
+      (digit, index) =>
+        index === 0 || digit <= digits[index - 1]
+    );
+  });
+}
+
+console.log(descendingDigits([321, 543, 123, 987, 221, 654]));
+
+
+// ==================================================
+// 276. Find Numbers With Equal First and Middle Digit
+// Example: [121, 232, 345, 454]
+// Output: [121, 232, 454]
+// ==================================================
+
+function equalFirstMiddle(numbers) {
+  return numbers.filter((num) => {
+    const str = String(num);
+
+    if (str.length % 2 === 0) return false;
+
+    const middle = Math.floor(str.length / 2);
+
+    return str[0] === str[middle];
+  });
+}
+
+console.log(equalFirstMiddle([121, 232, 345, 454, 12321]));
+
+
+// ==================================================
+// 277. Find Numbers With Equal Middle and Last Digit
+// Example: [121, 232, 345, 454]
+// Output: [121, 232, 454]
+// ==================================================
+
+function equalMiddleLast(numbers) {
+  return numbers.filter((num) => {
+    const str = String(num);
+
+    if (str.length % 2 === 0) return false;
+
+    const middle = Math.floor(str.length / 2);
+
+    return str[middle] === str[str.length - 1];
+  });
+}
+
+console.log(equalMiddleLast([121, 232, 345, 454, 12321]));
+
+
+// ==================================================
+// 278. Find Numbers With Digit Sum Equal to 20
+// Example: [299, 389, 1234, 5555]
+// Output: [299, 389, 5555]
+// ==================================================
+
+function digitSumEqual20(numbers) {
+  return numbers.filter((num) => {
+    const sum = String(num)
+      .split("")
+      .reduce((total, digit) => total + Number(digit), 0);
+
+    return sum === 20;
+  });
+}
+
+console.log(digitSumEqual20([299, 389, 1234, 5555, 191]));
+
+
+// ==================================================
+// 279. Find Numbers With Digit Sum Divisible by 5
+// Example: [10, 23, 45, 111]
+// Output: [10, 23, 45, 111]
+// ==================================================
+
+function digitSumDivisibleBy5(numbers) {
+  return numbers.filter((num) => {
+    const sum = String(num)
+      .split("")
+      .reduce((total, digit) => total + Number(digit), 0);
+
+    return sum % 5 === 0;
+  });
+}
+
+console.log(digitSumDivisibleBy5([10, 23, 45, 111, 234, 500]));
+
+
+// ==================================================
+// 280. Find Number With the Highest Digit Product
+// Example: [123, 234, 999, 456]
+// Output: 999
+// ==================================================
+
+function highestDigitProduct(numbers) {
+  let highestNumber = numbers[0];
+  let highestProduct = -Infinity;
+
+  numbers.forEach((num) => {
+    const product = String(num)
+      .split("")
+      .reduce((total, digit) => total * Number(digit), 1);
+
+    if (product > highestProduct) {
+      highestProduct = product;
+      highestNumber = num;
+    }
+  });
+
+  return highestNumber;
+}
+
+console.log(highestDigitProduct([123, 234, 999, 456, 888]));
