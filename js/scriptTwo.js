@@ -1866,3 +1866,231 @@ function highestDigitProduct(numbers) {
 }
 
 console.log(highestDigitProduct([123, 234, 999, 456, 888]));
+
+// ==================================================
+// 281. Find Number With the Lowest Digit Product
+// Example: [123, 234, 105, 456]
+// Output: 105
+// ==================================================
+
+function lowestDigitProduct(numbers) {
+  let lowestNumber = numbers[0];
+  let lowestProduct = Infinity;
+
+  numbers.forEach((num) => {
+    const product = String(num)
+      .split("")
+      .reduce((total, digit) => total * Number(digit), 1);
+
+    if (product < lowestProduct) {
+      lowestProduct = product;
+      lowestNumber = num;
+    }
+  });
+
+  return lowestNumber;
+}
+
+console.log(lowestDigitProduct([123, 234, 105, 456]));
+
+
+// ==================================================
+// 282. Find Numbers With Digit Product Equal to 10
+// Example: [25, 52, 125, 234]
+// Output: [25, 52]
+// ==================================================
+
+function digitProductEqual10(numbers) {
+  return numbers.filter((num) => {
+    const product = String(num)
+      .split("")
+      .reduce((total, digit) => total * Number(digit), 1);
+
+    return product === 10;
+  });
+}
+
+console.log(digitProductEqual10([25, 52, 125, 234, 101]));
+
+
+// ==================================================
+// 283. Find Numbers With Digit Product Divisible by 5
+// Example: [125, 234, 555, 123]
+// Output: [125, 555]
+// ==================================================
+
+function digitProductDivisibleBy5(numbers) {
+  return numbers.filter((num) => {
+    const product = String(num)
+      .split("")
+      .reduce((total, digit) => total * Number(digit), 1);
+
+    return product % 5 === 0;
+  });
+}
+
+console.log(digitProductDivisibleBy5([125, 234, 555, 123, 105]));
+
+
+// ==================================================
+// 284. Find Numbers With Digit Product Greater Than 100
+// Example: [555, 234, 999, 123]
+// Output: [555, 234, 999]
+// ==================================================
+
+function digitProductGreaterThan100(numbers) {
+  return numbers.filter((num) => {
+    const product = String(num)
+      .split("")
+      .reduce((total, digit) => total * Number(digit), 1);
+
+    return product > 100;
+  });
+}
+
+console.log(digitProductGreaterThan100([555, 234, 999, 123, 111]));
+
+
+// ==================================================
+// 285. Find Numbers With Digit Product Less Than 20
+// Example: [123, 112, 234, 105]
+// Output: [123, 112, 105]
+// ==================================================
+
+function digitProductLessThan20(numbers) {
+  return numbers.filter((num) => {
+    const product = String(num)
+      .split("")
+      .reduce((total, digit) => total * Number(digit), 1);
+
+    return product < 20;
+  });
+}
+
+console.log(digitProductLessThan20([123, 112, 234, 105, 555]));
+
+
+// ==================================================
+// 286. Find Numbers With More Even Than Odd Digits
+// Example: [246, 1234, 135, 2221]
+// Output: [246, 1234, 2221]
+// ==================================================
+
+function moreEvenThanOdd(numbers) {
+  return numbers.filter((num) => {
+    const digits = String(num).split("").map(Number);
+
+    let evenCount = 0;
+    let oddCount = 0;
+
+    digits.forEach((digit) => {
+      if (digit % 2 === 0) {
+        evenCount++;
+      } else {
+        oddCount++;
+      }
+    });
+
+    return evenCount > oddCount;
+  });
+}
+
+console.log(moreEvenThanOdd([246, 1234, 135, 2221, 777]));
+
+
+// ==================================================
+// 287. Find Numbers With More Odd Than Even Digits
+// Example: [135, 123, 246, 1112]
+// Output: [135, 123, 1112]
+// ==================================================
+
+function moreOddThanEven(numbers) {
+  return numbers.filter((num) => {
+    const digits = String(num).split("").map(Number);
+
+    let evenCount = 0;
+    let oddCount = 0;
+
+    digits.forEach((digit) => {
+      if (digit % 2 === 0) {
+        evenCount++;
+      } else {
+        oddCount++;
+      }
+    });
+
+    return oddCount > evenCount;
+  });
+}
+
+console.log(moreOddThanEven([135, 123, 246, 1112, 2222]));
+
+
+// ==================================================
+// 288. Find Numbers With Equal Digit Sum and Product
+// Example: [22, 123, 111]
+// Output: [22, 123]
+// ==================================================
+
+function equalDigitSumProduct(numbers) {
+  return numbers.filter((num) => {
+    const digits = String(num).split("").map(Number);
+
+    const sum = digits.reduce((total, digit) => total + digit, 0);
+
+    const product = digits.reduce(
+      (total, digit) => total * digit,
+      1
+    );
+
+    return sum === product;
+  });
+}
+
+console.log(equalDigitSumProduct([22, 123, 111, 234, 112]));
+
+
+// ==================================================
+// 289. Find Numbers With Digit Sum Greater Than 30
+// Example: [999, 987, 555, 123]
+// Output: [999, 987]
+// ==================================================
+
+function digitSumGreaterThan30(numbers) {
+  return numbers.filter((num) => {
+    const sum = String(num)
+      .split("")
+      .reduce((total, digit) => total + Number(digit), 0);
+
+    return sum > 30;
+  });
+}
+
+console.log(digitSumGreaterThan30([999, 987, 555, 123, 9999]));
+
+
+// ==================================================
+// 290. Find Number With the Lowest Digit Sum
+// Example: [123, 111, 505, 999]
+// Output: 111
+// ==================================================
+
+function lowestDigitSumNumber(numbers) {
+  let lowestNumber = numbers[0];
+  let lowestSum = Infinity;
+
+  numbers.forEach((num) => {
+    const sum = String(num)
+      .split("")
+      .reduce((total, digit) => total + Number(digit), 0);
+
+    if (sum < lowestSum) {
+      lowestSum = sum;
+      lowestNumber = num;
+    }
+  });
+
+  return lowestNumber;
+}
+
+console.log(lowestDigitSumNumber([123, 111, 505, 999, 222]));
