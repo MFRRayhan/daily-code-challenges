@@ -2286,3 +2286,195 @@ function lastDigitIsHighest(numbers) {
 }
 
 console.log(lastDigitIsHighest([129, 321, 456, 789, 555, 234]));
+
+// ==================================================
+// 291. Find Numbers With Exactly Three Even Digits
+// Example: [2468, 1234, 2222, 1357]
+// Output: [2468, 2222]
+// ==================================================
+
+function exactlyThreeEvenDigits(numbers) {
+  return numbers.filter((num) => {
+    const digits = String(num).split("").map(Number);
+
+    const evenCount = digits.filter(
+      (digit) => digit % 2 === 0
+    ).length;
+
+    return evenCount === 3;
+  });
+}
+
+console.log(exactlyThreeEvenDigits([2468, 1234, 2222, 1357, 8641]));
+
+
+// ==================================================
+// 292. Find Numbers With Exactly Three Odd Digits
+// Example: [1357, 1234, 1112, 2468]
+// Output: [1357, 1112]
+// ==================================================
+
+function exactlyThreeOddDigits(numbers) {
+  return numbers.filter((num) => {
+    const digits = String(num).split("").map(Number);
+
+    const oddCount = digits.filter(
+      (digit) => digit % 2 !== 0
+    ).length;
+
+    return oddCount === 3;
+  });
+}
+
+console.log(exactlyThreeOddDigits([1357, 1234, 1112, 2468, 9753]));
+
+
+// ==================================================
+// 293. Find Numbers With Exactly Two Zeros
+// Example: [1002, 2003, 1000, 1200]
+// Output: [1002, 1200]
+// ==================================================
+
+function exactlyTwoZeros(numbers) {
+  return numbers.filter((num) => {
+    const zeroCount = String(num)
+      .split("")
+      .filter((digit) => digit === "0").length;
+
+    return zeroCount === 2;
+  });
+}
+
+console.log(exactlyTwoZeros([1002, 2003, 1000, 1200, 1020]));
+
+
+// ==================================================
+// 294. Find Numbers With No Repeated Digits
+// Example: [123, 456, 112, 121]
+// Output: [123, 456]
+// ==================================================
+
+function noRepeatedDigits(numbers) {
+  return numbers.filter((num) => {
+    const digits = String(num);
+
+    return new Set(digits).size === digits.length;
+  });
+}
+
+console.log(noRepeatedDigits([123, 456, 112, 121, 987, 1234]));
+
+
+// ==================================================
+// 295. Find Numbers With Exactly One Repeated Digit
+// Example: [112, 121, 122, 1234]
+// Output: [112, 121, 122]
+// ==================================================
+
+function exactlyOneRepeatedDigit(numbers) {
+  return numbers.filter((num) => {
+    const counts = {};
+
+    String(num)
+      .split("")
+      .forEach((digit) => {
+        counts[digit] = (counts[digit] || 0) + 1;
+      });
+
+    const repeatedDigits = Object.values(counts).filter(
+      (count) => count > 1
+    ).length;
+
+    return repeatedDigits === 1;
+  });
+}
+
+console.log(exactlyOneRepeatedDigit([112, 121, 122, 1234, 1122]));
+
+
+// ==================================================
+// 296. Find Numbers With All Unique Digits
+// Example: [123, 456, 112, 789]
+// Output: [123, 456, 789]
+// ==================================================
+
+function allUniqueDigits(numbers) {
+  return numbers.filter((num) => {
+    const digits = String(num);
+
+    return new Set(digits).size === digits.length;
+  });
+}
+
+console.log(allUniqueDigits([123, 456, 112, 789, 1223]));
+
+
+// ==================================================
+// 297. Find Numbers Containing Both 0 and 5
+// Example: [105, 205, 123, 500]
+// Output: [105, 205, 500]
+// ==================================================
+
+function containsZeroAndFive(numbers) {
+  return numbers.filter((num) => {
+    const digits = String(num);
+
+    return digits.includes("0") && digits.includes("5");
+  });
+}
+
+console.log(containsZeroAndFive([105, 205, 123, 500, 150, 555]));
+
+
+// ==================================================
+// 298. Find Numbers Containing Both Even and Odd Digits
+// Example: [12, 246, 135, 1234]
+// Output: [12, 1234]
+// ==================================================
+
+function containsEvenAndOdd(numbers) {
+  return numbers.filter((num) => {
+    const digits = String(num).split("").map(Number);
+
+    const hasEven = digits.some((digit) => digit % 2 === 0);
+    const hasOdd = digits.some((digit) => digit % 2 !== 0);
+
+    return hasEven && hasOdd;
+  });
+}
+
+console.log(containsEvenAndOdd([12, 246, 135, 1234, 222, 777]));
+
+
+// ==================================================
+// 299. Find Numbers Whose First Digit Is the Highest
+// Example: [987, 123, 543, 876]
+// Output: [987, 876]
+// ==================================================
+
+function firstDigitIsHighest(numbers) {
+  return numbers.filter((num) => {
+    const digits = String(num).split("").map(Number);
+
+    return digits[0] === Math.max(...digits);
+  });
+}
+
+console.log(firstDigitIsHighest([987, 123, 543, 876, 999, 321]));
+
+
+// ==================================================
+// 300. Find Numbers Whose Last Digit Is the Highest
+// Example: [129, 321, 456, 789]
+// Output: [129, 456, 789]
+// ==================================================
+
+function lastDigitIsHighest(numbers) {
+  return numbers.filter((num) => {
+    const digits = String(num).split("").map(Number);
+
+    return digits[digits.length - 1] === Math.max(...digits);
+  });
+}
+
+console.log(lastDigitIsHighest([129, 321, 456, 789, 555, 234]));
