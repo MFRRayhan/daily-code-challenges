@@ -2478,3 +2478,222 @@ function lastDigitIsHighest(numbers) {
 }
 
 console.log(lastDigitIsHighest([129, 321, 456, 789, 555, 234]));
+
+// ==================================================
+// 311. Find the Number With the Most Odd Digits
+// Example: [123, 1357, 2468, 97531]
+// Output: 97531
+// ==================================================
+
+function numberWithMostOddDigits(numbers) {
+  let result = numbers[0];
+  let maxOddCount = -1;
+
+  numbers.forEach((num) => {
+    const oddCount = String(num)
+      .split("")
+      .filter((digit) => Number(digit) % 2 !== 0).length;
+
+    if (oddCount > maxOddCount) {
+      maxOddCount = oddCount;
+      result = num;
+    }
+  });
+
+  return result;
+}
+
+console.log(numberWithMostOddDigits([123, 1357, 2468, 97531]));
+
+
+// ==================================================
+// 312. Find the Number With the Most Zeros
+// Example: [1002, 2000, 5050, 1234]
+// Output: 2000
+// ==================================================
+
+function numberWithMostZeros(numbers) {
+  let result = numbers[0];
+  let maxZeroCount = -1;
+
+  numbers.forEach((num) => {
+    const zeroCount = String(num)
+      .split("")
+      .filter((digit) => digit === "0").length;
+
+    if (zeroCount > maxZeroCount) {
+      maxZeroCount = zeroCount;
+      result = num;
+    }
+  });
+
+  return result;
+}
+
+console.log(numberWithMostZeros([1002, 2000, 5050, 1234]));
+
+
+// ==================================================
+// 313. Find the Number With the Most Unique Digits
+// Example: [1122, 1234, 5555, 9876]
+// Output: 1234
+// ==================================================
+
+function numberWithMostUniqueDigits(numbers) {
+  let result = numbers[0];
+  let maxUniqueCount = -1;
+
+  numbers.forEach((num) => {
+    const uniqueCount = new Set(String(num)).size;
+
+    if (uniqueCount > maxUniqueCount) {
+      maxUniqueCount = uniqueCount;
+      result = num;
+    }
+  });
+
+  return result;
+}
+
+console.log(numberWithMostUniqueDigits([1122, 1234, 5555, 9876]));
+
+
+// ==================================================
+// 314. Find the Number With the Fewest Unique Digits
+// Example: [1234, 1111, 1222, 5555]
+// Output: 1111
+// ==================================================
+
+function numberWithFewestUniqueDigits(numbers) {
+  let result = numbers[0];
+  let minUniqueCount = Infinity;
+
+  numbers.forEach((num) => {
+    const uniqueCount = new Set(String(num)).size;
+
+    if (uniqueCount < minUniqueCount) {
+      minUniqueCount = uniqueCount;
+      result = num;
+    }
+  });
+
+  return result;
+}
+
+console.log(numberWithFewestUniqueDigits([1234, 1111, 1222, 5555]));
+
+
+// ==================================================
+// 315. Find Numbers With a Digit Sum Greater Than 15
+// Example: [789, 555, 123, 999]
+// Output: [789, 555, 999]
+// ==================================================
+
+function digitSumGreaterThan15(numbers) {
+  return numbers.filter((num) => {
+    const sum = String(num)
+      .split("")
+      .reduce((total, digit) => total + Number(digit), 0);
+
+    return sum > 15;
+  });
+}
+
+console.log(digitSumGreaterThan15([789, 555, 123, 999, 456]));
+
+
+// ==================================================
+// 316. Find Numbers With a Digit Product Equal to 0
+// Example: [102, 203, 456, 500]
+// Output: [102, 203, 500]
+// ==================================================
+
+function digitProductEqualZero(numbers) {
+  return numbers.filter((num) => {
+    const product = String(num)
+      .split("")
+      .reduce((total, digit) => total * Number(digit), 1);
+
+    return product === 0;
+  });
+}
+
+console.log(digitProductEqualZero([102, 203, 456, 500, 123]));
+
+
+// ==================================================
+// 317. Find Numbers Whose Digits Are All Different
+// Example: [123, 456, 112, 789]
+// Output: [123, 456, 789]
+// ==================================================
+
+function allDigitsDifferent(numbers) {
+  return numbers.filter((num) => {
+    const digits = String(num);
+
+    return new Set(digits).size === digits.length;
+  });
+}
+
+console.log(allDigitsDifferent([123, 456, 112, 789, 121, 9876]));
+
+
+// ==================================================
+// 318. Find Numbers With Exactly Three Unique Digits
+// Example: [1234, 1123, 1112, 5555]
+// Output: [1123, 1112]
+// ==================================================
+
+function exactlyThreeUniqueDigits(numbers) {
+  return numbers.filter((num) => {
+    return new Set(String(num)).size === 3;
+  });
+}
+
+console.log(exactlyThreeUniqueDigits([1234, 1123, 1112, 5555, 1223]));
+
+
+// ==================================================
+// 319. Find the Largest Number With an Even Digit Sum
+// Example: [123, 246, 555, 808]
+// Output: 808
+// ==================================================
+
+function largestNumberWithEvenDigitSum(numbers) {
+  const filteredNumbers = numbers.filter((num) => {
+    const sum = String(num)
+      .split("")
+      .reduce((total, digit) => total + Number(digit), 0);
+
+    return sum % 2 === 0;
+  });
+
+  return filteredNumbers.length > 0
+    ? Math.max(...filteredNumbers)
+    : null;
+}
+
+console.log(largestNumberWithEvenDigitSum([123, 246, 555, 808]));
+
+
+// ==================================================
+// 320. Find the Smallest Number With an Odd Digit Sum
+// Example: [123, 246, 555, 808]
+// Output: 123
+// ==================================================
+
+function smallestNumberWithOddDigitSum(numbers) {
+  const filteredNumbers = numbers.filter((num) => {
+    const sum = String(num)
+      .split("")
+      .reduce((total, digit) => total + Number(digit), 0);
+
+    return sum % 2 !== 0;
+  });
+
+  return filteredNumbers.length > 0
+    ? Math.min(...filteredNumbers)
+    : null;
+}
+
+console.log(smallestNumberWithOddDigitSum([123, 246, 555, 808]));
