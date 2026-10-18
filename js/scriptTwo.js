@@ -2697,3 +2697,195 @@ function smallestNumberWithOddDigitSum(numbers) {
 }
 
 console.log(smallestNumberWithOddDigitSum([123, 246, 555, 808]));
+
+// ==================================================
+// 321. Find Numbers With Digit Sum Less Than Digit Count
+// Example: [100, 101, 200, 111]
+// Output: [100, 200]
+// ==================================================
+
+function digitSumLessThanDigitCount(numbers) {
+  return numbers.filter((num) => {
+    const digits = String(num).split("").map(Number);
+
+    const sum = digits.reduce((total, digit) => total + digit, 0);
+
+    return sum < digits.length;
+  });
+}
+
+console.log(digitSumLessThanDigitCount([100, 101, 200, 111, 1000]));
+
+
+// ==================================================
+// 322. Find Numbers With Digit Sum Equal to 15
+// Example: [678, 789, 555, 123]
+// Output: [678, 555]
+// ==================================================
+
+function digitSumEqual15(numbers) {
+  return numbers.filter((num) => {
+    const sum = String(num)
+      .split("")
+      .reduce((total, digit) => total + Number(digit), 0);
+
+    return sum === 15;
+  });
+}
+
+console.log(digitSumEqual15([678, 789, 555, 123, 456]));
+
+
+// ==================================================
+// 323. Count Numbers With More Even Than Odd Digits
+// Example: [1234, 2468, 1357, 1122]
+// Output: 3
+// ==================================================
+
+function countMoreEvenThanOdd(numbers) {
+  return numbers.filter((num) => {
+    const digits = String(num).split("").map(Number);
+
+    const evenCount = digits.filter((digit) => digit % 2 === 0).length;
+    const oddCount = digits.filter((digit) => digit % 2 !== 0).length;
+
+    return evenCount > oddCount;
+  }).length;
+}
+
+console.log(countMoreEvenThanOdd([1234, 2468, 1357, 1122]));
+
+
+// ==================================================
+// 324. Find Numbers Whose First Digit Is Even
+// Example: [234, 567, 812, 345]
+// Output: [234, 812]
+// ==================================================
+
+function firstDigitIsEven(numbers) {
+  return numbers.filter((num) => {
+    const firstDigit = Number(String(num)[0]);
+
+    return firstDigit % 2 === 0;
+  });
+}
+
+console.log(firstDigitIsEven([234, 567, 812, 345, 642]));
+
+
+// ==================================================
+// 325. Find Numbers Whose Last Digit Is Odd
+// Example: [123, 456, 789, 240]
+// Output: [123, 789]
+// ==================================================
+
+function lastDigitIsOdd(numbers) {
+  return numbers.filter((num) => {
+    const lastDigit = Number(String(num).at(-1));
+
+    return lastDigit % 2 !== 0;
+  });
+}
+
+console.log(lastDigitIsOdd([123, 456, 789, 240, 551]));
+
+
+// ==================================================
+// 326. Find Numbers With Digits Summing to a Multiple of 4
+// Example: [112, 123, 222, 345]
+// Output: [112, 123, 345]
+// ==================================================
+
+function digitSumMultipleOf4(numbers) {
+  return numbers.filter((num) => {
+    const sum = String(num)
+      .split("")
+      .reduce((total, digit) => total + Number(digit), 0);
+
+    return sum % 4 === 0;
+  });
+}
+
+console.log(digitSumMultipleOf4([112, 123, 222, 345, 444]));
+
+
+// ==================================================
+// 327. Find Numbers With a Digit Product Less Than 10
+// Example: [123, 112, 234, 105]
+// Output: [123, 112, 105]
+// ==================================================
+
+function digitProductLessThan10(numbers) {
+  return numbers.filter((num) => {
+    const product = String(num)
+      .split("")
+      .reduce((total, digit) => total * Number(digit), 1);
+
+    return product < 10;
+  });
+}
+
+console.log(digitProductLessThan10([123, 112, 234, 105, 111]));
+
+
+// ==================================================
+// 328. Find Numbers With Exactly Four Unique Digits
+// Example: [1234, 1123, 5678, 9999]
+// Output: [1234, 5678]
+// ==================================================
+
+function exactlyFourUniqueDigits(numbers) {
+  return numbers.filter((num) => {
+    return new Set(String(num)).size === 4;
+  });
+}
+
+console.log(exactlyFourUniqueDigits([1234, 1123, 5678, 9999, 12345]));
+
+
+// ==================================================
+// 329. Find Numbers Whose Digits Are in Non-Increasing Order
+// Example: [321, 332, 987, 123]
+// Output: [321, 332, 987]
+// ==================================================
+
+function nonIncreasingDigits(numbers) {
+  return numbers.filter((num) => {
+    const digits = String(num).split("").map(Number);
+
+    return digits.every(
+      (digit, index) => index === 0 || digit <= digits[index - 1]
+    );
+  });
+}
+
+console.log(nonIncreasingDigits([321, 332, 987, 123, 554, 111]));
+
+
+// ==================================================
+// 330. Find the Number With the Greatest Digit Sum
+// Example: [123, 987, 456, 789]
+// Output: 987
+// ==================================================
+
+function greatestDigitSumNumber(numbers) {
+  if (numbers.length === 0) return null;
+
+  let result = numbers[0];
+  let maxSum = -1;
+
+  numbers.forEach((num) => {
+    const sum = String(num)
+      .split("")
+      .reduce((total, digit) => total + Number(digit), 0);
+
+    if (sum > maxSum) {
+      maxSum = sum;
+      result = num;
+    }
+  });
+
+  return result;
+}
+
+console.log(greatestDigitSumNumber([123, 987, 456, 789]));
