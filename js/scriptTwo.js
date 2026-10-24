@@ -3088,3 +3088,190 @@ function lowestDigitProductNumber(numbers) {
 }
 
 console.log(lowestDigitProductNumber([123, 234, 105, 456]));
+
+// ==================================================
+// 341. Find Numbers With Digit Product Equal to 24
+// Example: [38, 46, 234, 123]
+// Output: [38, 46, 234]
+// ==================================================
+
+function digitProductEqual24(numbers) {
+  return numbers.filter((num) => {
+    const product = String(num)
+      .split("")
+      .reduce((total, digit) => total * Number(digit), 1);
+
+    return product === 24;
+  });
+}
+
+console.log(digitProductEqual24([38, 46, 234, 123, 88]));
+
+
+// ==================================================
+// 342. Find Numbers With Digit Sum Divisible by 9
+// Example: [18, 27, 36, 123, 456]
+// Output: [18, 27, 36, 123, 456]
+// ==================================================
+
+function digitSumDivisibleBy9(numbers) {
+  return numbers.filter((num) => {
+    const sum = String(num)
+      .split("")
+      .reduce((total, digit) => total + Number(digit), 0);
+
+    return sum % 9 === 0;
+  });
+}
+
+console.log(digitSumDivisibleBy9([18, 27, 36, 123, 456, 111]));
+
+
+// ==================================================
+// 343. Find Numbers With Exactly Two Unique Digits
+// Example: [121, 1122, 123, 4554]
+// Output: [121, 1122, 4554]
+// ==================================================
+
+function exactlyTwoUniqueDigits(numbers) {
+  return numbers.filter((num) => {
+    return new Set(String(num)).size === 2;
+  });
+}
+
+console.log(exactlyTwoUniqueDigits([121, 1122, 123, 4554, 777]));
+
+
+// ==================================================
+// 344. Find Numbers Whose Digits Are All Odd
+// Example: [135, 246, 579, 111]
+// Output: [135, 579, 111]
+// ==================================================
+
+function allOddDigits(numbers) {
+  return numbers.filter((num) => {
+    return String(num)
+      .split("")
+      .every((digit) => Number(digit) % 2 !== 0);
+  });
+}
+
+console.log(allOddDigits([135, 246, 579, 111, 3579]));
+
+
+// ==================================================
+// 345. Find Numbers Whose Digits Are All Even
+// Example: [246, 135, 824, 688]
+// Output: [246, 824, 688]
+// ==================================================
+
+function allEvenDigits(numbers) {
+  return numbers.filter((num) => {
+    return String(num)
+      .split("")
+      .every((digit) => Number(digit) % 2 === 0);
+  });
+}
+
+console.log(allEvenDigits([246, 135, 824, 688, 222]));
+
+
+// ==================================================
+// 346. Find Numbers With Equal First and Last Digits
+// Example: [121, 232, 345, 454]
+// Output: [121, 232, 454]
+// ==================================================
+
+function equalFirstAndLastDigits(numbers) {
+  return numbers.filter((num) => {
+    const digits = String(num);
+
+    return digits[0] === digits.at(-1);
+  });
+}
+
+console.log(equalFirstAndLastDigits([121, 232, 345, 454, 123]));
+
+
+// ==================================================
+// 347. Count Numbers With Repeated Digits
+// Example: [112, 123, 455, 789, 999]
+// Output: 3
+// ==================================================
+
+function countNumbersWithRepeatedDigits(numbers) {
+  return numbers.filter((num) => {
+    const digits = String(num);
+
+    return new Set(digits).size < digits.length;
+  }).length;
+}
+
+console.log(
+  countNumbersWithRepeatedDigits([112, 123, 455, 789, 999])
+);
+
+
+// ==================================================
+// 348. Find Numbers With Digit Sum Greater Than 20
+// Example: [987, 555, 789, 123]
+// Output: [987, 789]
+// ==================================================
+
+function digitSumGreaterThan20(numbers) {
+  return numbers.filter((num) => {
+    const sum = String(num)
+      .split("")
+      .reduce((total, digit) => total + Number(digit), 0);
+
+    return sum > 20;
+  });
+}
+
+console.log(digitSumGreaterThan20([987, 555, 789, 123, 999]));
+
+
+// ==================================================
+// 349. Find Numbers Whose Reverse Is Greater Than the Original
+// Example: [123, 456, 321, 789]
+// Output: [123, 456, 789]
+// ==================================================
+
+function reverseGreaterThanOriginal(numbers) {
+  return numbers.filter((num) => {
+    const reversed = Number(String(num).split("").reverse().join(""));
+
+    return reversed > num;
+  });
+}
+
+console.log(reverseGreaterThanOriginal([123, 456, 321, 789, 120]));
+
+
+// ==================================================
+// 350. Find the Number With the Highest Digit Sum
+// Example: [123, 987, 456, 789]
+// Output: 987
+// ==================================================
+
+function highestDigitSumNumber(numbers) {
+  if (numbers.length === 0) return null;
+
+  let result = numbers[0];
+  let maxSum = -1;
+
+  numbers.forEach((num) => {
+    const sum = String(num)
+      .split("")
+      .reduce((total, digit) => total + Number(digit), 0);
+
+    if (sum > maxSum) {
+      maxSum = sum;
+      result = num;
+    }
+  });
+
+  return result;
+}
+
+console.log(highestDigitSumNumber([123, 987, 456, 789]));
