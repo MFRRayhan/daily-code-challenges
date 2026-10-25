@@ -3275,3 +3275,201 @@ function highestDigitSumNumber(numbers) {
 }
 
 console.log(highestDigitSumNumber([123, 987, 456, 789]));
+
+// ==================================================
+// 351. Find Numbers With Digit Sum Equal to 18
+// Example: [189, 567, 999, 234]
+// Output: [189, 567, 999]
+// ==================================================
+
+function digitSumEqual18(numbers) {
+  return numbers.filter((num) => {
+    const sum = String(num)
+      .split("")
+      .reduce((total, digit) => total + Number(digit), 0);
+
+    return sum === 18;
+  });
+}
+
+console.log(digitSumEqual18([189, 567, 999, 234, 888]));
+
+
+// ==================================================
+// 352. Find Numbers With Exactly Three Zeros
+// Example: [1000, 2003, 10020, 50000]
+// Output: [1000, 10020]
+// ==================================================
+
+function exactlyThreeZeros(numbers) {
+  return numbers.filter((num) => {
+    const zeroCount = String(num)
+      .split("")
+      .filter((digit) => digit === "0").length;
+
+    return zeroCount === 3;
+  });
+}
+
+console.log(exactlyThreeZeros([1000, 2003, 10020, 50000, 3001]));
+
+
+// ==================================================
+// 353. Find Numbers With Alternating Digits
+// Example: [1212, 1234, 1010, 2323]
+// Output: [1212, 1010, 2323]
+// ==================================================
+
+function alternatingDigits(numbers) {
+  return numbers.filter((num) => {
+    const digits = String(num).split("");
+
+    return digits.every(
+      (digit, index) =>
+        index === 0 || digit !== digits[index - 1]
+    );
+  });
+}
+
+console.log(alternatingDigits([1212, 1234, 1010, 2323, 1112]));
+
+
+// ==================================================
+// 354. Find Numbers With No Consecutive Equal Digits
+// Example: [1234, 1123, 1212, 4556]
+// Output: [1234, 1212]
+// ==================================================
+
+function noConsecutiveEqualDigits(numbers) {
+  return numbers.filter((num) => {
+    const digits = String(num);
+
+    for (let i = 1; i < digits.length; i++) {
+      if (digits[i] === digits[i - 1]) {
+        return false;
+      }
+    }
+
+    return true;
+  });
+}
+
+console.log(noConsecutiveEqualDigits([1234, 1123, 1212, 4556, 9876]));
+
+
+// ==================================================
+// 355. Find Numbers With Digit Product Equal to 6
+// Example: [23, 16, 123, 222]
+// Output: [23, 16, 123]
+// ==================================================
+
+function digitProductEqual6(numbers) {
+  return numbers.filter((num) => {
+    const product = String(num)
+      .split("")
+      .reduce((total, digit) => total * Number(digit), 1);
+
+    return product === 6;
+  });
+}
+
+console.log(digitProductEqual6([23, 16, 123, 222, 321]));
+
+
+// ==================================================
+// 356. Find Numbers Whose First Digit Is Odd
+// Example: [123, 246, 357, 864]
+// Output: [123, 357]
+// ==================================================
+
+function firstDigitIsOdd(numbers) {
+  return numbers.filter((num) => {
+    const firstDigit = Number(String(num)[0]);
+
+    return firstDigit % 2 !== 0;
+  });
+}
+
+console.log(firstDigitIsOdd([123, 246, 357, 864, 987]));
+
+
+// ==================================================
+// 357. Find Numbers Whose Last Digit Is Even
+// Example: [123, 246, 357, 864]
+// Output: [246, 864]
+// ==================================================
+
+function lastDigitIsEven(numbers) {
+  return numbers.filter((num) => {
+    const lastDigit = Number(String(num).at(-1));
+
+    return lastDigit % 2 === 0;
+  });
+}
+
+console.log(lastDigitIsEven([123, 246, 357, 864, 980]));
+
+
+// ==================================================
+// 358. Find Numbers With More Than Three Unique Digits
+// Example: [1234, 11234, 123, 56789]
+// Output: [1234, 56789]
+// ==================================================
+
+function moreThanThreeUniqueDigits(numbers) {
+  return numbers.filter((num) => {
+    return new Set(String(num)).size > 3;
+  });
+}
+
+console.log(moreThanThreeUniqueDigits([1234, 11234, 123, 56789, 9876]));
+
+
+// ==================================================
+// 359. Find Numbers Whose Digit Sum Is a Perfect Square
+// Example: [13, 22, 123, 1111]
+// Output: [13, 22, 123, 1111]
+// ==================================================
+
+function digitSumIsPerfectSquare(numbers) {
+  return numbers.filter((num) => {
+    const sum = String(num)
+      .split("")
+      .reduce((total, digit) => total + Number(digit), 0);
+
+    const root = Math.sqrt(sum);
+
+    return Number.isInteger(root);
+  });
+}
+
+console.log(digitSumIsPerfectSquare([13, 22, 123, 1111, 456]));
+
+
+// ==================================================
+// 360. Find the Number With the Fewest Odd Digits
+// Example: [123, 2468, 1357, 8024]
+// Output: 2468
+// ==================================================
+
+function numberWithFewestOddDigits(numbers) {
+  if (numbers.length === 0) return null;
+
+  let result = numbers[0];
+  let minOddCount = Infinity;
+
+  numbers.forEach((num) => {
+    const oddCount = String(num)
+      .split("")
+      .filter((digit) => Number(digit) % 2 !== 0).length;
+
+    if (oddCount < minOddCount) {
+      minOddCount = oddCount;
+      result = num;
+    }
+  });
+
+  return result;
+}
+
+console.log(numberWithFewestOddDigits([123, 2468, 1357, 8024]));
