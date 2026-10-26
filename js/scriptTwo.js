@@ -3473,3 +3473,202 @@ function numberWithFewestOddDigits(numbers) {
 }
 
 console.log(numberWithFewestOddDigits([123, 2468, 1357, 8024]));
+
+// ==================================================
+// 361. Find Numbers With Digit Sum Equal to 9
+// Example: [123, 234, 405, 567]
+// Output: [234, 405]
+// ==================================================
+
+function digitSumEqual9(numbers) {
+  return numbers.filter((num) => {
+    const sum = String(num)
+      .split("")
+      .reduce((total, digit) => total + Number(digit), 0);
+
+    return sum === 9;
+  });
+}
+
+console.log(digitSumEqual9([123, 234, 405, 567, 900]));
+
+
+// ==================================================
+// 362. Find Numbers With Exactly Two Repeated Digits
+// Example: [1123, 1223, 1233, 1234]
+// Output: [1123, 1223, 1233]
+// ==================================================
+
+function exactlyTwoRepeatedDigits(numbers) {
+  return numbers.filter((num) => {
+    const counts = {};
+
+    for (const digit of String(num)) {
+      counts[digit] = (counts[digit] || 0) + 1;
+    }
+
+    return Object.values(counts).filter(
+      (count) => count > 1
+    ).length === 1;
+  });
+}
+
+console.log(exactlyTwoRepeatedDigits([1123, 1223, 1233, 1234, 1122]));
+
+
+// ==================================================
+// 363. Find Numbers With Digits in Strictly Increasing Order
+// Example: [123, 135, 246, 321]
+// Output: [123, 135, 246]
+// ==================================================
+
+function strictlyIncreasingDigits(numbers) {
+  return numbers.filter((num) => {
+    const digits = String(num).split("").map(Number);
+
+    return digits.every(
+      (digit, index) =>
+        index === 0 || digit > digits[index - 1]
+    );
+  });
+}
+
+console.log(strictlyIncreasingDigits([123, 135, 246, 321, 112]));
+
+
+// ==================================================
+// 364. Find Numbers With Digits in Strictly Decreasing Order
+// Example: [321, 543, 987, 123]
+// Output: [321, 543, 987]
+// ==================================================
+
+function strictlyDecreasingDigits(numbers) {
+  return numbers.filter((num) => {
+    const digits = String(num).split("").map(Number);
+
+    return digits.every(
+      (digit, index) =>
+        index === 0 || digit < digits[index - 1]
+    );
+  });
+}
+
+console.log(strictlyDecreasingDigits([321, 543, 987, 123, 332]));
+
+
+// ==================================================
+// 365. Find Numbers Whose Digit Sum Is Divisible by 6
+// Example: [123, 222, 345, 456]
+// Output: [123, 222, 345, 456]
+// ==================================================
+
+function digitSumDivisibleBy6(numbers) {
+  return numbers.filter((num) => {
+    const sum = String(num)
+      .split("")
+      .reduce((total, digit) => total + Number(digit), 0);
+
+    return sum % 6 === 0;
+  });
+}
+
+console.log(digitSumDivisibleBy6([123, 222, 345, 456, 111]));
+
+
+// ==================================================
+// 366. Find Numbers With Digit Product Greater Than 50
+// Example: [678, 567, 234, 999]
+// Output: [678, 567, 999]
+// ==================================================
+
+function digitProductGreaterThan50(numbers) {
+  return numbers.filter((num) => {
+    const product = String(num)
+      .split("")
+      .reduce((total, digit) => total * Number(digit), 1);
+
+    return product > 50;
+  });
+}
+
+console.log(digitProductGreaterThan50([678, 567, 234, 999, 123]));
+
+
+// ==================================================
+// 367. Find Numbers With Exactly Four Even Digits
+// Example: [2468, 1234, 86420, 2222]
+// Output: [2468, 86420, 2222]
+// ==================================================
+
+function exactlyFourEvenDigits(numbers) {
+  return numbers.filter((num) => {
+    const evenCount = String(num)
+      .split("")
+      .filter((digit) => Number(digit) % 2 === 0).length;
+
+    return evenCount === 4;
+  });
+}
+
+console.log(exactlyFourEvenDigits([2468, 1234, 86420, 2222, 1357]));
+
+
+// ==================================================
+// 368. Find Numbers Containing a Specific Digit
+// Example: numbers = [123, 456, 789, 120], digit = 2
+// Output: [123, 120]
+// ==================================================
+
+function numbersContainingDigit(numbers, targetDigit) {
+  return numbers.filter((num) =>
+    String(num).includes(String(targetDigit))
+  );
+}
+
+console.log(numbersContainingDigit([123, 456, 789, 120], 2));
+
+
+// ==================================================
+// 369. Find Numbers Whose Reverse Is a Palindrome
+// Example: [121, 123, 454, 678]
+// Output: [121, 454]
+// ==================================================
+
+function reverseIsPalindrome(numbers) {
+  return numbers.filter((num) => {
+    const reversed = String(num).split("").reverse().join("");
+
+    return reversed === String(num);
+  });
+}
+
+console.log(reverseIsPalindrome([121, 123, 454, 678, 1331]));
+
+
+// ==================================================
+// 370. Find the Number With the Highest Number of Even Digits
+// Example: [1234, 2468, 1357, 8024]
+// Output: 2468
+// ==================================================
+
+function numberWithMostEvenDigits(numbers) {
+  if (numbers.length === 0) return null;
+
+  let result = numbers[0];
+  let maxEvenCount = -1;
+
+  numbers.forEach((num) => {
+    const evenCount = String(num)
+      .split("")
+      .filter((digit) => Number(digit) % 2 === 0).length;
+
+    if (evenCount > maxEvenCount) {
+      maxEvenCount = evenCount;
+      result = num;
+    }
+  });
+
+  return result;
+}
+
+console.log(numberWithMostEvenDigits([1234, 2468, 1357, 8024]));
