@@ -3672,3 +3672,188 @@ function numberWithMostEvenDigits(numbers) {
 }
 
 console.log(numberWithMostEvenDigits([1234, 2468, 1357, 8024]));
+
+
+// ==================================================
+// 371. Find Numbers Whose First Digit Is Greater Than the Last Digit
+// Example: [123, 542, 781, 456, 932]
+// Output: [542, 781, 932]
+// ==================================================
+
+const numbers371 = [123, 542, 781, 456, 932];
+
+const result371 = numbers371.filter((num) => {
+  const digits = String(num);
+  return Number(digits[0]) > Number(digits[digits.length - 1]);
+});
+
+console.log(result371);
+
+// ==================================================
+// 372. Find Numbers With Exactly Three Odd Digits
+// Example: [12345, 24681, 13579, 1234, 56789]
+// Output: [12345, 24681]
+// ==================================================
+
+const numbers372 = [12345, 24681, 13579, 1234, 56789];
+
+const result372 = numbers372.filter((num) => {
+  const oddCount = String(num)
+    .split("")
+    .filter((digit) => Number(digit) % 2 !== 0).length;
+
+  return oddCount === 3;
+});
+
+console.log(result372);
+
+// ==================================================
+// 373. Find Numbers Whose First and Last Digits Are Equal
+// Example: [121, 234, 454, 678, 989]
+// Output: [121, 454, 989]
+// ==================================================
+
+const numbers373 = [121, 234, 454, 678, 989];
+
+const result373 = numbers373.filter((num) => {
+  const digits = String(num);
+  return digits[0] === digits[digits.length - 1];
+});
+
+console.log(result373);
+
+// ==================================================
+// 374. Find Numbers With No Consecutive Repeated Digits
+// Example: [1123, 1234, 1225, 4567, 7889]
+// Output: [1234, 4567]
+// ==================================================
+
+const numbers374 = [1123, 1234, 1225, 4567, 7889];
+
+const result374 = numbers374.filter((num) => {
+  const digits = String(num);
+
+  return digits.split("").every((digit, index) => {
+    return index === 0 || digit !== digits[index - 1];
+  });
+});
+
+console.log(result374);
+
+// ==================================================
+// 375. Find Numbers Whose Digit Sum Is Greater Than Their Digit Count
+// Example: [123, 111, 456, 2222, 101]
+// Output: [123, 456]
+// ==================================================
+
+const numbers375 = [123, 111, 456, 2222, 101];
+
+const result375 = numbers375.filter((num) => {
+  const digits = String(num).split("");
+  const digitSum = digits.reduce((sum, digit) => sum + Number(digit), 0);
+
+  return digitSum > digits.length;
+});
+
+console.log(result375);
+
+// ==================================================
+// 376. Find Numbers Containing Only Even Digits
+// Example: [2468, 1234, 8026, 4680, 1357]
+// Output: [2468, 8026, 4680]
+// ==================================================
+
+const numbers376 = [2468, 1234, 8026, 4680, 1357];
+
+const result376 = numbers376.filter((num) => {
+  return String(num)
+    .split("")
+    .every((digit) => Number(digit) % 2 === 0);
+});
+
+console.log(result376);
+
+// ==================================================
+// 377. Find Numbers Whose Digits Have an Equal Sum of Even and Odd Digits
+// Example: [1234, 1122, 2468, 1357, 2233]
+// Output: [1234, 1122, 2233]
+// ==================================================
+
+const numbers377 = [1234, 1122, 2468, 1357, 2233];
+
+const result377 = numbers377.filter((num) => {
+  const digits = String(num).split("");
+
+  const evenSum = digits
+    .filter((digit) => Number(digit) % 2 === 0)
+    .reduce((sum, digit) => sum + Number(digit), 0);
+
+  const oddSum = digits
+    .filter((digit) => Number(digit) % 2 !== 0)
+    .reduce((sum, digit) => sum + Number(digit), 0);
+
+  return evenSum === oddSum;
+});
+
+console.log(result377);
+
+// ==================================================
+// 378. Find Numbers With a Digit Difference of Exactly 1
+// Example: [1234, 1357, 2468, 1213, 9876]
+// Output: [1234, 1213, 9876]
+// ==================================================
+
+const numbers378 = [1234, 1357, 2468, 1213, 9876];
+
+const result378 = numbers378.filter((num) => {
+  const digits = String(num).split("");
+
+  return digits.every((digit, index) => {
+    if (index === digits.length - 1) return true;
+
+    return Math.abs(Number(digit) - Number(digits[index + 1])) === 1;
+  });
+});
+
+console.log(result378);
+
+// ==================================================
+// 379. Find Numbers Whose Middle Digit Is Even
+// Example: [123, 246, 357, 482, 591]
+// Output: [123, 482]
+// ==================================================
+
+const numbers379 = [123, 246, 357, 482, 591];
+
+const result379 = numbers379.filter((num) => {
+  const digits = String(num);
+
+  if (digits.length % 2 === 0) return false;
+
+  const middleIndex = Math.floor(digits.length / 2);
+
+  return Number(digits[middleIndex]) % 2 === 0;
+});
+
+console.log(result379);
+
+// ==================================================
+// 380. Find the Number With the Smallest Digit Sum
+// Example: [456, 123, 809, 222, 111]
+// Output: 111
+// ==================================================
+
+const numbers380 = [456, 123, 809, 222, 111];
+
+const result380 = numbers380.reduce((smallest, current) => {
+  const getDigitSum = (num) =>
+    String(num)
+      .split("")
+      .reduce((sum, digit) => sum + Number(digit), 0);
+
+  return getDigitSum(current) < getDigitSum(smallest)
+    ? current
+    : smallest;
+}, numbers380[0]);
+
+console.log(result380);
