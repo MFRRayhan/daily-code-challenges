@@ -4047,3 +4047,190 @@ const result390 = numbers390.reduce((best, current) => {
 }, numbers390[0]);
 
 console.log(result390);
+
+// ==================================================
+// 391. Find Numbers Whose Digit Sum Is a Multiple of 5
+// Example: [123, 145, 222, 505, 789]
+// Output: [145, 505]
+// ==================================================
+
+const numbers391 = [123, 145, 222, 505, 789];
+
+const result391 = numbers391.filter((num) => {
+  const digitSum = String(num)
+    .split("")
+    .reduce((sum, digit) => sum + Number(digit), 0);
+
+  return digitSum % 5 === 0;
+});
+
+console.log(result391);
+
+// ==================================================
+// 392. Find Numbers With Exactly One Zero
+// Example: [1023, 1005, 2040, 1234, 5001]
+// Output: [1023, 5001]
+// ==================================================
+
+const numbers392 = [1023, 1005, 2040, 1234, 5001];
+
+const result392 = numbers392.filter((num) => {
+  const zeroCount = String(num).split("").filter((digit) => digit === "0").length;
+
+  return zeroCount === 1;
+});
+
+console.log(result392);
+
+// ==================================================
+// 393. Find Numbers Whose First Two Digits Have an Even Sum
+// Example: [1234, 2468, 3579, 4821, 5912]
+// Output: [1234, 3579, 5912]
+// ==================================================
+
+const numbers393 = [1234, 2468, 3579, 4821, 5912];
+
+const result393 = numbers393.filter((num) => {
+  const digits = String(num);
+
+  if (digits.length < 2) return false;
+
+  const firstTwoSum = Number(digits[0]) + Number(digits[1]);
+
+  return firstTwoSum % 2 === 0;
+});
+
+console.log(result393);
+
+// ==================================================
+// 394. Find Numbers Whose Last Two Digits Are Equal
+// Example: [1223, 4555, 6788, 9012, 3444]
+// Output: [4555, 6788, 3444]
+// ==================================================
+
+const numbers394 = [1223, 4555, 6788, 9012, 3444];
+
+const result394 = numbers394.filter((num) => {
+  const digits = String(num);
+
+  return digits.length >= 2 && digits.at(-1) === digits.at(-2);
+});
+
+console.log(result394);
+
+// ==================================================
+// 395. Find Numbers Whose Digit Product Is Zero
+// Example: [123, 405, 678, 102, 999]
+// Output: [405, 102]
+// ==================================================
+
+const numbers395 = [123, 405, 678, 102, 999];
+
+const result395 = numbers395.filter((num) => {
+  const digitProduct = String(num)
+    .split("")
+    .reduce((product, digit) => product * Number(digit), 1);
+
+  return digitProduct === 0;
+});
+
+console.log(result395);
+
+// ==================================================
+// 396. Find Numbers With Exactly Three Unique Digits
+// Example: [1123, 1234, 1212, 4566, 7778]
+// Output: [1123, 1212, 4566]
+// ==================================================
+
+const numbers396 = [1123, 1234, 1212, 4566, 7778];
+
+const result396 = numbers396.filter((num) => {
+  return new Set(String(num)).size === 3;
+});
+
+console.log(result396);
+
+// ==================================================
+// 397. Find Numbers Whose Middle Digit Is Greater Than 5
+// Example: [123, 167, 285, 394, 456]
+// Output: [167, 285]
+// ==================================================
+
+const numbers397 = [123, 167, 285, 394, 456];
+
+const result397 = numbers397.filter((num) => {
+  const digits = String(num);
+
+  if (digits.length % 2 === 0) return false;
+
+  const middleDigit = Number(digits[Math.floor(digits.length / 2)]);
+
+  return middleDigit > 5;
+});
+
+console.log(result397);
+
+// ==================================================
+// 398. Find Numbers Whose Digits Contain Exactly Two Different Values
+// Example: [1122, 1212, 1234, 5555, 7788]
+// Output: [1122, 1212, 7788]
+// ==================================================
+
+const numbers398 = [1122, 1212, 1234, 5555, 7788];
+
+const result398 = numbers398.filter((num) => {
+  return new Set(String(num)).size === 2;
+});
+
+console.log(result398);
+
+// ==================================================
+// 399. Find Numbers Whose Digit Sum Is Greater Than 15
+// Example: [1234, 5678, 9099, 2468, 9999]
+// Output: [5678, 9099, 9999]
+// ==================================================
+
+const numbers399 = [1234, 5678, 9099, 2468, 9999];
+
+const result399 = numbers399.filter((num) => {
+  const digitSum = String(num)
+    .split("")
+    .reduce((sum, digit) => sum + Number(digit), 0);
+
+  return digitSum > 15;
+});
+
+console.log(result399);
+
+// ==================================================
+// 400. Find the Number With the Longest Sequence of Repeated Adjacent Digits
+// Example: [122234, 45555, 1112, 9876, 778899]
+// Output: 45555
+// ==================================================
+
+const numbers400 = [122234, 45555, 1112, 9876, 778899];
+
+const getLongestSequence400 = (num) => {
+  const digits = String(num);
+  let longest = 1;
+  let current = 1;
+
+  for (let i = 1; i < digits.length; i++) {
+    if (digits[i] === digits[i - 1]) {
+      current++;
+      longest = Math.max(longest, current);
+    } else {
+      current = 1;
+    }
+  }
+
+  return longest;
+};
+
+const result400 = numbers400.reduce((best, current) => {
+  return getLongestSequence400(current) > getLongestSequence400(best)
+    ? current
+    : best;
+}, numbers400[0]);
+
+console.log(result400);
