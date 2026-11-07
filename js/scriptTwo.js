@@ -4234,3 +4234,180 @@ const result400 = numbers400.reduce((best, current) => {
 }, numbers400[0]);
 
 console.log(result400);
+
+// ==================================================
+// 401. Find Numbers Whose Digit Sum Is Equal to 12
+// Example: [345, 456, 129, 555, 678]
+// Output: [345, 129]
+// ==================================================
+
+const numbers401 = [345, 456, 129, 555, 678];
+
+const result401 = numbers401.filter((num) => {
+  const digitSum = String(num)
+    .split("")
+    .reduce((sum, digit) => sum + Number(digit), 0);
+
+  return digitSum === 12;
+});
+
+console.log(result401);
+
+// ==================================================
+// 402. Find Numbers Where Every Digit Is Greater Than 2
+// Example: [3456, 1234, 5678, 2901, 789]
+// Output: [3456, 5678, 789]
+// ==================================================
+
+const numbers402 = [3456, 1234, 5678, 2901, 789];
+
+const result402 = numbers402.filter((num) => {
+  return String(num)
+    .split("")
+    .every((digit) => Number(digit) > 2);
+});
+
+console.log(result402);
+
+// ==================================================
+// 403. Find Numbers With Exactly One Odd Digit
+// Example: [1234, 2468, 1357, 2246, 5678]
+// Output: [1234]
+// ==================================================
+
+const numbers403 = [1234, 2468, 1357, 2246, 5678];
+
+const result403 = numbers403.filter((num) => {
+  const oddCount = String(num)
+    .split("")
+    .filter((digit) => Number(digit) % 2 !== 0).length;
+
+  return oddCount === 1;
+});
+
+console.log(result403);
+
+// ==================================================
+// 404. Find Numbers Whose First Digit Is the Largest Digit
+// Example: [9123, 5678, 8765, 4321, 9881]
+// Output: [9123, 8765, 9881]
+// ==================================================
+
+const numbers404 = [9123, 5678, 8765, 4321, 9881];
+
+const result404 = numbers404.filter((num) => {
+  const digits = String(num).split("").map(Number);
+
+  return digits[0] === Math.max(...digits);
+});
+
+console.log(result404);
+
+// ==================================================
+// 405. Find Numbers Whose Last Digit Is the Smallest Digit
+// Example: [1234, 5671, 8421, 9876, 3210]
+// Output: [5671, 8421, 3210]
+// ==================================================
+
+const numbers405 = [1234, 5671, 8421, 9876, 3210];
+
+const result405 = numbers405.filter((num) => {
+  const digits = String(num).split("").map(Number);
+
+  return digits.at(-1) === Math.min(...digits);
+});
+
+console.log(result405);
+
+// ==================================================
+// 406. Find Numbers Whose Digit Sum Is an Even Number
+// Example: [123, 246, 357, 482, 591]
+// Output: [123, 246, 357, 591]
+// ==================================================
+
+const numbers406 = [123, 246, 357, 482, 591];
+
+const result406 = numbers406.filter((num) => {
+  const digitSum = String(num)
+    .split("")
+    .reduce((sum, digit) => sum + Number(digit), 0);
+
+  return digitSum % 2 === 0;
+});
+
+console.log(result406);
+
+// ==================================================
+// 407. Find Numbers With No Repeated Digits
+// Example: [1234, 1123, 5678, 9091, 2468]
+// Output: [1234, 5678, 2468]
+// ==================================================
+
+const numbers407 = [1234, 1123, 5678, 9091, 2468];
+
+const result407 = numbers407.filter((num) => {
+  const digits = String(num);
+
+  return new Set(digits).size === digits.length;
+});
+
+console.log(result407);
+
+// ==================================================
+// 408. Find Numbers Whose First and Last Digits Have the Same Parity
+// Example: [1234, 2468, 3579, 4826, 5912]
+// Output: [2468, 4826]
+// ==================================================
+
+const numbers408 = [1234, 2468, 3579, 4826, 5912];
+
+const result408 = numbers408.filter((num) => {
+  const digits = String(num);
+
+  const firstDigit = Number(digits[0]);
+  const lastDigit = Number(digits.at(-1));
+
+  return firstDigit % 2 === lastDigit % 2;
+});
+
+console.log(result408);
+
+// ==================================================
+// 409. Find Numbers Whose Digits Have a Product Greater Than 100
+// Example: [2345, 1234, 5678, 2222, 3456]
+// Output: [2345, 5678, 3456]
+// ==================================================
+
+const numbers409 = [2345, 1234, 5678, 2222, 3456];
+
+const result409 = numbers409.filter((num) => {
+  const digitProduct = String(num)
+    .split("")
+    .reduce((product, digit) => product * Number(digit), 1);
+
+  return digitProduct > 100;
+});
+
+console.log(result409);
+
+// ==================================================
+// 410. Find the Number With the Smallest Difference Between Its Largest and Smallest Digits
+// Example: [1234, 5559, 2468, 7788, 9991]
+// Output: 5559
+// ==================================================
+
+const numbers410 = [1234, 5559, 2468, 7788, 9991];
+
+const getDigitRange410 = (num) => {
+  const digits = String(num).split("").map(Number);
+
+  return Math.max(...digits) - Math.min(...digits);
+};
+
+const result410 = numbers410.reduce((best, current) => {
+  return getDigitRange410(current) < getDigitRange410(best)
+    ? current
+    : best;
+}, numbers410[0]);
+
+console.log(result410);
