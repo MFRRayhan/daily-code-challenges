@@ -4411,3 +4411,204 @@ const result410 = numbers410.reduce((best, current) => {
 }, numbers410[0]);
 
 console.log(result410);
+
+// ==================================================
+// 411. Find Numbers Whose Digit Sum Is Greater Than Their Digit Product
+// Example: [123, 234, 345, 222, 112]
+// Output: [123, 234, 345, 112]
+// ==================================================
+
+const numbers411 = [123, 234, 345, 222, 112];
+
+const result411 = numbers411.filter((num) => {
+  const digits = String(num).split("").map(Number);
+
+  const digitSum = digits.reduce((sum, digit) => sum + digit, 0);
+  const digitProduct = digits.reduce((product, digit) => product * digit, 1);
+
+  return digitSum > digitProduct;
+});
+
+console.log(result411);
+
+// ==================================================
+// 412. Find Numbers Whose Digits Are All Divisible by 2 or 3
+// Example: [246, 369, 123, 482, 936]
+// Output: [246, 369, 936]
+// ==================================================
+
+const numbers412 = [246, 369, 123, 482, 936];
+
+const result412 = numbers412.filter((num) => {
+  return String(num)
+    .split("")
+    .every((digit) => Number(digit) % 2 === 0 || Number(digit) % 3 === 0);
+});
+
+console.log(result412);
+
+// ==================================================
+// 413. Find Numbers With Exactly Two Different Odd Digits
+// Example: [1234, 1357, 1123, 2468, 5791]
+// Output: [1234, 1123, 5791]
+// ==================================================
+
+const numbers413 = [1234, 1357, 1123, 2468, 5791];
+
+const result413 = numbers413.filter((num) => {
+  const oddDigits = String(num)
+    .split("")
+    .filter((digit) => Number(digit) % 2 !== 0);
+
+  return new Set(oddDigits).size === 2;
+});
+
+console.log(result413);
+
+// ==================================================
+// 414. Find Numbers Whose Digits Have No Consecutive Differences Greater Than 2
+// Example: [1234, 1357, 2468, 1246, 9876]
+// Output: [1234, 1246, 9876]
+// ==================================================
+
+const numbers414 = [1234, 1357, 2468, 1246, 9876];
+
+const result414 = numbers414.filter((num) => {
+  const digits = String(num).split("").map(Number);
+
+  return digits.every((digit, index) => {
+    if (index === 0) return true;
+
+    return Math.abs(digit - digits[index - 1]) <= 2;
+  });
+});
+
+console.log(result414);
+
+// ==================================================
+// 415. Find Numbers Whose Digit Sum Is Equal to the Number of Digits Squared
+// Example: [123, 1122, 2222, 1234, 1111]
+// Output: [123, 1122]
+// ==================================================
+
+const numbers415 = [123, 1122, 2222, 1234, 1111];
+
+const result415 = numbers415.filter((num) => {
+  const digits = String(num).split("");
+
+  const digitSum = digits.reduce((sum, digit) => sum + Number(digit), 0);
+
+  return digitSum === digits.length ** 2;
+});
+
+console.log(result415);
+
+// ==================================================
+// 416. Find Numbers Whose Digits Are in Strict Alternating Order
+// Example: [1234, 2143, 1324, 2468, 9876]
+// Output: [1234, 2143, 1324]
+// ==================================================
+
+const numbers416 = [1234, 2143, 1324, 2468, 9876];
+
+const result416 = numbers416.filter((num) => {
+  const digits = String(num).split("").map(Number);
+
+  const isIncreasing = digits.every((digit, index) => {
+    return index === 0 || digit > digits[index - 1];
+  });
+
+  const isDecreasing = digits.every((digit, index) => {
+    return index === 0 || digit < digits[index - 1];
+  });
+
+  const isAlternating = digits.every((digit, index) => {
+    if (index < 2) return true;
+
+    const previousDifference = digits[index - 1] - digits[index - 2];
+    const currentDifference = digit - digits[index - 1];
+
+    return previousDifference * currentDifference < 0;
+  });
+
+  return !isIncreasing && !isDecreasing && isAlternating;
+});
+
+console.log(result416);
+
+// ==================================================
+// 417. Find Numbers Whose Digits Have a Maximum Difference of 4
+// Example: [1357, 2468, 1234, 5678, 9091]
+// Output: [1357, 2468, 1234]
+// ==================================================
+
+const numbers417 = [1357, 2468, 1234, 5678, 9091];
+
+const result417 = numbers417.filter((num) => {
+  const digits = String(num).split("").map(Number);
+
+  const difference = Math.max(...digits) - Math.min(...digits);
+
+  return difference <= 4;
+});
+
+console.log(result417);
+
+// ==================================================
+// 418. Find Numbers Whose Digits Contain More Than One Zero
+// Example: [1002, 1020, 1200, 1000, 2340]
+// Output: [1002, 1020, 1200, 1000]
+// ==================================================
+
+const numbers418 = [1002, 1020, 1200, 1000, 2340];
+
+const result418 = numbers418.filter((num) => {
+  const zeroCount = String(num)
+    .split("")
+    .filter((digit) => digit === "0").length;
+
+  return zeroCount > 1;
+});
+
+console.log(result418);
+
+// ==================================================
+// 419. Find Numbers Whose Digit Sum Is Equal to Their First Digit Plus Last Digit
+// Example: [123, 121, 234, 343, 456]
+// Output: [121, 343]
+// ==================================================
+
+const numbers419 = [123, 121, 234, 343, 456];
+
+const result419 = numbers419.filter((num) => {
+  const digits = String(num).split("").map(Number);
+
+  const digitSum = digits.reduce((sum, digit) => sum + digit, 0);
+  const firstAndLastSum = digits[0] + digits.at(-1);
+
+  return digitSum === firstAndLastSum;
+});
+
+console.log(result419);
+
+// ==================================================
+// 420. Find the Number With the Highest Digit Product
+// Example: [123, 234, 345, 222, 789]
+// Output: 789
+// ==================================================
+
+const numbers420 = [123, 234, 345, 222, 789];
+
+const getDigitProduct420 = (num) => {
+  return String(num)
+    .split("")
+    .reduce((product, digit) => product * Number(digit), 1);
+};
+
+const result420 = numbers420.reduce((best, current) => {
+  return getDigitProduct420(current) > getDigitProduct420(best)
+    ? current
+    : best;
+}, numbers420[0]);
+
+console.log(result420);
