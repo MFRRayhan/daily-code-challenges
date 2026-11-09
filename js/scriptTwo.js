@@ -4612,3 +4612,204 @@ const result420 = numbers420.reduce((best, current) => {
 }, numbers420[0]);
 
 console.log(result420);
+
+
+// ==================================================
+// 421. Find Numbers Whose Digits Are All Prime Digits
+// Example: [2357, 2468, 1379, 5723, 1112]
+// Output: [2357, 5723]
+// ==================================================
+
+const numbers421 = [2357, 2468, 1379, 5723, 1112];
+
+const primeDigits421 = new Set(["2", "3", "5", "7"]);
+
+const result421 = numbers421.filter((num) => {
+  return String(num)
+    .split("")
+    .every((digit) => primeDigits421.has(digit));
+});
+
+console.log(result421);
+
+// ==================================================
+// 422. Find Numbers Whose Digit Sum Is a Perfect Square
+// Example: [123, 145, 222, 333, 456]
+// Output: [123, 145, 222, 333]
+// ==================================================
+
+const numbers422 = [123, 145, 222, 333, 456];
+
+const result422 = numbers422.filter((num) => {
+  const digitSum = String(num)
+    .split("")
+    .reduce((sum, digit) => sum + Number(digit), 0);
+
+  const squareRoot = Math.sqrt(digitSum);
+
+  return Number.isInteger(squareRoot);
+});
+
+console.log(result422);
+
+// ==================================================
+// 423. Find Numbers Whose Digits Have an Equal Number of Even and Odd Digits
+// Example: [1234, 2468, 1357, 1122, 12345]
+// Output: [1234, 1122]
+// ==================================================
+
+const numbers423 = [1234, 2468, 1357, 1122, 12345];
+
+const result423 = numbers423.filter((num) => {
+  const digits = String(num).split("");
+
+  const evenCount = digits.filter((digit) => Number(digit) % 2 === 0).length;
+  const oddCount = digits.length - evenCount;
+
+  return evenCount === oddCount;
+});
+
+console.log(result423);
+
+// ==================================================
+// 424. Find Numbers Whose Digits Are in a Zigzag Pattern
+// Example: [3142, 1234, 5241, 9876, 3524]
+// Output: [3142, 5241, 3524]
+// ==================================================
+
+const numbers424 = [3142, 1234, 5241, 9876, 3524];
+
+const result424 = numbers424.filter((num) => {
+  const digits = String(num).split("").map(Number);
+
+  return digits.every((digit, index) => {
+    if (index < 2) return true;
+
+    const previous = digits[index - 1];
+    const beforePrevious = digits[index - 2];
+
+    const isPeak = previous > beforePrevious && previous > digit;
+    const isValley = previous < beforePrevious && previous < digit;
+
+    return isPeak || isValley;
+  });
+});
+
+console.log(result424);
+
+// ==================================================
+// 425. Find Numbers Whose Digit Sum Is Greater Than 20
+// Example: [5678, 1234, 9999, 7891, 2468]
+// Output: [5678, 9999, 7891]
+// ==================================================
+
+const numbers425 = [5678, 1234, 9999, 7891, 2468];
+
+const result425 = numbers425.filter((num) => {
+  const digitSum = String(num)
+    .split("")
+    .reduce((sum, digit) => sum + Number(digit), 0);
+
+  return digitSum > 20;
+});
+
+console.log(result425);
+
+// ==================================================
+// 426. Find Numbers Whose Digits Are All Unique and Even
+// Example: [2468, 2246, 8024, 4680, 1234]
+// Output: [2468, 8024, 4680]
+// ==================================================
+
+const numbers426 = [2468, 2246, 8024, 4680, 1234];
+
+const result426 = numbers426.filter((num) => {
+  const digits = String(num);
+
+  const allEven = [...digits].every((digit) => Number(digit) % 2 === 0);
+  const allUnique = new Set(digits).size === digits.length;
+
+  return allEven && allUnique;
+});
+
+console.log(result426);
+
+// ==================================================
+// 427. Find Numbers Whose Digit Sum Is Divisible by Their Digit Count
+// Example: [123, 246, 1111, 1234, 2222]
+// Output: [123, 246, 1111, 2222]
+// ==================================================
+
+const numbers427 = [123, 246, 1111, 1234, 2222];
+
+const result427 = numbers427.filter((num) => {
+  const digits = String(num).split("");
+
+  const digitSum = digits.reduce((sum, digit) => sum + Number(digit), 0);
+
+  return digitSum % digits.length === 0;
+});
+
+console.log(result427);
+
+// ==================================================
+// 428. Find Numbers Whose Digits Contain Exactly One Prime Digit
+// Example: [1234, 2468, 1357, 8910, 2224]
+// Output: [1234, 8910]
+// ==================================================
+
+const numbers428 = [1234, 2468, 1357, 8910, 2224];
+
+const primeDigits428 = new Set(["2", "3", "5", "7"]);
+
+const result428 = numbers428.filter((num) => {
+  const primeCount = String(num)
+    .split("")
+    .filter((digit) => primeDigits428.has(digit)).length;
+
+  return primeCount === 1;
+});
+
+console.log(result428);
+
+// ==================================================
+// 429. Find Numbers Whose Digits Form a Repeating Pattern
+// Example: [1212, 1231, 3434, 5656, 1234]
+// Output: [1212, 3434, 5656]
+// ==================================================
+
+const numbers429 = [1212, 1231, 3434, 5656, 1234];
+
+const result429 = numbers429.filter((num) => {
+  const digits = String(num);
+
+  if (digits.length % 2 !== 0) return false;
+
+  const middle = digits.length / 2;
+
+  return digits.slice(0, middle) === digits.slice(middle);
+});
+
+console.log(result429);
+
+// ==================================================
+// 430. Find the Number With the Most Even Digits
+// Example: [1234, 2468, 1357, 8024, 1112]
+// Output: 2468
+// ==================================================
+
+const numbers430 = [1234, 2468, 1357, 8024, 1112];
+
+const getEvenCount430 = (num) => {
+  return String(num)
+    .split("")
+    .filter((digit) => Number(digit) % 2 === 0).length;
+};
+
+const result430 = numbers430.reduce((best, current) => {
+  return getEvenCount430(current) > getEvenCount430(best)
+    ? current
+    : best;
+}, numbers430[0]);
+
+console.log(result430);
