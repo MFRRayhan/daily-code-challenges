@@ -4813,3 +4813,183 @@ const result430 = numbers430.reduce((best, current) => {
 }, numbers430[0]);
 
 console.log(result430);
+
+
+// ==================================================
+// 431. Find Numbers Whose Digits Have a Sum of 15 or More
+// Example: [456, 789, 123, 987, 234]
+// Output: [789, 987]
+// ==================================================
+
+const numbers431 = [456, 789, 123, 987, 234];
+
+const result431 = numbers431.filter((num) => {
+  const digitSum = String(num)
+    .split("")
+    .reduce((sum, digit) => sum + Number(digit), 0);
+
+  return digitSum >= 15;
+});
+
+console.log(result431);
+
+// ==================================================
+// 432. Find Numbers Whose Digits Are All Less Than 6
+// Example: [1234, 5678, 5432, 1054, 6789]
+// Output: [1234, 5432, 1054]
+// ==================================================
+
+const numbers432 = [1234, 5678, 5432, 1054, 6789];
+
+const result432 = numbers432.filter((num) => {
+  return String(num)
+    .split("")
+    .every((digit) => Number(digit) < 6);
+});
+
+console.log(result432);
+
+// ==================================================
+// 433. Find Numbers Whose First Digit Is Smaller Than Every Other Digit
+// Example: [1234, 2345, 3456, 4567, 1123]
+// Output: [1234, 2345, 3456, 4567]
+// ==================================================
+
+const numbers433 = [1234, 2345, 3456, 4567, 1123];
+
+const result433 = numbers433.filter((num) => {
+  const digits = String(num).split("").map(Number);
+
+  return digits.slice(1).every((digit) => digits[0] < digit);
+});
+
+console.log(result433);
+
+// ==================================================
+// 434. Find Numbers Whose Digits Contain Exactly Two Even Digits
+// Example: [1234, 2468, 1357, 1023, 5678]
+// Output: [1234, 1023]
+// ==================================================
+
+const numbers434 = [1234, 2468, 1357, 1023, 5678];
+
+const result434 = numbers434.filter((num) => {
+  const evenCount = String(num)
+    .split("")
+    .filter((digit) => Number(digit) % 2 === 0).length;
+
+  return evenCount === 2;
+});
+
+console.log(result434);
+
+// ==================================================
+// 435. Find Numbers Whose Digits Are in a Symmetrical Pattern
+// Example: [1221, 1231, 3443, 4564, 9889]
+// Output: [1221, 3443, 9889]
+// ==================================================
+
+const numbers435 = [1221, 1231, 3443, 4564, 9889];
+
+const result435 = numbers435.filter((num) => {
+  const digits = String(num);
+  const reversed = digits.split("").reverse().join("");
+
+  return digits === reversed;
+});
+
+console.log(result435);
+
+// ==================================================
+// 436. Find Numbers Whose Digit Sum Is Greater Than 10 and Less Than 20
+// Example: [456, 123, 789, 555, 246]
+// Output: [456, 789, 555]
+// ==================================================
+
+const numbers436 = [456, 123, 789, 555, 246];
+
+const result436 = numbers436.filter((num) => {
+  const digitSum = String(num)
+    .split("")
+    .reduce((sum, digit) => sum + Number(digit), 0);
+
+  return digitSum > 10 && digitSum < 20;
+});
+
+console.log(result436);
+
+// ==================================================
+// 437. Find Numbers Whose Digits Have No Repeated Values
+// Example: [1234, 1123, 5678, 9091, 2468]
+// Output: [1234, 5678, 2468]
+// ==================================================
+
+const numbers437 = [1234, 1123, 5678, 9091, 2468];
+
+const result437 = numbers437.filter((num) => {
+  const digits = String(num).split("");
+
+  return digits.length === new Set(digits).size;
+});
+
+console.log(result437);
+
+// ==================================================
+// 438. Find Numbers Whose Digit Product Is an Even Number
+// Example: [123, 234, 135, 246, 111]
+// Output: [234, 246]
+// ==================================================
+
+const numbers438 = [123, 234, 135, 246, 111];
+
+const result438 = numbers438.filter((num) => {
+  const digitProduct = String(num)
+    .split("")
+    .reduce((product, digit) => product * Number(digit), 1);
+
+  return digitProduct % 2 === 0;
+});
+
+console.log(result438);
+
+// ==================================================
+// 439. Find Numbers Whose Digits Are in a Strictly Alternating Parity Pattern
+// Example: [1234, 2143, 1357, 2468, 3214]
+// Output: [1234, 2143, 3214]
+// ==================================================
+
+const numbers439 = [1234, 2143, 1357, 2468, 3214];
+
+const result439 = numbers439.filter((num) => {
+  const digits = String(num).split("").map(Number);
+
+  return digits.every((digit, index) => {
+    if (index === 0) return true;
+
+    return digit % 2 !== digits[index - 1] % 2;
+  });
+});
+
+console.log(result439);
+
+// ==================================================
+// 440. Find the Number With the Smallest Digit Product
+// Example: [123, 234, 105, 222, 345]
+// Output: 105
+// ==================================================
+
+const numbers440 = [123, 234, 105, 222, 345];
+
+const getDigitProduct440 = (num) => {
+  return String(num)
+    .split("")
+    .reduce((product, digit) => product * Number(digit), 1);
+};
+
+const result440 = numbers440.reduce((smallest, current) => {
+  return getDigitProduct440(current) < getDigitProduct440(smallest)
+    ? current
+    : smallest;
+}, numbers440[0]);
+
+console.log(result440);
