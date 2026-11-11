@@ -4993,3 +4993,206 @@ const result440 = numbers440.reduce((smallest, current) => {
 }, numbers440[0]);
 
 console.log(result440);
+
+// ==================================================
+// 441. Find Numbers Whose Digits Are All Divisible by 3
+// Example: [369, 123, 963, 456, 999]
+// Output: [369, 963, 999]
+// ==================================================
+
+const numbers441 = [369, 123, 963, 456, 999];
+
+const result441 = numbers441.filter((num) => {
+  return String(num)
+    .split("")
+    .every((digit) => Number(digit) % 3 === 0);
+});
+
+console.log(result441);
+
+// ==================================================
+// 442. Find Numbers Whose Digit Sum Is a Multiple of Their Last Digit
+// Example: [123, 246, 369, 482, 555]
+// Output: [123, 246, 369, 555]
+// ==================================================
+
+const numbers442 = [123, 246, 369, 482, 555];
+
+const result442 = numbers442.filter((num) => {
+  const digits = String(num).split("");
+
+  const digitSum = digits.reduce((sum, digit) => sum + Number(digit), 0);
+  const lastDigit = Number(digits.at(-1));
+
+  return lastDigit !== 0 && digitSum % lastDigit === 0;
+});
+
+console.log(result442);
+
+// ==================================================
+// 443. Find Numbers Whose Digits Have Exactly Three Unique Values
+// Example: [1123, 1234, 4556, 7788, 1212]
+// Output: [1123, 4556]
+// ==================================================
+
+const numbers443 = [1123, 1234, 4556, 7788, 1212];
+
+const result443 = numbers443.filter((num) => {
+  return new Set(String(num)).size === 3;
+});
+
+console.log(result443);
+
+// ==================================================
+// 444. Find Numbers Whose Digits Are Alternating Between Increasing and Decreasing
+// Example: [3142, 5241, 1324, 1234, 9876]
+// Output: [3142, 5241, 1324]
+// ==================================================
+
+const numbers444 = [3142, 5241, 1324, 1234, 9876];
+
+const result444 = numbers444.filter((num) => {
+  const digits = String(num).split("").map(Number);
+
+  return digits.every((digit, index) => {
+    if (index < 2) return true;
+
+    const previousDifference = digits[index - 1] - digits[index - 2];
+    const currentDifference = digit - digits[index - 1];
+
+    return previousDifference * currentDifference < 0;
+  });
+});
+
+console.log(result444);
+
+// ==================================================
+// 445. Find Numbers Whose Digit Sum Is Equal to 2 Raised to the Power of Their Digit Count
+// Example: [123, 1111, 2222, 1234, 4444]
+// Output: [123, 1111]
+// ==================================================
+
+const numbers445 = [123, 1111, 2222, 1234, 4444];
+
+const result445 = numbers445.filter((num) => {
+  const digits = String(num).split("");
+
+  const digitSum = digits.reduce((sum, digit) => sum + Number(digit), 0);
+
+  return digitSum === 2 ** digits.length;
+});
+
+console.log(result445);
+
+// ==================================================
+// 446. Find Numbers Whose Digits Have Exactly One Descending Pair
+// Example: [1234, 1324, 1432, 2134, 1243]
+// Output: [1324, 2134, 1243]
+// ==================================================
+
+const numbers446 = [1234, 1324, 1432, 2134, 1243];
+
+const result446 = numbers446.filter((num) => {
+  const digits = String(num).split("").map(Number);
+
+  let descendingPairs = 0;
+
+  for (let i = 0; i < digits.length - 1; i++) {
+    if (digits[i] > digits[i + 1]) {
+      descendingPairs++;
+    }
+  }
+
+  return descendingPairs === 1;
+});
+
+console.log(result446);
+
+// ==================================================
+// 447. Find Numbers Whose Digits Have a Sum of Even Digits Greater Than Odd Digits
+// Example: [1234, 2468, 1357, 1122, 5678]
+// Output: [2468, 1122, 5678]
+// ==================================================
+
+const numbers447 = [1234, 2468, 1357, 1122, 5678];
+
+const result447 = numbers447.filter((num) => {
+  const digits = String(num).split("").map(Number);
+
+  const evenSum = digits
+    .filter((digit) => digit % 2 === 0)
+    .reduce((sum, digit) => sum + digit, 0);
+
+  const oddSum = digits
+    .filter((digit) => digit % 2 !== 0)
+    .reduce((sum, digit) => sum + digit, 0);
+
+  return evenSum > oddSum;
+});
+
+console.log(result447);
+
+// ==================================================
+// 448. Find Numbers Whose Digits Have a Difference of Exactly 5
+// Example: [1234, 1592, 2468, 5071, 6789]
+// Output: [1592, 5071]
+// ==================================================
+
+const numbers448 = [1234, 1592, 2468, 5071, 6789];
+
+const result448 = numbers448.filter((num) => {
+  const digits = String(num).split("").map(Number);
+
+  const difference = Math.max(...digits) - Math.min(...digits);
+
+  return difference === 5;
+});
+
+console.log(result448);
+
+// ==================================================
+// 449. Find Numbers Whose Digits Form a Palindrome After Removing the Middle Digit
+// Example: [12321, 12345, 45654, 98789, 123321]
+// Output: [12321, 45654, 98789]
+// ==================================================
+
+const numbers449 = [12321, 12345, 45654, 98789, 123321];
+
+const result449 = numbers449.filter((num) => {
+  const digits = String(num);
+
+  if (digits.length % 2 === 0) return false;
+
+  const middleIndex = Math.floor(digits.length / 2);
+
+  const withoutMiddle =
+    digits.slice(0, middleIndex) + digits.slice(middleIndex + 1);
+
+  return withoutMiddle === withoutMiddle.split("").reverse().join("");
+});
+
+console.log(result449);
+
+// ==================================================
+// 450. Find the Number With the Highest Number of Distinct Prime Digits
+// Example: [2357, 1234, 5779, 3578, 2225]
+// Output: 2357
+// ==================================================
+
+const numbers450 = [2357, 1234, 5779, 3578, 2225];
+
+const primeDigits450 = new Set(["2", "3", "5", "7"]);
+
+const getDistinctPrimeCount450 = (num) => {
+  return new Set(
+    [...String(num)].filter((digit) => primeDigits450.has(digit))
+  ).size;
+};
+
+const result450 = numbers450.reduce((best, current) => {
+  return getDistinctPrimeCount450(current) > getDistinctPrimeCount450(best)
+    ? current
+    : best;
+}, numbers450[0]);
+
+console.log(result450);
