@@ -5583,3 +5583,199 @@ const result460 = numbers460.reduce((best, current) => {
 }, numbers460[0]);
 
 console.log(result460);
+
+
+// ==================================================
+// 471. Find Numbers Whose Digits Are All Perfect Squares
+// Example: [149, 1649, 256, 904, 125]
+// Output: [149, 1649, 904]
+// ==================================================
+
+const numbers471 = [149, 1649, 256, 904, 125];
+
+const perfectSquareDigits471 = new Set(["0", "1", "4", "9"]);
+
+const result471 = numbers471.filter((num) => {
+  return String(num)
+    .split("")
+    .every((digit) => perfectSquareDigits471.has(digit));
+});
+
+console.log(result471);
+
+// ==================================================
+// 472. Find Numbers Whose First and Last Digits Have a Difference of 3
+// Example: [1234, 4561, 7892, 4321, 6543]
+// Output: [4561, 7892, 6543]
+// ==================================================
+
+const numbers472 = [1234, 4561, 7892, 4321, 6543];
+
+const result472 = numbers472.filter((num) => {
+  const digits = String(num);
+
+  const firstDigit = Number(digits[0]);
+  const lastDigit = Number(digits.at(-1));
+
+  return Math.abs(firstDigit - lastDigit) === 3;
+});
+
+console.log(result472);
+
+// ==================================================
+// 473. Find Numbers Whose Digits Have a Sum of Cubes Greater Than 500
+// Example: [3456, 1234, 5678, 2222, 9876]
+// Output: [3456, 5678, 9876]
+// ==================================================
+
+const numbers473 = [3456, 1234, 5678, 2222, 9876];
+
+const result473 = numbers473.filter((num) => {
+  const cubeSum = String(num)
+    .split("")
+    .reduce((sum, digit) => sum + Number(digit) ** 3, 0);
+
+  return cubeSum > 500;
+});
+
+console.log(result473);
+
+// ==================================================
+// 474. Find Numbers Whose Digits Contain Exactly Three Even Digits
+// Example: [1234, 2468, 1357, 8024, 5678]
+// Output: [1234, 8024, 5678]
+// ==================================================
+
+const numbers474 = [1234, 2468, 1357, 8024, 5678];
+
+const result474 = numbers474.filter((num) => {
+  const evenCount = String(num)
+    .split("")
+    .filter((digit) => Number(digit) % 2 === 0).length;
+
+  return evenCount === 3;
+});
+
+console.log(result474);
+
+// ==================================================
+// 475. Find Numbers Whose Digits Are in a Geometric Sequence
+// Example: [1248, 2481, 1684, 1234, 24816]
+// Output: [1248, 1684]
+// ==================================================
+
+const numbers475 = [1248, 2481, 1684, 1234, 24816];
+
+const result475 = numbers475.filter((num) => {
+  const digits = String(num).split("").map(Number);
+
+  if (digits.length < 3 || digits[0] === 0) return false;
+
+  const ratio = digits[1] / digits[0];
+
+  return digits.every((digit, index) => {
+    if (index === 0) return true;
+
+    return digit === digits[index - 1] * ratio;
+  });
+});
+
+console.log(result475);
+
+// ==================================================
+// 476. Find Numbers Whose Digits Have Exactly Two Ascending Adjacent Pairs
+// Example: [1234, 1324, 1432, 2134, 1243]
+// Output: [1324, 2134, 1243]
+// ==================================================
+
+const numbers476 = [1234, 1324, 1432, 2134, 1243];
+
+const result476 = numbers476.filter((num) => {
+  const digits = String(num).split("").map(Number);
+
+  let ascendingPairs = 0;
+
+  for (let i = 0; i < digits.length - 1; i++) {
+    if (digits[i] < digits[i + 1]) {
+      ascendingPairs++;
+    }
+  }
+
+  return ascendingPairs === 2;
+});
+
+console.log(result476);
+
+// ==================================================
+// 477. Find Numbers Whose Digits Have a Sum Equal to 18
+// Example: [567, 189, 999, 456, 288]
+// Output: [567, 189, 288]
+// ==================================================
+
+const numbers477 = [567, 189, 999, 456, 288];
+
+const result477 = numbers477.filter((num) => {
+  const digitSum = String(num)
+    .split("")
+    .reduce((sum, digit) => sum + Number(digit), 0);
+
+  return digitSum === 18;
+});
+
+console.log(result477);
+
+// ==================================================
+// 478. Find Numbers Whose Digits Have No Adjacent Difference of Zero or One
+// Example: [1357, 2468, 5791, 8024, 9753]
+// Output: [1357, 2468, 9753]
+// ==================================================
+
+const numbers478 = [1357, 2468, 5791, 8024, 9753];
+
+const result478 = numbers478.filter((num) => {
+  const digits = String(num).split("").map(Number);
+
+  return digits.every((digit, index) => {
+    if (index === 0) return true;
+
+    return Math.abs(digit - digits[index - 1]) > 1;
+  });
+});
+
+console.log(result478);
+
+// ==================================================
+// 479. Find Numbers Whose Digits Have More Than Two Unique Values
+// Example: [1122, 1234, 5555, 1213, 7788]
+// Output: [1234, 1213]
+// ==================================================
+
+const numbers479 = [1122, 1234, 5555, 1213, 7788];
+
+const result479 = numbers479.filter((num) => {
+  return new Set(String(num)).size > 2;
+});
+
+console.log(result479);
+
+// ==================================================
+// 480. Find the Number With the Highest Digit Average
+// Example: [1234, 2468, 5678, 9991, 3456]
+// Output: 9991
+// ==================================================
+
+const numbers480 = [1234, 2468, 5678, 9991, 3456];
+
+const getDigitAverage480 = (num) => {
+  const digits = String(num).split("").map(Number);
+
+  return digits.reduce((sum, digit) => sum + digit, 0) / digits.length;
+};
+
+const result480 = numbers480.reduce((best, current) => {
+  return getDigitAverage480(current) > getDigitAverage480(best)
+    ? current
+    : best;
+}, numbers480[0]);
+
+console.log(result480);
