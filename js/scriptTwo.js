@@ -5389,3 +5389,197 @@ const result460 = numbers460.reduce((best, current) => {
 }, numbers460[0]);
 
 console.log(result460);
+
+
+// ==================================================
+// 451. Find Numbers Whose Digits Are All Greater Than or Equal to 4
+// Example: [4567, 1234, 4895, 6789, 3456]
+// Output: [4567, 4895, 6789]
+// ==================================================
+
+const numbers451 = [4567, 1234, 4895, 6789, 3456];
+
+const result451 = numbers451.filter((num) => {
+  return String(num)
+    .split("")
+    .every((digit) => Number(digit) >= 4);
+});
+
+console.log(result451);
+
+// ==================================================
+// 452. Find Numbers Whose First Three Digits Have an Odd Sum
+// Example: [1234, 2468, 3579, 4821, 5912]
+// Output: [1234, 3579, 4821]
+// ==================================================
+
+const numbers452 = [1234, 2468, 3579, 4821, 5912];
+
+const result452 = numbers452.filter((num) => {
+  const digits = String(num).split("").map(Number);
+
+  if (digits.length < 3) return false;
+
+  const firstThreeSum = digits
+    .slice(0, 3)
+    .reduce((sum, digit) => sum + digit, 0);
+
+  return firstThreeSum % 2 !== 0;
+});
+
+console.log(result452);
+
+// ==================================================
+// 453. Find Numbers Whose Digits Have Exactly Two Prime Digits
+// Example: [2354, 2468, 1357, 5723, 1112]
+// Output: [2354, 5723]
+// ==================================================
+
+const numbers453 = [2354, 2468, 1357, 5723, 1112];
+
+const primeDigits453 = new Set(["2", "3", "5", "7"]);
+
+const result453 = numbers453.filter((num) => {
+  const primeCount = String(num)
+    .split("")
+    .filter((digit) => primeDigits453.has(digit)).length;
+
+  return primeCount === 2;
+});
+
+console.log(result453);
+
+// ==================================================
+// 454. Find Numbers Whose Digits Have a Sum of Squares Greater Than 100
+// Example: [3456, 1234, 5678, 2222, 9876]
+// Output: [3456, 5678, 9876]
+// ==================================================
+
+const numbers454 = [3456, 1234, 5678, 2222, 9876];
+
+const result454 = numbers454.filter((num) => {
+  const squareSum = String(num)
+    .split("")
+    .reduce((sum, digit) => sum + Number(digit) ** 2, 0);
+
+  return squareSum > 100;
+});
+
+console.log(result454);
+
+// ==================================================
+// 455. Find Numbers Whose Digits Contain No Zero and No Five
+// Example: [1234, 2468, 1357, 7891, 2046]
+// Output: [1234, 2468, 7891]
+// ==================================================
+
+const numbers455 = [1234, 2468, 1357, 7891, 2046];
+
+const result455 = numbers455.filter((num) => {
+  const digits = String(num);
+
+  return !digits.includes("0") && !digits.includes("5");
+});
+
+console.log(result455);
+
+// ==================================================
+// 456. Find Numbers Whose Digit Sum Is Equal to Their Largest Digit
+// Example: [1000, 1111, 1234, 2222, 3000]
+// Output: [1000, 3000]
+// ==================================================
+
+const numbers456 = [1000, 1111, 1234, 2222, 3000];
+
+const result456 = numbers456.filter((num) => {
+  const digits = String(num).split("").map(Number);
+
+  const digitSum = digits.reduce((sum, digit) => sum + digit, 0);
+  const largestDigit = Math.max(...digits);
+
+  return digitSum === largestDigit;
+});
+
+console.log(result456);
+
+// ==================================================
+// 457. Find Numbers Whose Digits Have Exactly One Pair of Identical Adjacent Digits
+// Example: [1123, 1223, 1233, 1122, 1234]
+// Output: [1123, 1223, 1233]
+// ==================================================
+
+const numbers457 = [1123, 1223, 1233, 1122, 1234];
+
+const result457 = numbers457.filter((num) => {
+  const digits = String(num);
+  let matchingPairs = 0;
+
+  for (let i = 0; i < digits.length - 1; i++) {
+    if (digits[i] === digits[i + 1]) {
+      matchingPairs++;
+    }
+  }
+
+  return matchingPairs === 1;
+});
+
+console.log(result457);
+
+// ==================================================
+// 458. Find Numbers Whose Digits Are All Divisible by Their Position
+// Example: [1248, 2486, 3692, 1234, 2468]
+// Output: [1248, 2486]
+// ==================================================
+
+const numbers458 = [1248, 2486, 3692, 1234, 2468];
+
+const result458 = numbers458.filter((num) => {
+  const digits = String(num).split("").map(Number);
+
+  return digits.every((digit, index) => {
+    const position = index + 1;
+
+    return digit % position === 0;
+  });
+});
+
+console.log(result458);
+
+// ==================================================
+// 459. Find Numbers Whose Reverse Is Greater Than the Original Number
+// Example: [123, 456, 789, 321, 120]
+// Output: [123, 456, 120]
+// ==================================================
+
+const numbers459 = [123, 456, 789, 321, 120];
+
+const result459 = numbers459.filter((num) => {
+  const reversedNumber = Number(String(num).split("").reverse().join(""));
+
+  return reversedNumber > num;
+});
+
+console.log(result459);
+
+// ==================================================
+// 460. Find the Number With the Highest Sum of Even Digits
+// Example: [1234, 2468, 1357, 8024, 5678]
+// Output: 2468
+// ==================================================
+
+const numbers460 = [1234, 2468, 1357, 8024, 5678];
+
+const getEvenDigitSum460 = (num) => {
+  return String(num)
+    .split("")
+    .filter((digit) => Number(digit) % 2 === 0)
+    .reduce((sum, digit) => sum + Number(digit), 0);
+};
+
+const result460 = numbers460.reduce((best, current) => {
+  return getEvenDigitSum460(current) > getEvenDigitSum460(best)
+    ? current
+    : best;
+}, numbers460[0]);
+
+console.log(result460);
