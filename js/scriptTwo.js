@@ -5779,3 +5779,158 @@ const result480 = numbers480.reduce((best, current) => {
 }, numbers480[0]);
 
 console.log(result480);
+
+
+// ==================================================
+// 481. Find Numbers Greater Than the Array Average
+// Example: [10, 20, 30, 40, 50]
+// Output: [40, 50]
+
+const numbers481 = [10, 20, 30, 40, 50];
+
+const average481 =
+  numbers481.reduce((sum, num) => sum + num, 0) / numbers481.length;
+
+const result481 = numbers481.filter((num) => num > average481);
+
+console.log(result481);
+
+
+// ==================================================
+// 482. Find the Second Largest Unique Number
+// Example: [12, 45, 23, 45, 67, 12, 89]
+// Output: 67
+
+const numbers482 = [12, 45, 23, 45, 67, 12, 89];
+
+const unique482 = [...new Set(numbers482)].sort((a, b) => b - a);
+
+const result482 = unique482[1];
+
+console.log(result482);
+
+
+// ==================================================
+// 483. Count Words That Start With a Vowel
+// Example: "Apple is an amazing orange"
+// Output: 4
+
+const sentence483 = "Apple is an amazing orange";
+
+const result483 = sentence483
+  .split(" ")
+  .filter((word) => /^[aeiou]/i.test(word)).length;
+
+console.log(result483);
+
+
+// ==================================================
+// 484. Find the Longest Word in a Sentence
+// Example: "JavaScript makes programming interesting"
+// Output: "programming"
+
+const sentence484 = "JavaScript makes programming interesting";
+
+const result484 = sentence484
+  .split(" ")
+  .reduce((longest, word) =>
+    word.length > longest.length ? word : longest
+  );
+
+console.log(result484);
+
+
+// ==================================================
+// 485. Remove Duplicate Characters From a String
+// Example: "programming"
+// Output: "progamin"
+
+const text485 = "programming";
+
+const result485 = [...new Set(text485)].join("");
+
+console.log(result485);
+
+
+// ==================================================
+// 486. Find the Most Frequent Number
+// Example: [2, 3, 2, 5, 3, 2, 7, 3, 3]
+// Output: 3
+
+const numbers486 = [2, 3, 2, 5, 3, 2, 7, 3, 3];
+
+const frequency486 = numbers486.reduce((count, num) => {
+  count[num] = (count[num] || 0) + 1;
+  return count;
+}, {});
+
+const result486 = Number(
+  Object.keys(frequency486).reduce((a, b) =>
+    frequency486[a] > frequency486[b] ? a : b
+  )
+);
+
+console.log(result486);
+
+
+// ==================================================
+// 487. Check Whether Two Strings Are Anagrams
+// Example: "listen", "silent"
+// Output: true
+
+const word487A = "listen";
+const word487B = "silent";
+
+const result487 =
+  word487A.split("").sort().join("") ===
+  word487B.split("").sort().join("");
+
+console.log(result487);
+
+
+// ==================================================
+// 488. Find the Missing Number From 1 to N
+// Example: [1, 2, 3, 5, 6, 7]
+// Output: 4
+
+const numbers488 = [1, 2, 3, 5, 6, 7];
+
+const n488 = numbers488.length + 1;
+
+const expectedSum488 = (n488 * (n488 + 1)) / 2;
+
+const actualSum488 = numbers488.reduce((sum, num) => sum + num, 0);
+
+const result488 = expectedSum488 - actualSum488;
+
+console.log(result488);
+
+
+// ==================================================
+// 489. Find Common Elements Between Two Arrays
+// Example: [1, 2, 3, 4, 5], [3, 4, 5, 6, 7]
+// Output: [3, 4, 5]
+
+const array489A = [1, 2, 3, 4, 5];
+const array489B = [3, 4, 5, 6, 7];
+
+const result489 = array489A.filter((num) =>
+  array489B.includes(num)
+);
+
+console.log(result489);
+
+
+// ==================================================
+// 490. Capitalize the First Letter of Every Word
+// Example: "javascript is fun to learn"
+// Output: "Javascript Is Fun To Learn"
+
+const sentence490 = "javascript is fun to learn";
+
+const result490 = sentence490
+  .split(" ")
+  .map((word) => word[0].toUpperCase() + word.slice(1))
+  .join(" ");
+
+console.log(result490);
