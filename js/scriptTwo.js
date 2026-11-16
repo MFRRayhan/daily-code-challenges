@@ -5934,3 +5934,168 @@ const result490 = sentence490
   .join(" ");
 
 console.log(result490);
+
+// ==================================================
+// 491. Find the Sum of Positive Numbers
+// Example: [-5, 10, 20, -3, 15]
+// Output: 45
+
+const numbers491 = [-5, 10, 20, -3, 15];
+
+const result491 = numbers491
+  .filter((num) => num > 0)
+  .reduce((sum, num) => sum + num, 0);
+
+console.log(result491);
+
+
+// ==================================================
+// 492. Count the Occurrences of Each Character
+// Example: "banana"
+// Output: { b: 1, a: 3, n: 2 }
+
+const text492 = "banana";
+
+const result492 = [...text492].reduce((count, char) => {
+  count[char] = (count[char] || 0) + 1;
+  return count;
+}, {});
+
+console.log(result492);
+
+
+// ==================================================
+// 493. Find the Difference Between Maximum and Minimum
+// Example: [12, 45, 7, 89, 23]
+// Output: 82
+
+const numbers493 = [12, 45, 7, 89, 23];
+
+const result493 =
+  Math.max(...numbers493) - Math.min(...numbers493);
+
+console.log(result493);
+
+
+// ==================================================
+// 494. Move All Zeros to the End
+// Example: [0, 5, 0, 3, 8, 0, 2]
+// Output: [5, 3, 8, 2, 0, 0, 0]
+
+const numbers494 = [0, 5, 0, 3, 8, 0, 2];
+
+const result494 = [
+  ...numbers494.filter((num) => num !== 0),
+  ...numbers494.filter((num) => num === 0),
+];
+
+console.log(result494);
+
+
+// ==================================================
+// 495. Find the First Non-Repeating Character
+// Example: "swiss"
+// Output: "w"
+
+const text495 = "swiss";
+
+const result495 = [...text495].find(
+  (char) => text495.indexOf(char) === text495.lastIndexOf(char)
+);
+
+console.log(result495);
+
+
+// ==================================================
+// 496. Flatten a Nested Array by One Level
+// Example: [1, [2, 3], [4, 5], 6]
+// Output: [1, 2, 3, 4, 5, 6]
+
+const numbers496 = [1, [2, 3], [4, 5], 6];
+
+const result496 = numbers496.flat();
+
+console.log(result496);
+
+
+// ==================================================
+// 497. Find the Numbers That Appear in Both Arrays
+// Example: [1, 2, 2, 3, 4], [2, 2, 4, 5]
+// Output: [2, 2, 4]
+
+const array497A = [1, 2, 2, 3, 4];
+const array497B = [2, 2, 4, 5];
+
+const remaining497 = [...array497B];
+
+const result497 = array497A.filter((num) => {
+  const index = remaining497.indexOf(num);
+
+  if (index !== -1) {
+    remaining497.splice(index, 1);
+    return true;
+  }
+
+  return false;
+});
+
+console.log(result497);
+
+
+// ==================================================
+// 498. Check Whether a String Contains Only Digits
+// Example: "123456"
+// Output: true
+
+const text498 = "123456";
+
+const result498 = /^\d+$/.test(text498);
+
+console.log(result498);
+
+
+// ==================================================
+// 499. Rotate an Array to the Right by K Positions
+// Example: [1, 2, 3, 4, 5], K = 2
+// Output: [4, 5, 1, 2, 3]
+
+const numbers499 = [1, 2, 3, 4, 5];
+const k499 = 2;
+
+const rotation499 = k499 % numbers499.length;
+
+const result499 = [
+  ...numbers499.slice(-rotation499),
+  ...numbers499.slice(0, -rotation499),
+];
+
+console.log(result499);
+
+
+// ==================================================
+// 500. Find the Longest Consecutive Sequence
+// Example: [100, 4, 200, 1, 3, 2]
+// Output: 4
+// Explanation: The longest sequence is 1, 2, 3, 4.
+
+const numbers500 = [100, 4, 200, 1, 3, 2];
+
+const numberSet500 = new Set(numbers500);
+
+let longest500 = 0;
+
+for (const num of numberSet500) {
+  if (!numberSet500.has(num - 1)) {
+    let current = num;
+    let length = 1;
+
+    while (numberSet500.has(current + 1)) {
+      current++;
+      length++;
+    }
+
+    longest500 = Math.max(longest500, length);
+  }
+}
+
+console.log(longest500);
