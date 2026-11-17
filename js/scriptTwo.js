@@ -6099,3 +6099,160 @@ for (const num of numberSet500) {
 }
 
 console.log(longest500);
+
+// ==================================================
+// 501. Find the Sum of Squares of Array Elements
+// Example: [1, 2, 3, 4, 5]
+// Output: 55
+
+const numbers501 = [1, 2, 3, 4, 5];
+
+const result501 = numbers501.reduce(
+  (sum, num) => sum + num ** 2,
+  0
+);
+
+console.log(result501);
+
+
+// ==================================================
+// 502. Find the First Duplicate Number
+// Example: [4, 2, 7, 2, 8, 4]
+// Output: 2
+
+const numbers502 = [4, 2, 7, 2, 8, 4];
+
+const seen502 = new Set();
+
+const result502 = numbers502.find((num) => {
+  if (seen502.has(num)) return true;
+
+  seen502.add(num);
+  return false;
+});
+
+console.log(result502);
+
+
+// ==================================================
+// 503. Reverse the Order of Words in a Sentence
+// Example: "I love learning JavaScript"
+// Output: "JavaScript learning love I"
+
+const sentence503 = "I love learning JavaScript";
+
+const result503 = sentence503.split(" ").reverse().join(" ");
+
+console.log(result503);
+
+
+// ==================================================
+// 504. Find the Index of the Largest Number
+// Example: [15, 42, 8, 67, 23]
+// Output: 3
+
+const numbers504 = [15, 42, 8, 67, 23];
+
+const result504 = numbers504.indexOf(Math.max(...numbers504));
+
+console.log(result504);
+
+
+// ==================================================
+// 505. Group Numbers Into Even and Odd
+// Example: [1, 2, 3, 4, 5, 6]
+// Output: { even: [2, 4, 6], odd: [1, 3, 5] }
+
+const numbers505 = [1, 2, 3, 4, 5, 6];
+
+const result505 = numbers505.reduce(
+  (groups, num) => {
+    groups[num % 2 === 0 ? "even" : "odd"].push(num);
+    return groups;
+  },
+  { even: [], odd: [] }
+);
+
+console.log(result505);
+
+
+// ==================================================
+// 506. Check Whether a String Is a Palindrome
+// Example: "Madam"
+// Output: true
+
+const text506 = "Madam";
+
+const normalized506 = text506.toLowerCase();
+
+const result506 =
+  normalized506 === normalized506.split("").reverse().join("");
+
+console.log(result506);
+
+
+// ==================================================
+// 507. Find the Difference Between Two Arrays
+// Example: [1, 2, 3, 4], [3, 4, 5, 6]
+// Output: [1, 2]
+
+const array507A = [1, 2, 3, 4];
+const array507B = [3, 4, 5, 6];
+
+const set507 = new Set(array507B);
+
+const result507 = array507A.filter((num) => !set507.has(num));
+
+console.log(result507);
+
+
+// ==================================================
+// 508. Convert an Array of Strings to Numbers
+// Example: ["10", "20", "30", "40"]
+// Output: [10, 20, 30, 40]
+
+const values508 = ["10", "20", "30", "40"];
+
+const result508 = values508.map(Number);
+
+console.log(result508);
+
+
+// ==================================================
+// 509. Find the Pair of Numbers That Add Up to a Target
+// Example: [2, 7, 11, 15], Target = 9
+// Output: [2, 7]
+
+const numbers509 = [2, 7, 11, 15];
+const target509 = 9;
+
+let result509 = null;
+const seen509 = new Set();
+
+for (const num of numbers509) {
+  const needed = target509 - num;
+
+  if (seen509.has(needed)) {
+    result509 = [needed, num];
+    break;
+  }
+
+  seen509.add(num);
+}
+
+console.log(result509);
+
+
+// ==================================================
+// 510. Count How Many Times Each Word Appears
+// Example: "apple banana apple orange banana apple"
+// Output: { apple: 3, banana: 2, orange: 1 }
+
+const sentence510 = "apple banana apple orange banana apple";
+
+const result510 = sentence510.split(" ").reduce((count, word) => {
+  count[word] = (count[word] || 0) + 1;
+  return count;
+}, {});
+
+console.log(result510);
