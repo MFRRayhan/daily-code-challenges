@@ -6383,3 +6383,160 @@ const array520B = [1, 9, 3];
 const result520 = [...array520A, ...array520B].sort((a, b) => b - a);
 
 console.log(result520);
+
+// ==================================================
+// 521. Find the First Duplicate Number
+// Example: [4, 2, 7, 2, 9, 4]
+// Output: 2
+
+const numbers521 = [4, 2, 7, 2, 9, 4];
+
+const seen521 = new Set();
+
+const result521 = numbers521.find((num) => {
+  if (seen521.has(num)) return true;
+
+  seen521.add(num);
+  return false;
+});
+
+console.log(result521);
+
+
+// ==================================================
+// 522. Find the Difference Between the Sum of Even and Odd Numbers
+// Example: [10, 15, 20, 25, 30]
+// Output: 20
+
+const numbers522 = [10, 15, 20, 25, 30];
+
+const evenSum522 = numbers522
+  .filter((num) => num % 2 === 0)
+  .reduce((sum, num) => sum + num, 0);
+
+const oddSum522 = numbers522
+  .filter((num) => num % 2 !== 0)
+  .reduce((sum, num) => sum + num, 0);
+
+const result522 = evenSum522 - oddSum522;
+
+console.log(result522);
+
+
+// ==================================================
+// 523. Find All Words Longer Than Five Characters
+// Example: ["apple", "javascript", "react", "developer", "code"]
+// Output: ["javascript", "developer"]
+
+const words523 = ["apple", "javascript", "react", "developer", "code"];
+
+const result523 = words523.filter((word) => word.length > 5);
+
+console.log(result523);
+
+
+// ==================================================
+// 524. Reverse the Order of Words in a Sentence
+// Example: "JavaScript is fun to learn"
+// Output: "learn to fun is JavaScript"
+
+const sentence524 = "JavaScript is fun to learn";
+
+const result524 = sentence524
+  .split(" ")
+  .reverse()
+  .join(" ");
+
+console.log(result524);
+
+
+// ==================================================
+// 525. Find the Numbers That Occur Exactly Once
+// Example: [1, 2, 2, 3, 4, 4, 5, 6]
+// Output: [1, 3, 5, 6]
+
+const numbers525 = [1, 2, 2, 3, 4, 4, 5, 6];
+
+const result525 = numbers525.filter(
+  (num) => numbers525.indexOf(num) === numbers525.lastIndexOf(num)
+);
+
+console.log(result525);
+
+
+// ==================================================
+// 526. Group Numbers Into Even and Odd Arrays
+// Example: [1, 2, 3, 4, 5, 6]
+// Output: { even: [2, 4, 6], odd: [1, 3, 5] }
+
+const numbers526 = [1, 2, 3, 4, 5, 6];
+
+const result526 = numbers526.reduce(
+  (groups, num) => {
+    if (num % 2 === 0) {
+      groups.even.push(num);
+    } else {
+      groups.odd.push(num);
+    }
+
+    return groups;
+  },
+  { even: [], odd: [] }
+);
+
+console.log(result526);
+
+
+// ==================================================
+// 527. Check Whether Two Arrays Are Equal
+// Example: [1, 2, 3], [1, 2, 3]
+// Output: true
+
+const array527A = [1, 2, 3];
+const array527B = [1, 2, 3];
+
+const result527 =
+  array527A.length === array527B.length &&
+  array527A.every((num, index) => num === array527B[index]);
+
+console.log(result527);
+
+
+// ==================================================
+// 528. Find the Sum of Numbers in a Nested Array
+// Example: [[1, 2], [3, 4], [5, 6]]
+// Output: 21
+
+const numbers528 = [[1, 2], [3, 4], [5, 6]];
+
+const result528 = numbers528
+  .flat()
+  .reduce((sum, num) => sum + num, 0);
+
+console.log(result528);
+
+
+// ==================================================
+// 529. Replace Every Space With a Hyphen
+// Example: "learn javascript step by step"
+// Output: "learn-javascript-step-by-step"
+
+const text529 = "learn javascript step by step";
+
+const result529 = text529.replaceAll(" ", "-");
+
+console.log(result529);
+
+
+// ==================================================
+// 530. Find the Top Three Largest Unique Numbers
+// Example: [10, 45, 20, 45, 90, 30, 90, 70]
+// Output: [90, 70, 45]
+
+const numbers530 = [10, 45, 20, 45, 90, 30, 90, 70];
+
+const result530 = [...new Set(numbers530)]
+  .sort((a, b) => b - a)
+  .slice(0, 3);
+
+console.log(result530);
