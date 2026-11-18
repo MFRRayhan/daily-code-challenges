@@ -6256,3 +6256,130 @@ const result510 = sentence510.split(" ").reduce((count, word) => {
 }, {});
 
 console.log(result510);
+
+// ==================================================
+// 511. Find the Second Smallest Unique Number
+// Example: [15, 8, 3, 8, 12, 3, 20]
+// Output: 8
+
+const numbers511 = [15, 8, 3, 8, 12, 3, 20];
+
+const unique511 = [...new Set(numbers511)].sort((a, b) => a - b);
+
+const result511 = unique511[1];
+
+console.log(result511);
+
+
+// ==================================================
+// 512. Find the Total Number of Words in a Sentence
+// Example: "JavaScript is fun to learn"
+// Output: 5
+
+const sentence512 = "JavaScript is fun to learn";
+
+const result512 = sentence512.trim().split(/\s+/).length;
+
+console.log(result512);
+
+
+// ==================================================
+// 513. Find the Numbers Divisible by Both 3 and 5
+// Example: [10, 15, 30, 45, 60, 22, 90]
+// Output: [15, 30, 45, 60, 90]
+
+const numbers513 = [10, 15, 30, 45, 60, 22, 90];
+
+const result513 = numbers513.filter(
+  (num) => num % 3 === 0 && num % 5 === 0
+);
+
+console.log(result513);
+
+
+// ==================================================
+// 514. Convert an Array of Strings to Uppercase
+// Example: ["javascript", "react", "node"]
+// Output: ["JAVASCRIPT", "REACT", "NODE"]
+
+const words514 = ["javascript", "react", "node"];
+
+const result514 = words514.map((word) => word.toUpperCase());
+
+console.log(result514);
+
+
+// ==================================================
+// 515. Find the Index of the Largest Number
+// Example: [12, 45, 7, 89, 23]
+// Output: 3
+
+const numbers515 = [12, 45, 7, 89, 23];
+
+const result515 = numbers515.indexOf(Math.max(...numbers515));
+
+console.log(result515);
+
+
+// ==================================================
+// 516. Check Whether a String Is a Palindrome
+// Example: "madam"
+// Output: true
+
+const text516 = "madam";
+
+const result516 =
+  text516 === text516.split("").reverse().join("");
+
+console.log(result516);
+
+
+// ==================================================
+// 517. Create an Array of Squares
+// Example: [2, 4, 6, 8, 10]
+// Output: [4, 16, 36, 64, 100]
+
+const numbers517 = [2, 4, 6, 8, 10];
+
+const result517 = numbers517.map((num) => num ** 2);
+
+console.log(result517);
+
+
+// ==================================================
+// 518. Find the First Number Greater Than 50
+// Example: [12, 25, 48, 65, 80, 100]
+// Output: 65
+
+const numbers518 = [12, 25, 48, 65, 80, 100];
+
+const result518 = numbers518.find((num) => num > 50);
+
+console.log(result518);
+
+
+// ==================================================
+// 519. Calculate the Product of All Array Elements
+// Example: [2, 3, 4, 5]
+// Output: 120
+
+const numbers519 = [2, 3, 4, 5];
+
+const result519 = numbers519.reduce((product, num) => {
+  return product * num;
+}, 1);
+
+console.log(result519);
+
+
+// ==================================================
+// 520. Merge Two Arrays and Sort Them in Descending Order
+// Example: [5, 2, 8], [1, 9, 3]
+// Output: [9, 8, 5, 3, 2, 1]
+
+const array520A = [5, 2, 8];
+const array520B = [1, 9, 3];
+
+const result520 = [...array520A, ...array520B].sort((a, b) => b - a);
+
+console.log(result520);
