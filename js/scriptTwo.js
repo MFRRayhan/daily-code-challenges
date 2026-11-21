@@ -6540,3 +6540,180 @@ const result530 = [...new Set(numbers530)]
   .slice(0, 3);
 
 console.log(result530);
+
+// ==================================================
+// 531. Find the Sum of Unique Numbers
+// Example: [1, 2, 2, 3, 4, 4, 5]
+// Output: 11
+
+const numbers531 = [1, 2, 2, 3, 4, 4, 5];
+
+const result531 = [...new Set(numbers531)].reduce(
+  (sum, num) => sum + num,
+  0
+);
+
+console.log(result531);
+
+
+// ==================================================
+// 532. Find the Second Most Frequent Character
+// Example: "banana"
+// Output: "n"
+
+const text532 = "banana";
+
+const frequency532 = [...text532].reduce((count, char) => {
+  count[char] = (count[char] || 0) + 1;
+  return count;
+}, {});
+
+const result532 = Object.entries(frequency532)
+  .sort((a, b) => b[1] - a[1])
+  .filter((entry) => entry[1] < frequency532[
+    Object.keys(frequency532).reduce((a, b) =>
+      frequency532[a] >= frequency532[b] ? a : b
+    )
+  ])[0][0];
+
+console.log(result532);
+
+
+// ==================================================
+// 533. Find the Difference Between Adjacent Numbers
+// Example: [10, 15, 25, 40, 60]
+// Output: [5, 10, 15, 20]
+
+const numbers533 = [10, 15, 25, 40, 60];
+
+const result533 = numbers533.slice(1).map(
+  (num, index) => num - numbers533[index]
+);
+
+console.log(result533);
+
+
+// ==================================================
+// 534. Check Whether a Sentence Is a Pangram
+// Example: "The quick brown fox jumps over the lazy dog"
+// Output: true
+
+const sentence534 = "The quick brown fox jumps over the lazy dog";
+
+const alphabet534 = new Set(
+  sentence534.toLowerCase().match(/[a-z]/g)
+);
+
+const result534 = alphabet534.size === 26;
+
+console.log(result534);
+
+
+// ==================================================
+// 535. Find the Intersection of Multiple Arrays
+// Example: [[1, 2, 3, 4], [2, 3, 4, 5], [3, 4, 6]]
+// Output: [3, 4]
+
+const arrays535 = [
+  [1, 2, 3, 4],
+  [2, 3, 4, 5],
+  [3, 4, 6],
+];
+
+const result535 = arrays535[0].filter((num) =>
+  arrays535.every((array) => array.includes(num))
+);
+
+console.log(result535);
+
+
+// ==================================================
+// 536. Find the Most Common Word
+// Example: "cat dog cat bird dog cat"
+// Output: "cat"
+
+const sentence536 = "cat dog cat bird dog cat";
+
+const words536 = sentence536.split(" ");
+
+const frequency536 = words536.reduce((count, word) => {
+  count[word] = (count[word] || 0) + 1;
+  return count;
+}, {});
+
+const result536 = Object.keys(frequency536).reduce((a, b) =>
+  frequency536[a] >= frequency536[b] ? a : b
+);
+
+console.log(result536);
+
+
+// ==================================================
+// 537. Remove All Vowels From a String
+// Example: "JavaScript Programming"
+// Output: "JvScrpt Prgrmmng"
+
+const text537 = "JavaScript Programming";
+
+const result537 = text537.replace(/[aeiou]/gi, "");
+
+console.log(result537);
+
+
+// ==================================================
+// 538. Find the Maximum Sum of Two Numbers
+// Example: [5, 12, 8, 20, 3]
+// Output: 32
+
+const numbers538 = [5, 12, 8, 20, 3];
+
+const sorted538 = [...numbers538].sort((a, b) => b - a);
+
+const result538 = sorted538[0] + sorted538[1];
+
+console.log(result538);
+
+
+// ==================================================
+// 539. Convert an Array of Objects Into an Object
+// Example:
+// [
+//   { id: 1, name: "Rahim" },
+//   { id: 2, name: "Karim" },
+//   { id: 3, name: "Jamal" }
+// ]
+// Output:
+// {
+//   1: "Rahim",
+//   2: "Karim",
+//   3: "Jamal"
+// }
+
+const users539 = [
+  { id: 1, name: "Rahim" },
+  { id: 2, name: "Karim" },
+  { id: 3, name: "Jamal" },
+];
+
+const result539 = users539.reduce((acc, user) => {
+  acc[user.id] = user.name;
+  return acc;
+}, {});
+
+console.log(result539);
+
+
+// ==================================================
+// 540. Find the Longest Word Without Repeating Characters
+// Example: ["apple", "world", "banana", "code"]
+// Output: "world"
+
+const words540 = ["apple", "world", "banana", "code"];
+
+const result540 = words540
+  .filter((word) => new Set(word).size === word.length)
+  .reduce((longest, word) =>
+    word.length > longest.length ? word : longest
+  );
+
+console.log(result540);
