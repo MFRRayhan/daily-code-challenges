@@ -6717,3 +6717,197 @@ const result540 = words540
   );
 
 console.log(result540);
+
+// ==================================================
+// 541. Find the Average Length of Words
+// Example: ["JavaScript", "React", "Node"]
+// Output: 6.33
+
+const words541 = ["JavaScript", "React", "Node"];
+
+const totalLength541 = words541.reduce(
+  (sum, word) => sum + word.length,
+  0
+);
+
+const result541 = Number(
+  (totalLength541 / words541.length).toFixed(2)
+);
+
+console.log(result541);
+
+
+// ==================================================
+// 542. Find the First Pair With a Given Difference
+// Example: [10, 3, 7, 20, 15], Difference = 5
+// Output: [10, 15]
+
+const numbers542 = [10, 3, 7, 20, 15];
+const targetDifference542 = 5;
+
+let result542 = null;
+
+for (let i = 0; i < numbers542.length; i++) {
+  for (let j = i + 1; j < numbers542.length; j++) {
+    if (
+      Math.abs(numbers542[i] - numbers542[j]) ===
+      targetDifference542
+    ) {
+      result542 = [numbers542[i], numbers542[j]];
+      break;
+    }
+  }
+
+  if (result542 !== null) break;
+}
+
+console.log(result542);
+
+
+// ==================================================
+// 543. Find the Longest Word That Starts and Ends With the Same Letter
+// Example: ["level", "apple", "radar", "world", "civic"]
+// Output: "level"
+
+const words543 = ["level", "apple", "radar", "world", "civic"];
+
+const result543 = words543
+  .filter(
+    (word) =>
+      word[0].toLowerCase() ===
+      word[word.length - 1].toLowerCase()
+  )
+  .reduce((longest, word) =>
+    word.length > longest.length ? word : longest
+  );
+
+console.log(result543);
+
+
+// ==================================================
+// 544. Split an Array Into Chunks
+// Example: [1, 2, 3, 4, 5, 6, 7], Chunk Size = 3
+// Output: [[1, 2, 3], [4, 5, 6], [7]]
+
+const numbers544 = [1, 2, 3, 4, 5, 6, 7];
+const chunkSize544 = 3;
+
+const result544 = [];
+
+for (let i = 0; i < numbers544.length; i += chunkSize544) {
+  result544.push(numbers544.slice(i, i + chunkSize544));
+}
+
+console.log(result544);
+
+
+// ==================================================
+// 545. Find the Most Frequent Number in an Array
+// If There Is a Tie, Return the Smaller Number
+// Example: [4, 2, 4, 2, 3, 2, 4]
+// Output: 2
+
+const numbers545 = [4, 2, 4, 2, 3, 2, 4];
+
+const frequency545 = numbers545.reduce((count, num) => {
+  count[num] = (count[num] || 0) + 1;
+  return count;
+}, {});
+
+const result545 = Object.keys(frequency545)
+  .map(Number)
+  .sort((a, b) => {
+    return frequency545[b] - frequency545[a] || a - b;
+  })[0];
+
+console.log(result545);
+
+
+// ==================================================
+// 546. Find All Pairs Whose Sum Equals the Target
+// Example: [1, 2, 3, 4, 5, 6], Target = 7
+// Output: [[1, 6], [2, 5], [3, 4]]
+
+const numbers546 = [1, 2, 3, 4, 5, 6];
+const target546 = 7;
+
+const result546 = [];
+
+for (let i = 0; i < numbers546.length; i++) {
+  for (let j = i + 1; j < numbers546.length; j++) {
+    if (numbers546[i] + numbers546[j] === target546) {
+      result546.push([numbers546[i], numbers546[j]]);
+    }
+  }
+}
+
+console.log(result546);
+
+
+// ==================================================
+// 547. Find the Difference Between Two Objects
+// Example:
+// const first = { name: "Rahim", age: 25, city: "Dhaka" };
+// const second = { name: "Rahim", age: 30, city: "Dhaka" };
+// Output: { age: 30 }
+
+const first547 = { name: "Rahim", age: 25, city: "Dhaka" };
+const second547 = { name: "Rahim", age: 30, city: "Dhaka" };
+
+const result547 = Object.keys(second547).reduce((diff, key) => {
+  if (first547[key] !== second547[key]) {
+    diff[key] = second547[key];
+  }
+
+  return diff;
+}, {});
+
+console.log(result547);
+
+
+// ==================================================
+// 548. Count the Number of Words in a String
+// Example: "  Learn JavaScript step by step  "
+// Output: 5
+
+const text548 = "  Learn JavaScript step by step  ";
+
+const result548 = text548.trim().split(/\s+/).length;
+
+console.log(result548);
+
+
+// ==================================================
+// 549. Find the First Missing Positive Integer
+// Example: [3, 4, -1, 1]
+// Output: 2
+
+const numbers549 = [3, 4, -1, 1];
+
+const numberSet549 = new Set(numbers549);
+
+let result549 = 1;
+
+while (numberSet549.has(result549)) {
+  result549++;
+}
+
+console.log(result549);
+
+
+// ==================================================
+// 550. Create a Frequency Map of Word Lengths
+// Example: ["cat", "apple", "dog", "banana", "kiwi"]
+// Output: { 3: 2, 5: 1, 6: 1, 4: 1 }
+
+const words550 = ["cat", "apple", "dog", "banana", "kiwi"];
+
+const result550 = words550.reduce((count, word) => {
+  const length = word.length;
+
+  count[length] = (count[length] || 0) + 1;
+
+  return count;
+}, {});
+
+console.log(result550);
