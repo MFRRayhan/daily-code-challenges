@@ -6911,3 +6911,190 @@ const result550 = words550.reduce((count, word) => {
 }, {});
 
 console.log(result550);
+
+// ==================================================
+// 551. Find the Difference Between the Largest and Second Largest Unique Numbers
+// Example: [10, 40, 20, 40, 70, 30]
+// Output: 30
+
+const numbers551 = [10, 40, 20, 40, 70, 30];
+
+const unique551 = [...new Set(numbers551)].sort((a, b) => b - a);
+
+const result551 = unique551[0] - unique551[1];
+
+console.log(result551);
+
+
+// ==================================================
+// 552. Find the Most Frequent Word (Case-Insensitive)
+// Example: ["Apple", "banana", "APPLE", "orange", "apple", "Banana"]
+// Output: "apple"
+
+const words552 = ["Apple", "banana", "APPLE", "orange", "apple", "Banana"];
+
+const frequency552 = words552.reduce((count, word) => {
+  const normalized = word.toLowerCase();
+  count[normalized] = (count[normalized] || 0) + 1;
+  return count;
+}, {});
+
+const result552 = Object.keys(frequency552).reduce((a, b) =>
+  frequency552[a] >= frequency552[b] ? a : b
+);
+
+console.log(result552);
+
+
+// ==================================================
+// 553. Find the Longest Common Prefix
+// Example: ["flower", "flow", "flight"]
+// Output: "fl"
+
+const words553 = ["flower", "flow", "flight"];
+
+let result553 = words553[0];
+
+for (const word of words553.slice(1)) {
+  while (!word.startsWith(result553)) {
+    result553 = result553.slice(0, -1);
+  }
+}
+
+console.log(result553);
+
+
+// ==================================================
+// 554. Find the Missing Numbers in a Sequence
+// Example: [1, 3, 6, 8], Range = 1 to 8
+// Output: [2, 4, 5, 7]
+
+const numbers554 = [1, 3, 6, 8];
+const start554 = 1;
+const end554 = 8;
+
+const numberSet554 = new Set(numbers554);
+
+const result554 = [];
+
+for (let i = start554; i <= end554; i++) {
+  if (!numberSet554.has(i)) {
+    result554.push(i);
+  }
+}
+
+console.log(result554);
+
+
+// ==================================================
+// 555. Find the First Repeated Character
+// Example: "javascript"
+// Output: "a"
+
+const text555 = "javascript";
+
+const seen555 = new Set();
+
+const result555 = [...text555].find((char) => {
+  if (seen555.has(char)) return true;
+
+  seen555.add(char);
+  return false;
+});
+
+console.log(result555);
+
+
+// ==================================================
+// 556. Calculate the Total Price After Discount
+// Example: [100, 200, 300], Discount = 10%
+// Output: 540
+
+const prices556 = [100, 200, 300];
+const discount556 = 10;
+
+const total556 = prices556.reduce((sum, price) => sum + price, 0);
+
+const result556 = total556 - (total556 * discount556) / 100;
+
+console.log(result556);
+
+
+// ==================================================
+// 557. Find All Elements That Are Greater Than Their Neighbors
+// Example: [1, 5, 2, 8, 3, 9, 4]
+// Output: [5, 8, 9]
+
+const numbers557 = [1, 5, 2, 8, 3, 9, 4];
+
+const result557 = numbers557.filter(
+  (num, index, array) =>
+    index > 0 &&
+    index < array.length - 1 &&
+    num > array[index - 1] &&
+    num > array[index + 1]
+);
+
+console.log(result557);
+
+
+// ==================================================
+// 558. Find the Most Common Starting Letter
+// Example: ["apple", "ant", "banana", "avocado", "berry"]
+// Output: "a"
+
+const words558 = ["apple", "ant", "banana", "avocado", "berry"];
+
+const frequency558 = words558.reduce((count, word) => {
+  const firstLetter = word[0].toLowerCase();
+  count[firstLetter] = (count[firstLetter] || 0) + 1;
+  return count;
+}, {});
+
+const result558 = Object.keys(frequency558).reduce((a, b) =>
+  frequency558[a] >= frequency558[b] ? a : b
+);
+
+console.log(result558);
+
+
+// ==================================================
+// 559. Merge Two Arrays and Remove Duplicates
+// Example: [1, 2, 3, 4], [3, 4, 5, 6]
+// Output: [1, 2, 3, 4, 5, 6]
+
+const array559A = [1, 2, 3, 4];
+const array559B = [3, 4, 5, 6];
+
+const result559 = [...new Set([...array559A, ...array559B])];
+
+console.log(result559);
+
+
+// ==================================================
+// 560. Find the Longest Substring Without Repeating Characters
+// Example: "abcabcbb"
+// Output: "abc"
+
+const text560 = "abcabcbb";
+
+let longest560 = "";
+let current560 = "";
+
+for (const char of text560) {
+  const index = current560.indexOf(char);
+
+  if (index !== -1) {
+    current560 = current560.slice(index + 1);
+  }
+
+  current560 += char;
+
+  if (current560.length > longest560.length) {
+    longest560 = current560;
+  }
+}
+
+const result560 = longest560;
+
+console.log(result560);
