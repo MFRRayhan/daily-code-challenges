@@ -7098,3 +7098,168 @@ for (const char of text560) {
 const result560 = longest560;
 
 console.log(result560);
+
+// ==================================================
+// 561. Find the Numbers That Are Perfect Squares
+// Example: [1, 4, 8, 9, 16, 20, 25, 30]
+// Output: [1, 4, 9, 16, 25]
+
+const numbers561 = [1, 4, 8, 9, 16, 20, 25, 30];
+
+const result561 = numbers561.filter((num) =>
+  Number.isInteger(Math.sqrt(num))
+);
+
+console.log(result561);
+
+
+// ==================================================
+// 562. Find the First Word With a Duplicate Character
+// Example: ["cat", "dog", "apple", "bird"]
+// Output: "apple"
+
+const words562 = ["cat", "dog", "apple", "bird"];
+
+const result562 = words562.find(
+  (word) => new Set(word).size !== word.length
+);
+
+console.log(result562);
+
+
+// ==================================================
+// 563. Find the Sum of Numbers at Odd Indexes
+// Example: [10, 20, 30, 40, 50, 60]
+// Output: 120
+
+const numbers563 = [10, 20, 30, 40, 50, 60];
+
+const result563 = numbers563.reduce((sum, num, index) => {
+  return index % 2 !== 0 ? sum + num : sum;
+}, 0);
+
+console.log(result563);
+
+
+// ==================================================
+// 564. Find the Words That Contain a Specific Letter
+// Example: ["apple", "banana", "grape", "orange"], Letter = "a"
+// Output: ["apple", "banana", "grape", "orange"]
+
+const words564 = ["apple", "banana", "grape", "orange"];
+const letter564 = "a";
+
+const result564 = words564.filter((word) =>
+  word.toLowerCase().includes(letter564.toLowerCase())
+);
+
+console.log(result564);
+
+
+// ==================================================
+// 565. Find the Largest Difference Between Two Consecutive Numbers
+// Example: [10, 3, 20, 8, 25]
+// Output: 17
+
+const numbers565 = [10, 3, 20, 8, 25];
+
+const differences565 = numbers565.slice(1).map(
+  (num, index) => Math.abs(num - numbers565[index])
+);
+
+const result565 = Math.max(...differences565);
+
+console.log(result565);
+
+
+// ==================================================
+// 566. Check Whether a String Has Balanced Parentheses
+// Example: "((a + b) * (c - d))"
+// Output: true
+
+const text566 = "((a + b) * (c - d))";
+
+let balance566 = 0;
+let isValid566 = true;
+
+for (const char of text566) {
+  if (char === "(") balance566++;
+  if (char === ")") balance566--;
+
+  if (balance566 < 0) {
+    isValid566 = false;
+    break;
+  }
+}
+
+const result566 = isValid566 && balance566 === 0;
+
+console.log(result566);
+
+
+// ==================================================
+// 567. Find the Products of Corresponding Array Elements
+// Example: [2, 3, 4], [5, 6, 7]
+// Output: [10, 18, 28]
+
+const array567A = [2, 3, 4];
+const array567B = [5, 6, 7];
+
+const result567 = array567A.map(
+  (num, index) => num * array567B[index]
+);
+
+console.log(result567);
+
+
+// ==================================================
+// 568. Find the First Number Greater Than the Average
+// Example: [10, 20, 30, 40, 50]
+// Output: 40
+
+const numbers568 = [10, 20, 30, 40, 50];
+
+const average568 =
+  numbers568.reduce((sum, num) => sum + num, 0) /
+  numbers568.length;
+
+const result568 = numbers568.find((num) => num > average568);
+
+console.log(result568);
+
+
+// ==================================================
+// 569. Convert a Sentence Into an Array of Word Lengths
+// Example: "I love JavaScript programming"
+// Output: [1, 4, 10, 11]
+
+const sentence569 = "I love JavaScript programming";
+
+const result569 = sentence569
+  .split(" ")
+  .map((word) => word.length);
+
+console.log(result569);
+
+
+// ==================================================
+// 570. Find the Maximum Product of Two Numbers
+// Example: [-10, -5, 2, 8, 3]
+// Output: 50
+
+const numbers570 = [-10, -5, 2, 8, 3];
+
+const sorted570 = [...numbers570].sort((a, b) => a - b);
+
+const largestProduct570 =
+  sorted570[sorted570.length - 1] *
+  sorted570[sorted570.length - 2];
+
+const smallestProduct570 = sorted570[0] * sorted570[1];
+
+const result570 = Math.max(
+  largestProduct570,
+  smallestProduct570
+);
+
+console.log(result570);
