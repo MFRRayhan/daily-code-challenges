@@ -7263,3 +7263,163 @@ const result570 = Math.max(
 );
 
 console.log(result570);
+
+// ==================================================
+// 571. Find the Numbers That Are Divisible by Every Digit
+// Example: [12, 15, 24, 36, 48, 50]
+// Output: [12, 24, 36, 48]
+
+const numbers571 = [12, 15, 24, 36, 48, 50];
+
+const result571 = numbers571.filter((num) => {
+  const digits = String(num).split("").map(Number);
+
+  return digits.every((digit) => digit !== 0 && num % digit === 0);
+});
+
+console.log(result571);
+
+
+// ==================================================
+// 572. Find the First Word That Is Longer Than Its Previous Word
+// Example: ["cat", "elephant", "dog", "programming"]
+// Output: "elephant"
+
+const words572 = ["cat", "elephant", "dog", "programming"];
+
+const result572 = words572.find(
+  (word, index) => index > 0 && word.length > words572[index - 1].length
+);
+
+console.log(result572);
+
+
+// ==================================================
+// 573. Calculate the Running Sum of an Array
+// Example: [2, 4, 6, 8, 10]
+// Output: [2, 6, 12, 20, 30]
+
+const numbers573 = [2, 4, 6, 8, 10];
+
+let sum573 = 0;
+
+const result573 = numbers573.map((num) => {
+  sum573 += num;
+  return sum573;
+});
+
+console.log(result573);
+
+
+// ==================================================
+// 574. Find the Numbers Whose Squares Are Greater Than 100
+// Example: [2, 5, 8, 10, 12]
+// Output: [12]
+
+const numbers574 = [2, 5, 8, 10, 12];
+
+const result574 = numbers574.filter((num) => num ** 2 > 100);
+
+console.log(result574);
+
+
+// ==================================================
+// 575. Find the First Character That Appears Twice
+// Example: "abccdeff"
+// Output: "c"
+
+const text575 = "abccdeff";
+
+const seen575 = new Set();
+
+const result575 = [...text575].find((char) => {
+  if (seen575.has(char)) return true;
+
+  seen575.add(char);
+  return false;
+});
+
+console.log(result575);
+
+
+// ==================================================
+// 576. Find the Total Number of Vowels in Each Word
+// Example: ["apple", "banana", "grape", "sky"]
+// Output: [2, 3, 2, 0]
+
+const words576 = ["apple", "banana", "grape", "sky"];
+
+const result576 = words576.map(
+  (word) => (word.match(/[aeiou]/gi) || []).length
+);
+
+console.log(result576);
+
+
+// ==================================================
+// 577. Find the Number of Elements Between Two Values
+// Example: [5, 10, 15, 20, 25, 30], Range = 10 to 25
+// Output: 4
+
+const numbers577 = [5, 10, 15, 20, 25, 30];
+const min577 = 10;
+const max577 = 25;
+
+const result577 = numbers577.filter(
+  (num) => num >= min577 && num <= max577
+).length;
+
+console.log(result577);
+
+
+// ==================================================
+// 578. Find the Index of the First Negative Number
+// Example: [10, 20, 5, -3, -8, 15]
+// Output: 3
+
+const numbers578 = [10, 20, 5, -3, -8, 15];
+
+const result578 = numbers578.findIndex((num) => num < 0);
+
+console.log(result578);
+
+
+// ==================================================
+// 579. Convert an Array of Numbers Into an Object With Their Squares
+// Example: [2, 3, 4, 5]
+// Output: { 2: 4, 3: 9, 4: 16, 5: 25 }
+
+const numbers579 = [2, 3, 4, 5];
+
+const result579 = numbers579.reduce((acc, num) => {
+  acc[num] = num ** 2;
+  return acc;
+}, {});
+
+console.log(result579);
+
+
+// ==================================================
+// 580. Find the Longest Sequence of Consecutive Equal Elements
+// Example: [1, 1, 2, 2, 2, 3, 3, 1]
+// Output: 3
+// Explanation: The longest consecutive sequence is [2, 2, 2].
+
+const numbers580 = [1, 1, 2, 2, 2, 3, 3, 1];
+
+let currentCount580 = 1;
+let maxCount580 = 1;
+
+for (let i = 1; i < numbers580.length; i++) {
+  if (numbers580[i] === numbers580[i - 1]) {
+    currentCount580++;
+  } else {
+    currentCount580 = 1;
+  }
+
+  maxCount580 = Math.max(maxCount580, currentCount580);
+}
+
+const result580 = numbers580.length === 0 ? 0 : maxCount580;
+
+console.log(result580);
