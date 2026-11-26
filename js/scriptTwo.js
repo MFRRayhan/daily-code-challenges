@@ -7423,3 +7423,174 @@ for (let i = 1; i < numbers580.length; i++) {
 const result580 = numbers580.length === 0 ? 0 : maxCount580;
 
 console.log(result580);
+
+// ==================================================
+// 581. Find the Most Frequent Element in a String
+// Example: "mississippi"
+// Output: "i"
+
+const text581 = "mississippi";
+
+const frequency581 = [...text581].reduce((count, char) => {
+  count[char] = (count[char] || 0) + 1;
+  return count;
+}, {});
+
+const result581 = Object.keys(frequency581).reduce((a, b) =>
+  frequency581[a] > frequency581[b] ? a : b
+);
+
+console.log(result581);
+
+
+// ==================================================
+// 582. Find the Elements That Have an Even Number of Digits
+// Example: [12, 345, 6789, 5, 1000]
+// Output: [12, 6789, 1000]
+
+const numbers582 = [12, 345, 6789, 5, 1000];
+
+const result582 = numbers582.filter(
+  (num) => String(Math.abs(num)).length % 2 === 0
+);
+
+console.log(result582);
+
+
+// ==================================================
+// 583. Find the First Pair of Adjacent Numbers With an Odd Sum
+// Example: [2, 4, 6, 7, 8, 10]
+// Output: [6, 7]
+
+const numbers583 = [2, 4, 6, 7, 8, 10];
+
+let result583 = null;
+
+for (let i = 0; i < numbers583.length - 1; i++) {
+  if ((numbers583[i] + numbers583[i + 1]) % 2 !== 0) {
+    result583 = [numbers583[i], numbers583[i + 1]];
+    break;
+  }
+}
+
+console.log(result583);
+
+
+// ==================================================
+// 584. Remove All Duplicate Words From a Sentence
+// Example: "learn code learn JavaScript code daily"
+// Output: "learn code JavaScript daily"
+
+const sentence584 = "learn code learn JavaScript code daily";
+
+const result584 = [...new Set(sentence584.split(" "))].join(" ");
+
+console.log(result584);
+
+
+// ==================================================
+// 585. Find the Difference Between the First and Last Element
+// Example: [15, 8, 20, 12, 5]
+// Output: 10
+
+const numbers585 = [15, 8, 20, 12, 5];
+
+const result585 = Math.abs(
+  numbers585[0] - numbers585[numbers585.length - 1]
+);
+
+console.log(result585);
+
+
+// ==================================================
+// 586. Find the Longest Word With All Unique Characters
+// Example: ["hello", "world", "javascript", "code", "planet"]
+// Output: "planet"
+
+const words586 = ["hello", "world", "javascript", "code", "planet"];
+
+const result586 = words586
+  .filter((word) => new Set(word).size === word.length)
+  .reduce((longest, word) =>
+    word.length > longest.length ? word : longest
+  );
+
+console.log(result586);
+
+
+// ==================================================
+// 587. Find the Sum of Numbers Greater Than the Previous Number
+// Example: [5, 8, 6, 10, 12, 9, 15]
+// Output: 45
+
+const numbers587 = [5, 8, 6, 10, 12, 9, 15];
+
+const result587 = numbers587.reduce((sum, num, index, array) => {
+  if (index > 0 && num > array[index - 1]) {
+    return sum + num;
+  }
+
+  return sum;
+}, 0);
+
+console.log(result587);
+
+
+// ==================================================
+// 588. Check Whether Two Strings Have the Same Characters
+// Example: "listen", "silent"
+// Output: true
+
+const word588A = "listen";
+const word588B = "silent";
+
+const result588 =
+  word588A.length === word588B.length &&
+  [...word588A].sort().join("") === [...word588B].sort().join("");
+
+console.log(result588);
+
+
+// ==================================================
+// 589. Find the Numbers Whose Digit Sum Is Even
+// Example: [12, 23, 34, 45, 56, 67]
+// Output: [12, 34, 56]
+
+const numbers589 = [12, 23, 34, 45, 56, 67];
+
+const result589 = numbers589.filter((num) => {
+  const digitSum = String(Math.abs(num))
+    .split("")
+    .reduce((sum, digit) => sum + Number(digit), 0);
+
+  return digitSum % 2 === 0;
+});
+
+console.log(result589);
+
+
+// ==================================================
+// 590. Find the Longest Increasing Consecutive Subarray
+// Example: [1, 2, 3, 2, 4, 5, 6, 1]
+// Output: [2, 4, 5, 6]
+
+const numbers590 = [1, 2, 3, 2, 4, 5, 6, 1];
+
+let current590 = [numbers590[0]];
+let longest590 = [numbers590[0]];
+
+for (let i = 1; i < numbers590.length; i++) {
+  if (numbers590[i] > numbers590[i - 1]) {
+    current590.push(numbers590[i]);
+  } else {
+    current590 = [numbers590[i]];
+  }
+
+  if (current590.length > longest590.length) {
+    longest590 = [...current590];
+  }
+}
+
+const result590 = longest590;
+
+console.log(result590);
