@@ -7594,3 +7594,177 @@ for (let i = 1; i < numbers590.length; i++) {
 const result590 = longest590;
 
 console.log(result590);
+
+// ==================================================
+// 591. Find the Median of an Array
+// Example: [7, 2, 10, 4, 9]
+// Output: 7
+
+const numbers591 = [7, 2, 10, 4, 9];
+
+const sorted591 = [...numbers591].sort((a, b) => a - b);
+
+const middle591 = Math.floor(sorted591.length / 2);
+
+const result591 =
+  sorted591.length % 2 === 0
+    ? (sorted591[middle591 - 1] + sorted591[middle591]) / 2
+    : sorted591[middle591];
+
+console.log(result591);
+
+
+// ==================================================
+// 592. Find the Elements That Appear More Than Once
+// Example: [1, 2, 3, 2, 4, 5, 3, 6, 1]
+// Output: [1, 2, 3]
+
+const numbers592 = [1, 2, 3, 2, 4, 5, 3, 6, 1];
+
+const frequency592 = numbers592.reduce((count, num) => {
+  count[num] = (count[num] || 0) + 1;
+  return count;
+}, {});
+
+const result592 = Object.keys(frequency592)
+  .filter((num) => frequency592[num] > 1)
+  .map(Number);
+
+console.log(result592);
+
+
+// ==================================================
+// 593. Find the Sum of the Main Diagonal of a Matrix
+// Example: [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+// Output: 15
+
+const matrix593 = [
+  [1, 2, 3],
+  [4, 5, 6],
+  [7, 8, 9],
+];
+
+const result593 = matrix593.reduce(
+  (sum, row, index) => sum + row[index],
+  0
+);
+
+console.log(result593);
+
+
+// ==================================================
+// 594. Find the Difference Between the Two Largest Numbers
+// Example: [15, 80, 25, 60, 40]
+// Output: 20
+
+const numbers594 = [15, 80, 25, 60, 40];
+
+const sorted594 = [...numbers594].sort((a, b) => b - a);
+
+const result594 = sorted594[0] - sorted594[1];
+
+console.log(result594);
+
+
+// ==================================================
+// 595. Count the Number of Uppercase and Lowercase Letters
+// Example: "JavaScript Is FUN"
+// Output: { uppercase: 6, lowercase: 9 }
+
+const text595 = "JavaScript Is FUN";
+
+const result595 = [...text595].reduce(
+  (count, char) => {
+    if (char >= "A" && char <= "Z") {
+      count.uppercase++;
+    } else if (char >= "a" && char <= "z") {
+      count.lowercase++;
+    }
+
+    return count;
+  },
+  { uppercase: 0, lowercase: 0 }
+);
+
+console.log(result595);
+
+
+// ==================================================
+// 596. Find the Numbers That Are Powers of Two
+// Example: [1, 2, 3, 4, 8, 10, 16, 20, 32]
+// Output: [1, 2, 4, 8, 16, 32]
+
+const numbers596 = [1, 2, 3, 4, 8, 10, 16, 20, 32];
+
+const result596 = numbers596.filter(
+  (num) => num > 0 && (num & (num - 1)) === 0
+);
+
+console.log(result596);
+
+
+// ==================================================
+// 597. Find the Index of the Second Occurrence of a Value
+// Example: [10, 20, 30, 20, 40, 20], Target = 20
+// Output: 3
+
+const numbers597 = [10, 20, 30, 20, 40, 20];
+const target597 = 20;
+
+const firstIndex597 = numbers597.indexOf(target597);
+
+const result597 =
+  firstIndex597 === -1
+    ? -1
+    : numbers597.indexOf(target597, firstIndex597 + 1);
+
+console.log(result597);
+
+
+// ==================================================
+// 598. Find the Sum of Each Row in a Matrix
+// Example: [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+// Output: [6, 15, 24]
+
+const matrix598 = [
+  [1, 2, 3],
+  [4, 5, 6],
+  [7, 8, 9],
+];
+
+const result598 = matrix598.map((row) =>
+  row.reduce((sum, num) => sum + num, 0)
+);
+
+console.log(result598);
+
+
+// ==================================================
+// 599. Check Whether a String Is a Rotation of Another String
+// Example: "waterbottle", "erbottlewat"
+// Output: true
+
+const word599A = "waterbottle";
+const word599B = "erbottlewat";
+
+const result599 =
+  word599A.length === word599B.length &&
+  (word599A + word599A).includes(word599B);
+
+console.log(result599);
+
+
+// ==================================================
+// 600. Find the Longest Palindromic Word
+// Example: ["level", "hello", "radar", "world", "madam"]
+// Output: "level"
+
+const words600 = ["level", "hello", "radar", "world", "madam"];
+
+const result600 = words600
+  .filter((word) => word === word.split("").reverse().join(""))
+  .reduce((longest, word) =>
+    word.length > longest.length ? word : longest
+  );
+
+console.log(result600);
